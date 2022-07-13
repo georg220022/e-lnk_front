@@ -1,0 +1,29 @@
+$fontMain: 'Roboto', sans-serif;
+
+$primary: #353642;
+$secondary: #fff;
+$accent: #3d96e5;
+$hover: all 0.2s ease;
+
+
+$container-width: 1600px;
+$container-padding: 2rem;
+$container-side-padding: calc($container-padding / 2);
+
+
+// $breakpoint1400: 1399.98px;
+// $breakpoint1200: 1199.98px;
+$breakpoint992: 991.98px;
+$breakpoint768: 767.98px;
+$breakpoint576: 575.98px;
+// $breakpoint375: 374.98px;
+
+
+$burger-width: 25px;
+$burger-height: 20px;
+$burger-line-height: 2px;
+$burger-color: $primary;
+$burger-breakpoint: $breakpoint768;
+
+$burger-menu-color: $accent;
+$burger-menu-width: 100%;
