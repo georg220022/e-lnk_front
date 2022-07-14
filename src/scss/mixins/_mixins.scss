@@ -1,15 +1,3 @@
 @function rem($px) {
 	@return (calc($px / 16)) +rem;
 }
-
-$maxWidth: 1920;  // layout width 
-@mixin adaptive-font($pcSize, $mobSize) {
-    $pcSize: calc($pcSize / 16);
-    $mobSize: calc($mobSize / 16);
-    $addSize: calc($pcSize - $mobSize);
-    $maxWidth: calc(1920 / 16);
-    $minWidth: calc(320 / 16);
-    $width: calc($maxWidth - $minWidth);
-
-    font-size: calc(#{$mobSize + rem} + #{$addSize} * ((100vw - #{$minWidth + rem}) / #{$width}));
-}

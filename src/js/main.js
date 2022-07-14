@@ -10,5 +10,5 @@ import('./burger-menu.js');
 // import ('./counter.js');
 // import ('./tel-mask.js');
 // import ('./select.js');
-// import ('./form.js');
+import ('./shortener.js');
 // import ('./modal.js');

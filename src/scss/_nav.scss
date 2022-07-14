@@ -5,27 +5,21 @@
   &__list {
     display: flex;
     flex-flow: row nowrap;
-    gap: 2.75rem;
-    // padding: 0.6rem 1rem 1.25rem;
+    gap: rem(20);
+
+    @media (max-width: $breakpoint768) {
+      gap: rem(0);
+    }
   }
 
   &__item {
     white-space: nowrap;
   }
 
-  &__link {
-    color: #000;
-
-    @media (hover: hover) { 
-      &:hover {
-        color: $accent;
-        transition: $hover;
-
-        @media (max-width: $burger-breakpoint) {
-          color: unset;
-          text-decoration: underline;
-        }
-      }
+  &__button--registration {
+    @media (max-width: $breakpoint576) {
+      font-size: rem(16);
+      padding: 20px 20px;
     }
   }
 }

@@ -1,0 +1,77 @@
+.about {
+	margin-top: rem(144);
+
+	@media (max-width: $breakpoint680) {
+		margin-top: rem(72);
+	}
+
+	&__body {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: rem(104);
+
+		@media (max-width: $breakpoint1366) {
+			flex-direction: column-reverse;
+		}
+		@media (max-width: $breakpoint680) {
+			gap: rem(52);
+		}
+	}
+
+	&__illustration-img-wrapper {
+		max-width: rem(636);
+		
+
+		@media (max-width: $breakpoint1366) {
+			max-width: rem(636);
+		}
+	}
+
+	&__pic {
+		
+	}
+
+	&__content {
+	}
+
+	&__title {
+	}
+
+	&__list {
+	}
+
+	&__list-item {
+		font-size: rem(24);
+		line-height: 1.3;
+		margin-bottom: 36px;
+		position: relative;
+		padding-left: 60px;
+
+		&::before {
+			content: '';
+			display: inline-flex;
+			position: absolute;
+			// margin-right: 20px;
+			top: -6px;
+			left: 0;
+			width: 40px;
+			height: 40px;
+			background: url(../img/icon_check-mark.svg);
+		}
+
+		@media (max-width: $breakpoint576) {
+			font-size: rem(18);
+		}
+	}
+
+	&__button {
+		display: block;
+		margin: 0 auto;
+		font-weight: 600;
+
+		@media (max-width: $breakpoint576) {
+			font-size: rem(18);
+		}
+	}
+}

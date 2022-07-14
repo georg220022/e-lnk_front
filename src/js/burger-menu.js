@@ -1,6 +1,6 @@
 const burger = document.querySelector('.burger');
 const burgerMenu = document.querySelector('.header__nav');
-const burgerLinks = document.querySelectorAll('.nav__link');
+const burgerBtns = document.querySelectorAll('.nav__button');
 
 burger.addEventListener('click', function() {
   burger.classList.toggle('burger--active');
@@ -8,7 +8,7 @@ burger.addEventListener('click', function() {
   document.body.classList.toggle('burger-menu-overlay');
 });
 
-burgerLinks.forEach(item => {
+burgerBtns.forEach(item => {
   item.addEventListener('click', function() {
     if (burger.classList.contains('burger--active')) {
       burger.classList.remove('burger--active');

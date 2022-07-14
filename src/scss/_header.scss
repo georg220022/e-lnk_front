@@ -1,9 +1,10 @@
 .header {
-	padding: rem(10);
-
+	padding: rem(64) 0 rem(32);
+	
 	&__body {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 	}
 
 	&__logo {
@@ -12,7 +13,4 @@
 	&__nav {
 	}
 	
-}
-
-.logo {
 }

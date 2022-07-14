@@ -1,0 +1,68 @@
+.hero {
+	position: relative;
+	z-index: 2;
+
+	&__body {
+		padding: rem(308) 0 rem(64);
+
+		@media (max-width: $breakpoint1366) {
+			padding: rem(96) 0 rem(64);
+			text-align: center;
+		}
+
+		@media (max-width: $breakpoint680) {
+			padding-top: 0;
+		}
+	}
+
+	&__title {
+		margin-bottom: rem(28);
+
+		@media (max-width: $breakpoint992) {
+			font-size: rem(36);
+		}
+
+		@media (max-width: $breakpoint680) {
+			font-size: rem(26);
+		}
+	}
+
+	&__shortener {
+	}
+
+	&__qr-title {
+		margin-bottom: rem(28);
+	  font-size: rem(26);
+
+	  @media (max-width: $breakpoint680) {
+			font-size: rem(20);
+		}
+	}
+
+
+	&__qr-img-wrapper {
+		@media (max-width: $breakpoint1366) {
+			margin: 0 auto;
+		}
+	}
+
+	&__qr-image {
+	}
+
+	&__illustration-wrapper {
+		position: absolute;
+  	overflow: hidden;
+  	bottom: -4px;
+  	right: 0;
+  	z-index: -1;
+
+  	@media (max-width: $breakpoint1366) {
+  		display: none;
+  	}
+	}
+
+	&__illustration {
+		@extend %img;
+	}
+	
+}

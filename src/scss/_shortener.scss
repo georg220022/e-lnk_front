@@ -1,0 +1,77 @@
+.shortener {
+
+	&__label {
+		display: flex;
+		position: relative;
+		margin-bottom: 28px;
+
+		&--long-link {
+			max-width: rem(874);
+		}
+
+		&--short-link {
+			max-width: rem(470);
+		}
+
+		@media (max-width: $breakpoint1366) {
+			margin-right: auto;
+			margin-left: auto;
+		}
+	}
+
+	&__input {
+		font-family: 'Roboto';
+		font-weight: 400;
+		font-size: rem(20);
+		padding: 20px 70px 20px 32px;
+		width: 100%;
+		height: rem(62);
+		border: 1px solid $accent;
+		border-radius: 30px;
+		transition: $hover;
+
+		&--long-link {
+			&:focus {
+				box-shadow: 3px 3px 20px $accent;
+			}
+		}
+
+		&--short-link {
+		}
+	}
+
+	&__button {
+		position: absolute;
+		top: 6px;
+		right: 10px;
+		width: 50px;
+		height: 50px;
+		background-color: $accent;
+		border: 1px solid $accent;
+		border-radius: 30px;
+		cursor: pointer;
+		transition: $hover;
+
+		&--submit {
+			padding: 14px 12px;
+		}
+
+		&--copy {
+			padding: 12px 14px;
+		}
+
+		@media (hover: hover) { 
+			&:hover {
+				opacity: 0.9;
+		  }
+		}
+
+		&:active {
+				background-color: darken($accent, 15%);
+		  }
+
+		& svg {
+			fill: $secondary;
+		}
+	}
+}
