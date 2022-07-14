@@ -88,7 +88,7 @@ function img() {
 };
 
 function webpImages() {
-  return gulp.src(['src/img/**/*.jpg'], ['src/img/**/*.jpeg'], ['src/img/**/*.png'])
+  return gulp.src('src/img/**/*.{jpg,jpeg,png}')
     .pipe(webp())
     .pipe(gulp.dest(paths.images.dest))
 };
