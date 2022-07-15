@@ -1,5 +1,6 @@
 .off-limits-page {
 	height: calc(100vh - rem(120));
+	min-height: rem(504);
 	position: relative;
 
 	@media (max-width: $breakpoint768) {
