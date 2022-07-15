@@ -5,7 +5,7 @@
   &__list {
     display: flex;
     flex-flow: row nowrap;
-    gap: rem(20);
+    gap: rem(16);
 
     @media (max-width: $breakpoint768) {
       gap: rem(0);
@@ -17,9 +17,5 @@
   }
 
   &__button--registration {
-    @media (max-width: $breakpoint576) {
-      font-size: rem(16);
-      padding: 20px 20px;
-    }
   }
 }

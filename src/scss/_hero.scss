@@ -1,29 +1,41 @@
 .hero {
 	position: relative;
+	overflow: hidden;
 	z-index: 2;
 
 	&__body {
-		padding: rem(308) 0 rem(64);
+		padding: rem(180) 0 rem(48);
 
 		@media (max-width: $breakpoint1366) {
-			padding: rem(96) 0 rem(64);
+			padding: rem(45) 0 rem(48);
 			text-align: center;
 		}
 
-		@media (max-width: $breakpoint680) {
-			padding-top: 0;
+		@media (max-width: $breakpoint768) {
+			padding: rem(20) 0 rem(48);
+		}
+
+		@media (max-width: $breakpoint576) {
+			padding: rem(20) 0 rem(48);
 		}
 	}
 
 	&__title {
+		color: $accent;
+		font-size: rem(36);
 		margin-bottom: rem(28);
 
+
 		@media (max-width: $breakpoint992) {
-			font-size: rem(36);
+			font-size: rem(30);
 		}
 
-		@media (max-width: $breakpoint680) {
+		@media (max-width: $breakpoint768) {
 			font-size: rem(26);
+		}
+
+		@media (max-width: $breakpoint576) {
+			font-size: rem(20);
 		}
 	}
 
@@ -31,11 +43,16 @@
 	}
 
 	&__qr-title {
-		margin-bottom: rem(28);
-	  font-size: rem(26);
+		color: $accent;
+	  font-size: rem(24);
+		margin-bottom: rem(14);
 
-	  @media (max-width: $breakpoint680) {
+	  @media (max-width: $breakpoint768) {
 			font-size: rem(20);
+		}
+
+		@media (max-width: $breakpoint576) {
+			font-size: rem(18);
 		}
 	}
 
@@ -52,7 +69,9 @@
 	&__illustration-wrapper {
 		position: absolute;
   	overflow: hidden;
-  	bottom: -4px;
+  	height: 700px;
+  	width: auto;
+  	bottom: 0;
   	right: 0;
   	z-index: -1;
 
