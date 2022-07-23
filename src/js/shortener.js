@@ -1,71 +1,101 @@
-// shortener validation
-// let form = document.querySelector('.form');
+// Validation
+const shortener = document.getElementById('shortener-form');
+const shortenerSubmitBtn = document.getElementById('submit-btn');
+const longLink = document.getElementById('long-link');
+const shortLink = document.getElementById('short-link');
 
-// form.reset();
+const linkRegExp = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/;
 
-// const validation = new JustValidate('#form', {
-//   errorFieldCssClass: 'error--field',
-//   errorLabelCssClass: 'error--label',
-//   focusInvalidField: false,
-//   lockForm: true,
-// });
+let shortenerInputs = shortener.querySelectorAll('input');
+let shortenerErrors = 0;
 
-// validation
-//   .addField('#name', [
-//     {
-//       rule: 'minLength',
-//       value: 3,
-//       // errorMessage: '',
-//     },
-//     {
-//       rule: 'maxLength',
-//       value: 30,
-//     },
-//   ])
-//   .addField('#email', [
-//     {
-//       rule: 'required',
-//       errorMessage: 'Field is required',
-//     },
-//     {
-//       rule: 'email',
-//       errorMessage: 'Email is invalid!',
-//     },
-//   ])
-//   .addField('#password', [
-//   {
-//     rule: 'customRegexp',
-//     value: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/,
-//   },
-//   ])
-//   validation.addField('#repeat-password', [
-//   {
-//     validator: (value, fields) => {
-//       if (fields['#password'] && fields['#password'].elem) {
-//         const repeatPasswordValue = fields['#password'].elem.value;
+shortener.setAttribute('novalidate', true);
 
-//         return value === repeatPasswordValue;
-//       }
+function validateFilledInput(input) {
+	switch (input.name) {
+		case ('long-link'):
+			if (!linkRegExp.test(input.value) && input.value != '') {
+				input.nextElementSibling.innerText = 'Введите корректный адрес ссылки';
+				input.classList.add('error-input');
+				return false;
+			} else {
+				input.nextElementSibling.innerText = '';
+				input.classList.remove('error-input');
+				return true;
+			};
+			break;
+	};
+};
 
-//       return true;
-//     },
-//     errorMessage: 'Passwords should be the same',
-//   },
-//   ])
-//   .addField('#message', [
-//     {
-//       rule: 'required',
-//       errorMessage: 'Field is required',
-//     },
-//   ])
-//   .addField('#consent_checkbox', [
-//     {
-//       rule: 'required',
-//       // errorMessage: '',
-//     },
-//   ])
+function validateEmptyInput(input) {
+	if (input.value === '') {
+		input.nextElementSibling.innerText = 'Поле не должно быть пустым';
+		input.classList.add('error-input');
+		return false;
+	} else {
+		input.nextElementSibling.innerText = '';
+		input.classList.remove('error-input');
+		return true;
+	};
+};
 
-//   .onSuccess((event) => {
-//     alert("Супер!");
-//     console.log('Validation passes and form submitted', event);
-//   });
+shortenerInputs.forEach(input => {
+	if (input != shortLink) {
+		input.addEventListener('blur', () => validateFilledInput(input));
+		input.addEventListener('input', () => validateFilledInput(input));
+	};
+});
+
+shortener.addEventListener('submit', function(event) {
+	event.preventDefault();
+	let isValid = false;
+
+	shortenerInputs.forEach(input => {
+		if (input != shortLink) {
+			isValid = validateFilledInput(input) && validateEmptyInput(longLink);
+		};
+	});
+
+	if (isValid) {
+		shortenerSubmitBtn.classList.add('loader');
+		shortenerInputs.forEach((input) => input.setAttribute('disabled', 'disabled'));
+		sendShortenerRequest()
+			.then(() => {
+				shortenerSubmitBtn.classList.remove('loader');
+				shortenerInputs.forEach((input) => input.removeAttribute('disabled'));
+				longLink.value = "";
+			});
+	};
+});
+
+
+// HTTP Request
+const SHORTENER_API = 'api/v1/links';
+const qr = document.getElementById('qr');
+
+let shortenerObject = {
+	longLink: longLink.value,
+};
+
+const ShortenerRequestOptions = {
+	method: 'POST',
+	headers: {
+		'Accept': 'application/json',
+		'Content-Type': 'application/json;charset=UTF-8',
+	},
+	body: JSON.stringify(shortenerObject),
+};
+
+async function sendShortenerRequest() {
+	try {
+		let response = await fetch(SHORTENER_API, ShortenerRequestOptions);
+		let json = await response.json();
+		shortLink.value = json.name;
+		qr.src = `data:image/jpg;base64,${json.qr}`;
+	} catch (error) {
+		console.error('ошибка при запросе (shortener): ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+	};
+};
+
+
+export { shortLink };
