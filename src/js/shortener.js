@@ -7,7 +7,6 @@ const shortLink = document.getElementById('short-link');
 const linkRegExp = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/;
 
 let shortenerInputs = shortener.querySelectorAll('input');
-let shortenerErrors = 0;
 
 shortener.setAttribute('novalidate', true);
 
@@ -60,7 +59,7 @@ shortener.addEventListener('submit', function(event) {
 		shortenerSubmitBtn.classList.add('loader');
 		shortenerInputs.forEach((input) => input.setAttribute('disabled', 'disabled'));
 		sendShortenerRequest()
-			.then(() => {
+			.then((json) => {
 				shortenerSubmitBtn.classList.remove('loader');
 				shortenerInputs.forEach((input) => input.removeAttribute('disabled'));
 				longLink.value = "";
@@ -86,18 +85,20 @@ const shortenerRequestOptions = {
 	body: JSON.stringify(shortenerObject),
 };
 
+
 async function sendShortenerRequest() {
 	try {
 		let response = await fetch(SHORTENER_API, shortenerRequestOptions);
 		let json = await response.json();
-		console.log(`Полученный json (shortener): ${json}`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+		console.log('Полученный json (shortener):'); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+		console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+
 		shortLink.value = json.shortLink;
 		qr.src = `data:image/jpg;base64,${json.qr}`;
 	} catch (error) {
 		console.error('ошибка при запросе (shortener): ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 	};
 };
-
 
 export { shortLink };
 
