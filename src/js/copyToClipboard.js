@@ -1,6 +1,6 @@
 import { shortLink } from './shortener';
 
-const copyBtn = document.getElementById('copy-btn');
+const copyBtn = document.getElementById('shortener-copyBtn');
 
 copyBtn.addEventListener('click', (event) => {
   event.preventDefault();

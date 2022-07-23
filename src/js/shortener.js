@@ -1,6 +1,6 @@
-// Validation
+// Shortener Form Validation
 const shortener = document.getElementById('shortener-form');
-const shortenerSubmitBtn = document.getElementById('submit-btn');
+const shortenerSubmitBtn = document.getElementById('shortener-submitBtn');
 const longLink = document.getElementById('long-link');
 const shortLink = document.getElementById('short-link');
 
@@ -11,9 +11,9 @@ let shortenerErrors = 0;
 
 shortener.setAttribute('novalidate', true);
 
-function validateFilledInput(input) {
+function validateShortenerFilledInput(input) {
 	switch (input.name) {
-		case ('long-link'):
+		case ('longLink'):
 			if (!linkRegExp.test(input.value) && input.value != '') {
 				input.nextElementSibling.innerText = 'Введите корректный адрес ссылки';
 				input.classList.add('error-input');
@@ -41,8 +41,8 @@ function validateEmptyInput(input) {
 
 shortenerInputs.forEach(input => {
 	if (input != shortLink) {
-		input.addEventListener('blur', () => validateFilledInput(input));
-		input.addEventListener('input', () => validateFilledInput(input));
+		input.addEventListener('blur', () => validateShortenerFilledInput(input));
+		input.addEventListener('input', () => validateShortenerFilledInput(input));
 	};
 });
 
@@ -52,7 +52,7 @@ shortener.addEventListener('submit', function(event) {
 
 	shortenerInputs.forEach(input => {
 		if (input != shortLink) {
-			isValid = validateFilledInput(input) && validateEmptyInput(longLink);
+			isValid = validateShortenerFilledInput(input) && validateEmptyInput(longLink);
 		};
 	});
 
@@ -69,7 +69,7 @@ shortener.addEventListener('submit', function(event) {
 });
 
 
-// HTTP Request
+// Shortener HTTP Request(POST)
 const SHORTENER_API = 'api/v1/links';
 const qr = document.getElementById('qr');
 
@@ -77,7 +77,7 @@ let shortenerObject = {
 	longLink: longLink.value,
 };
 
-const ShortenerRequestOptions = {
+const shortenerRequestOptions = {
 	method: 'POST',
 	headers: {
 		'Accept': 'application/json',
@@ -88,9 +88,10 @@ const ShortenerRequestOptions = {
 
 async function sendShortenerRequest() {
 	try {
-		let response = await fetch(SHORTENER_API, ShortenerRequestOptions);
+		let response = await fetch(SHORTENER_API, shortenerRequestOptions);
 		let json = await response.json();
-		shortLink.value = json.name;
+		console.log(`Полученный json (shortener): ${json}`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+		shortLink.value = json.shortLink;
 		qr.src = `data:image/jpg;base64,${json.qr}`;
 	} catch (error) {
 		console.error('ошибка при запросе (shortener): ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
@@ -99,3 +100,5 @@ async function sendShortenerRequest() {
 
 
 export { shortLink };
+
+
