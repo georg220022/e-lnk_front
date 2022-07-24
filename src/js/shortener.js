@@ -72,10 +72,14 @@ shortener.addEventListener('submit', function(event) {
 const SHORTENER_API = 'api/v1/links';
 const qr = document.getElementById('qr');
 
-
 function createShortenerObject() {
 	let shortenerObject = {};
-	shortenerObject.longLink = longLink.value;
+
+	for (let input of shortenerInputs) {
+		if (input != shortLink && input.value) {
+			shortenerObject.input.name = input.name.value
+		};
+	};
 
 	return shortenerObject;
 };
