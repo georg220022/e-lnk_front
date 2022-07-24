@@ -59,7 +59,7 @@ shortener.addEventListener('submit', function(event) {
 		shortenerSubmitBtn.classList.add('loader');
 		shortenerInputs.forEach((input) => input.setAttribute('disabled', 'disabled'));
 		sendShortenerRequest()
-			.then((json) => {
+			.then(() => {
 				shortenerSubmitBtn.classList.remove('loader');
 				shortenerInputs.forEach((input) => input.removeAttribute('disabled'));
 				longLink.value = "";
@@ -72,21 +72,24 @@ shortener.addEventListener('submit', function(event) {
 const SHORTENER_API = 'api/v1/links';
 const qr = document.getElementById('qr');
 
-let shortenerObject = {
-	longLink: longLink.value,
-};
 
-const shortenerRequestOptions = {
-	method: 'POST',
-	headers: {
-		'Accept': 'application/json',
-		'Content-Type': 'application/json;charset=UTF-8',
-	},
-	body: JSON.stringify(shortenerObject),
-};
+function createShortenerObject() {
+	let shortenerObject = {};
+	shortenerObject.longLink = longLink.value;
 
+	return shortenerObject;
+};
 
 async function sendShortenerRequest() {
+	const shortenerRequestOptions = {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json;charset=UTF-8',
+		},
+		body: JSON.stringify(createShortenerObject()),
+	};
+
 	try {
 		let response = await fetch(SHORTENER_API, shortenerRequestOptions);
 		let json = await response.json();
@@ -101,5 +104,3 @@ async function sendShortenerRequest() {
 };
 
 export { shortLink };
-
-
