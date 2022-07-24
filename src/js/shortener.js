@@ -77,7 +77,8 @@ function createShortenerObject() {
 
 	for (let input of shortenerInputs) {
 		if (input != shortLink && input.value) {
-			shortenerObject.input.name = input.name.value
+			let name = input.name;
+			shortenerObject[name] = input.value
 		};
 	};
 
