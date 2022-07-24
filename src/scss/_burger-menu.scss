@@ -83,7 +83,7 @@
 
 	.header__nav {
 	  background-color: $burger-menu-color;
-	  width: $burger-menu-width;
+	  width: calc($burger-menu-width - 4rem);
 	  position: fixed;
 	  bottom: 0;
 	  right: -100%; // slides from right: -100%; slides from left: 100%;
@@ -96,12 +96,20 @@
 	  padding: 3rem $container-side-padding;
 	  z-index: 29;
 	  transition: all 0.4s ease;
+
+	  @media (max-width: $breakpoint390) {
+    	width: $burger-menu-width;
+  	}
 	}
 
 	.burger-menu--active.header__nav {
 	  visibility: visible;
-	  right: 0;
+	  right: 2rem;
 	  opacity: 1;
+
+	  @media (max-width: $breakpoint390) {
+    	right: 0;
+  	}
 	}
 
 	.header__nav > .nav__list {
