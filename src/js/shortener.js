@@ -3,6 +3,9 @@ const shortener = document.getElementById('shortener-form');
 const shortenerSubmitBtn = document.getElementById('shortener-submitBtn');
 const longLink = document.getElementById('long-link');
 const shortLink = document.getElementById('short-link');
+const shortLinkWrapper = document.querySelector('.form__input-wrapper--short-link');
+const qrWrapper = document.querySelector('.hero__qr-body');
+
 
 const linkRegExp = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/;
 
@@ -62,6 +65,8 @@ shortener.addEventListener('submit', function(event) {
 			.then(() => {
 				shortenerSubmitBtn.classList.remove('loader');
 				shortenerInputs.forEach((input) => input.removeAttribute('disabled'));
+				shortLinkWrapper.classList.add('open');
+				qrWrapper.classList.add('open');
 				longLink.value = "";
 			});
 	};
@@ -96,7 +101,7 @@ async function sendShortenerRequest() {
 	};
 
 	try {
-		let response = await fetch(SHORTENER_API, shortenerRequestOptions);
+		let response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
 		let json = await response.json();
 		console.log('Полученный json (shortener):'); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 		console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ

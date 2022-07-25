@@ -13,3 +13,5 @@ import './burger-menu.js';
 import './shortener.js';
 import './copyToClipboard.js';
 // import ('./modal.js';
+
+// TODO: зеленая галочка, shortener__qr-body visible

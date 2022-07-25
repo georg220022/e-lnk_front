@@ -73,6 +73,7 @@
 						</button>
 					</div>
 					<div class="form__input-wrapper form__input-wrapper--short-link">
+					<h2 class="hero__short-link-title visually-hidden">Ваша короткая ссылка:</h2>
 					<label class="form__label form__label--short-link" for="short-link">
 						<input class="form__input form__input--short-link" id="short-link" type="url" name="shortLink" placeholder="Результат" readonly>
 					</label>
@@ -84,9 +85,11 @@
 					</div>
 				</form>
 
-				<h2 class="hero__qr-title">QR-код вашей ссылки:</h2>
+				<div class="hero__qr-body">
+				<h2 class="hero__qr-title visually-hidden">QR-код вашей ссылки:</h2>
 				<div class="hero__qr-img-wrapper qr-img-wrapper">
 					<img class="hero__qr-img qr-img" id="qr" src="./img/qr.png" alt="QR-код">
+				</div>
 				</div>
 				<div class="hero__illustration-wrapper">
 					<picture>
