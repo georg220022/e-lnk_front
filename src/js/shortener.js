@@ -101,7 +101,7 @@ async function sendShortenerRequest() {
 	};
 
 	try {
-		let response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+		let response = await fetch(SHORTENER_API, shortenerRequestOptions);
 		let json = await response.json();
 		console.log('Полученный json (shortener):'); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 		console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
