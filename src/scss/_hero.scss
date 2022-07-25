@@ -18,6 +18,13 @@
 		@media (max-width: $breakpoint576) {
 			padding: 0 0 rem(32);
 		}
+
+		&.open {
+			@media (min-width: $breakpoint1366) {
+				transform: translateY(-10%);
+				transition: transform 0.3s linear;
+			}
+		}
 	}
 
 	&__title {
@@ -38,7 +45,7 @@
 		}
 	}
 
-	&__shortener {
+	&__form {
 	}
 
 	&__qr-title {

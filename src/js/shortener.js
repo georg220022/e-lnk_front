@@ -3,6 +3,7 @@ const shortener = document.getElementById('shortener-form');
 const shortenerSubmitBtn = document.getElementById('shortener-submitBtn');
 const longLink = document.getElementById('long-link');
 const shortLink = document.getElementById('short-link');
+const heroBody = document.querySelector('.hero__body');
 const shortLinkWrapper = document.querySelector('.form__input-wrapper--short-link');
 const qrWrapper = document.querySelector('.hero__qr-body');
 
@@ -69,6 +70,7 @@ shortener.addEventListener('submit', function(event) {
 				if (shortLink.value) {
 					shortLinkWrapper.classList.add('open');
 					qrWrapper.classList.add('open');
+					heroBody.classList.add('open');
 				}
 			});
 	};
@@ -112,7 +114,7 @@ async function sendShortenerRequest() {
 		let json = await response.json();
 		console.log('Полученный json (shortener):'); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 		console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-		
+
 		if (json.shortLink && json.qr) {
 			shortLink.value = json.shortLink;
 			qr.src = `data:image/jpg;base64,${json.qr}`;
