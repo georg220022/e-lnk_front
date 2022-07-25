@@ -65,9 +65,11 @@ shortener.addEventListener('submit', function(event) {
 			.then(() => {
 				shortenerSubmitBtn.classList.remove('loader');
 				shortenerInputs.forEach((input) => input.removeAttribute('disabled'));
-				shortLinkWrapper.classList.add('open');
-				qrWrapper.classList.add('open');
 				longLink.value = "";
+				if (shortLink.value) {
+					shortLinkWrapper.classList.add('open');
+					qrWrapper.classList.add('open');
+				}
 			});
 	};
 });
@@ -102,12 +104,21 @@ async function sendShortenerRequest() {
 
 	try {
 		let response = await fetch(SHORTENER_API, shortenerRequestOptions);
+		if (response.status === 404) { 
+			alert('Не получилось сократить ссылку :( \nПожалуйста, попробуйте позже');
+			console.log(response); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+		};
+
 		let json = await response.json();
 		console.log('Полученный json (shortener):'); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 		console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-
-		shortLink.value = json.shortLink;
-		qr.src = `data:image/jpg;base64,${json.qr}`;
+		
+		if (json.shortLink && json.qr) {
+			shortLink.value = json.shortLink;
+			qr.src = `data:image/jpg;base64,${json.qr}`;
+		} else if (json.error) {
+			alert(json.error)
+		} 
 	} catch (error) {
 		console.error('ошибка при запросе (shortener): ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 	};
