@@ -46,6 +46,13 @@ function clean() {
   return del(['dist/*'])
 }
 
+function txtcopy() { 
+  return gulp.src('src/*.txt')
+    .pipe(size({ showFiles: true })) 
+    .pipe(gulp.dest('dist/')) 
+    .pipe(browsersync.stream()) 
+  }
+
 // html
 function html() {
   return gulp.src(paths.html.src)
@@ -175,4 +182,4 @@ const toProd = (done) => {
 
 // gulp commands
 exports.default = gulp.series(clean, html, gulp.parallel(styles, scripts, img, webpImages, fonts), watch)
-exports.build = gulp.series(toProd, clean, html, gulp.parallel(styles, scripts, img, webpImages, fonts))
+exports.build = gulp.series(toProd, clean, html, txtcopy, gulp.parallel(styles, scripts, img, webpImages, fonts))
