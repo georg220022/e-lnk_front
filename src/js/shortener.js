@@ -106,11 +106,6 @@ async function sendShortenerRequest() {
 
 	try {
 		let response = await fetch(SHORTENER_API, shortenerRequestOptions);
-		if (response.status === 404) { 
-			alert('Не получилось сократить ссылку :( \nПожалуйста, попробуйте позже');
-			console.log(response); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-		};
-
 		let json = await response.json();
 		console.log('Полученный json (shortener):'); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 		console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
@@ -122,6 +117,7 @@ async function sendShortenerRequest() {
 			alert(json.error)
 		} 
 	} catch (error) {
+		alert('Не получилось сократить ссылку :( \nПожалуйста, попробуйте позже');
 		console.error('ошибка при запросе (shortener): ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 	};
 };
