@@ -1,6 +1,7 @@
 'use strict'
 
 import './burger-menu.js';
+import './modal.js';
 // import './range-slider.js';
 // import './show-more.js';
 // import './swiper.js';
@@ -12,4 +13,3 @@ import './burger-menu.js';
 // import './select.js';
 import './shortener.js';
 import './copyToClipboard.js';
-// import ('./modal.js';
