@@ -16,6 +16,8 @@
     white-space: nowrap;
   }
 
-  &__button--registration {
+  &__button {
+    position: relative;
+    z-index: 2;
   }
 }
