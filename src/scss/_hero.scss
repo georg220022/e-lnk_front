@@ -4,19 +4,19 @@
 	z-index: 2;
 
 	&__body {
-		padding: rem(180) 0 rem(32);
+		padding: rem(180) 0 0;
 
 		@media (max-width: $breakpoint1366) {
-			padding: rem(32) 0 rem(32);
+			padding: rem(32) 0 0;
 			text-align: center;
 		}
 
 		@media (max-width: $breakpoint768) {
-			padding: rem(16) 0 rem(32);
+			padding: rem(16) 0 0;
 		}
 
 		@media (max-width: $breakpoint576) {
-			padding: 0 0 rem(32);
+			padding: 0;
 		}
 
 		&.open {
