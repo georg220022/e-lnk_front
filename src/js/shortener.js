@@ -7,30 +7,35 @@ const heroBody = document.querySelector('.hero__body');
 const shortLinkWrapper = document.querySelector('.form__input-wrapper--short-link');
 const qrWrapper = document.querySelector('.hero__qr-body');
 
-
-const linkRegExp = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/;
-
-let shortenerInputs = shortener.querySelectorAll('input');
+let allShortenerFields = shortener.querySelectorAll('input');
+let shortenerInputs = Array.from(allShortenerFields).slice(0, -1);
 
 shortener.setAttribute('novalidate', true);
 
 function validateShortenerFilledInput(input) {
+	const linkRegExp = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/;
+	let inputCorrectCondition;
+	let inputErrorText;
+
 	switch (input.name) {
 		case ('longLink'):
-			if (!linkRegExp.test(input.value) && input.value != '') {
-				input.nextElementSibling.innerText = 'Введите корректный адрес ссылки';
-				input.classList.add('error-input');
-				return false;
-			} else {
-				input.nextElementSibling.innerText = '';
-				input.classList.remove('error-input');
-				return true;
-			};
+			inputCorrectCondition = linkRegExp.test(input.value)
+			inputErrorText = 'Введите корректный адрес ссылки';
 			break;
+	};
+
+	if (!inputCorrectCondition && input.value != '') {
+		input.nextElementSibling.innerText = inputErrorText;
+		input.classList.add('error-input');
+		return false;
+	} else {
+		input.nextElementSibling.innerText = '';
+		input.classList.remove('error-input');
+		return true;
 	};
 };
 
-function validateEmptyInput(input) {
+export function validateEmptyInput(input) {
 	if (input.value === '') {
 		input.nextElementSibling.innerText = 'Поле не должно быть пустым';
 		input.classList.add('error-input');
@@ -43,29 +48,28 @@ function validateEmptyInput(input) {
 };
 
 shortenerInputs.forEach(input => {
-	if (input != shortLink) {
 		input.addEventListener('blur', () => validateShortenerFilledInput(input));
 		input.addEventListener('input', () => validateShortenerFilledInput(input));
-	};
 });
 
 shortener.addEventListener('submit', function(event) {
 	event.preventDefault();
 	let isValid = false;
 
-	shortenerInputs.forEach(input => {
-		if (input != shortLink) {
-			isValid = validateShortenerFilledInput(input) && validateEmptyInput(longLink);
-		};
+	let validatedInputs = shortenerInputs.map(input => {
+			let inputIsValid = validateShortenerFilledInput(input) && validateEmptyInput(longLink);
+			return inputIsValid;
 	});
+
+	isValid = validatedInputs.every(input => input === true);
 
 	if (isValid) {
 		shortenerSubmitBtn.classList.add('loader');
-		shortenerInputs.forEach((input) => input.setAttribute('disabled', 'disabled'));
+		allShortenerFields.forEach((input) => input.setAttribute('disabled', 'disabled'));
 		sendShortenerRequest()
 			.then(() => {
 				shortenerSubmitBtn.classList.remove('loader');
-				shortenerInputs.forEach((input) => input.removeAttribute('disabled'));
+				allShortenerFields.forEach((input) => input.removeAttribute('disabled'));
 				longLink.value = "";
 				if (shortLink.value) {
 					shortLinkWrapper.classList.add('open');
@@ -76,7 +80,6 @@ shortener.addEventListener('submit', function(event) {
 	};
 });
 
-
 // Shortener HTTP Request(POST)
 const SHORTENER_API = 'api/v1/links';
 const qr = document.getElementById('qr');
@@ -85,7 +88,7 @@ function createShortenerObject() {
 	let shortenerObject = {};
 
 	for (let input of shortenerInputs) {
-		if (input != shortLink && input.value) {
+		if (input.value) {
 			let name = input.name;
 			shortenerObject[name] = input.value
 		};
