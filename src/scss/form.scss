@@ -40,8 +40,14 @@
 			margin-bottom: rem(14);
 		}
 	}
+	
+	&__checkbox-wrapper {
+		display: flex;
+		flex-direction: column-reverse;
+	}
 
 	&__label {
+
 		&--long-link {
 		}
 
@@ -60,29 +66,32 @@
 		&--checkbox {
 			position: relative;
 			display: inline-block;
+			font-size: rem(16);
 			margin-top: rem(8);
-  		padding-left: rem(20);
+  		padding-left: rem(40);
   		user-select: none;
-
+			
 			&::before {
   			content: '';
   			position: absolute;
-  			width: 16px;
+  			width: rem(16);
+  			height: rem(16);
+  			margin-left: rem(20);
   			border-radius: 4px;
-  			height: 16px;
   			border: 1px solid $accent;
-  			top: 2px;
+  			top: 0px;
   			left: 0;	
 			}
 			
 			&::after {
 			  content: '';
 			  position: absolute;
-			  height: 9px;
-			  width: 5px;
+			  height: 8px;
+			  width: 4px;
+			  margin-left: rem(20);
 			  background-color: $secondary;
-			  top: 10px;
-			  left: 3px;
+			  top: 9px;
+			  left: 4px;
 			  transform-origin: left top;
 		    border-right: 2px solid $primary;
 		    border-top: 2px solid $primary;
@@ -96,7 +105,7 @@
 		font-family: 'Roboto';
 		font-weight: 400;
 		font-size: rem(18);
-		padding: 15px 60px 15px 20px;
+		padding: rem(15) rem(60) rem(15) rem(20);
 		width: 100%;
 		border: 1px solid $accent;
 		border-radius: 30px;
@@ -126,18 +135,20 @@
 
 		&--checkbox {
 			position: absolute;
-			visibility: hidden;
+			top: 0;
+			left: 0;
+			visibility: visible;
 			opacity: 0;
 			z-index: -28;
 
-			&:checked + .form__label--checkbox::after {
+			&:checked ~ .form__label--checkbox::after {
   			opacity: 1;
   			background-color: $accent;
   			border-right: 2px solid $secondary;
 		    border-top: 2px solid $secondary;
   		}
 
-  		&:checked + .form__label--checkbox::before {
+  		&:checked ~ .form__label--checkbox::before {
   			border: 1px solid $accent;
   			background-color: $accent;
   		}

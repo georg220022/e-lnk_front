@@ -130,6 +130,13 @@ h2 {
   &:active {
     background-color: darken($accent, 15%);
   }
+
+  &.loader {
+    width: 40px;
+    height: 40px;
+    border: none;
+    box-shadow: none;
+  }
 }
 
 .button--main {
@@ -153,6 +160,13 @@ h2 {
 
   &:active {
     background-color: darken($accent, 15%);
+  }
+
+  &.loader {
+    width: 40px;
+    height: 40px;
+    border: none;
+    box-shadow: none;
   }
 }
 
@@ -195,9 +209,10 @@ input[disabled] {
   font-size: rem(14);
   color: $error;
   text-align: left;
-  margin-top: rem(10);
+  margin: rem(10) 0;
   margin-right: auto;
   padding-left: 20px;
+  pointer-events: none;
 }
 
 .error-input:focus {

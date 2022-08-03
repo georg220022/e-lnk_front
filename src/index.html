@@ -129,8 +129,8 @@
 		</div>
 	</footer> -->
 
-	
-	<!-- -----------------------Modals--------------------- -->
+
+	<!-- Modals -->
 	<div class="modal" id="login-modal">
 		<div class="modal__body">
 			<div class="modal__head">
@@ -138,15 +138,15 @@
 			</div>
 			<div class="modal__content">
 				<form class="hero__form form" id="login-form" action="#" method="post" autocomplete="off">
-					<label class="form__label form__label--email" for="email">
-						<input class="form__input form__input--email" id="email" type="email" name="email" placeholder="Введите e-mail" required>
+					<label class="form__label form__label--email" for="login-email">
+						<input class="form__input form__input--email" id="login-email" type="email" name="email" placeholder="Введите e-mail" required>
 						<span class="error-label"></span>
 					</label>
-					<label class="form__label form__label--password" for="password">
-						<input class="form__input form__input--password" id="password" type="password" name="password" placeholder="Введите пароль" required/>
+					<label class="form__label form__label--password" for="login-password">
+						<input class="form__input form__input--password" id="login-password" type="password" name="password" placeholder="Введите пароль" required/>
 						<span class="error-label"></span>
 					</label>
-					<button class="form__button form__button--submit button--main" id="shortener-submitBtn" type="submit" name="submit">Войти</button>
+					<button class="form__button form__button--submit button--main" id="login-submitBtn" type="submit" name="submit">Войти</button>
 				</form>
 			</div>
 		</div>
@@ -158,23 +158,26 @@
 				<button class="modal__close-button"></button>
 			</div>
 			<div class="modal__content">
-				<form class="hero__form form" id="login-form" action="#" method="post" autocomplete="off">
-					<label class="form__label form__label--email" for="email">
-						<input class="form__input form__input--email" id="email" type="email" name="email" placeholder="Введите e-mail" required>
+				<form class="hero__form form" id="registration-form" action="#" method="post" autocomplete="off">
+					<label class="form__label form__label--email" for="registration-email">
+						<input class="form__input form__input--email" id="registration-email" type="email" name="email" placeholder="Введите e-mail" required>
 						<span class="error-label"></span>
 					</label>
-					<label class="form__label form__label--password" for="password">
-						<input class="form__input form__input--password" id="password" type="password" name="password" placeholder="Введите пароль" required/>
+					<label class="form__label form__label--password" for="registration-password">
+						<input class="form__input form__input--password" id="registration-password" type="password" name="password" placeholder="Введите пароль" required/>
 						<span class="error-label"></span>
 					</label>
-					<label class="form__label form__label--repeat-password" for="repeat-password">
-						<input class="form__input form__input--repeat-password" id="repeat-password" type="password" name="repeat-password" placeholder="Повторите пароль" required/>
+					<label class="form__label form__label--repeat-password" for="registration-repeat-password">
+						<input class="form__input form__input--repeat-password" id="registration-repeat-password" type="password" name="repeat-password" placeholder="Повторите пароль" required/>
 						<span class="error-label"></span>
 					</label>
-					<input class="form__input form__input--checkbox" type="checkbox" name="terms" id="consent-checkbox" value="terms" required>
-					<label class="form__label form__label--checkbox" for="consent_checkbox">Принимаю условия <a class="form__terms-link" href="#">обработки персональных данных</a>
-					<span class="error-label"></span></label>
-					<button class="form__button form__button--submit button--main" id="shortener-submitBtn" type="submit" name="submit">Зарегистрироваться</button>
+					<div class="form__checkbox-wrapper">
+					<input class="form__input form__input--checkbox" type="checkbox" name="consent-checkbox" id="registration-consent-checkbox" value="consent-checkbox" required>
+					<span class="error-label"></span>
+					<label class="form__label form__label--checkbox" for="registration-consent-checkbox">Принимаю условия <a class="form__terms-link" href="#">обработки персональных данных</a>
+					</label>
+					</div>
+					<button class="form__button form__button--submit button--main" id="registration-submitBtn" type="submit" name="submit">Зарегистрироваться</button>
 				</form>
 			</div>
 		</div>

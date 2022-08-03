@@ -21,7 +21,7 @@
 
 		&.open {
 			@media (min-width: $breakpoint1366) {
-				transform: translateY(-10%);
+				transform: translateY(-9%);
 				transition: transform 0.3s linear;
 			}
 		}
