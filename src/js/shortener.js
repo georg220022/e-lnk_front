@@ -7,10 +7,10 @@ const heroBody = document.querySelector('.hero__body');
 const shortLinkWrapper = document.querySelector('.form__input-wrapper--short-link');
 const qrWrapper = document.querySelector('.hero__qr-body');
 
-let allShortenerFields = shortener.querySelectorAll('input');
-let shortenerInputs = Array.from(allShortenerFields).slice(0, -1);
+let allShortenerFields = shortener?.querySelectorAll('input');
+let shortenerInputs = allShortenerFields ? Array.from(allShortenerFields).slice(0, -1) : null;
 
-shortener.setAttribute('novalidate', true);
+shortener?.setAttribute('novalidate', true);
 
 function validateShortenerFilledInput(input) {
 	const linkRegExp = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/;
@@ -47,12 +47,12 @@ export function validateEmptyInput(input) {
 	};
 };
 
-shortenerInputs.forEach(input => {
+shortenerInputs?.forEach(input => {
 		input.addEventListener('blur', () => validateShortenerFilledInput(input));
 		input.addEventListener('input', () => validateShortenerFilledInput(input));
 });
 
-shortener.addEventListener('submit', function(event) {
+shortener?.addEventListener('submit', function(event) {
 	event.preventDefault();
 	let isValid = false;
 

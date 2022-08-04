@@ -2,7 +2,7 @@ import { shortLink } from './shortener';
 
 const copyBtn = document.getElementById('shortener-copyBtn');
 
-copyBtn.addEventListener('click', (event) => {
+copyBtn?.addEventListener('click', (event) => {
   event.preventDefault();
   copyBtn.classList.add('checkmark');
   copyTextToClipboard(shortLink.value)
