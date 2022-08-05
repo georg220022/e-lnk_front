@@ -13,19 +13,25 @@ let shortenerInputs = allShortenerFields ? Array.from(allShortenerFields).slice(
 shortener?.setAttribute('novalidate', true);
 
 function validateShortenerFilledInput(input) {
-	const linkRegExp = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/;
-	let inputCorrectCondition;
+	const linkRegExp = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?((?!\.).)$/;
+	let linkIsCorrect;
+	let linkContainsElnk;
 	let inputErrorText;
 
 	switch (input.name) {
 		case ('longLink'):
-			inputCorrectCondition = linkRegExp.test(input.value)
+			linkIsCorrect = linkRegExp.test(input.value);
+			linkContainsElnk = input.value.includes("e-lnk.ru");
 			inputErrorText = 'Введите корректный адрес ссылки';
 			break;
 	};
 
-	if (!inputCorrectCondition && input.value != '') {
+	if (!linkIsCorrect && input.value != '') {
 		input.nextElementSibling.innerText = inputErrorText;
+		input.classList.add('error-input');
+		return false;
+	} else if (linkContainsElnk) {
+		input.nextElementSibling.innerText = 'Это наша ссылка :) Введите другую';
 		input.classList.add('error-input');
 		return false;
 	} else {

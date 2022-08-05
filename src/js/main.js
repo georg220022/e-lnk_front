@@ -1,7 +1,8 @@
 'use strict'
 
-import './burger-menu.js';
-import './modal.js';
+import './ui/loader.js';
+import './ui/burger-menu.js';
+import './ui/modal.js';
 // import './range-slider.js';
 // import './show-more.js';
 // import './swiper.js';
@@ -11,5 +12,6 @@ import './modal.js';
 // import './counter.js';
 // import './tel-mask.js';
 // import './select.js';
-import './shortener.js';
-import './copyToClipboard.js';
+import './buisness/shortener.js';
+// import './buisness/auth.js';
+import './ui/copyToClipboard.js';

@@ -1,4 +1,4 @@
-import { shortLink } from './shortener';
+import { shortLink } from '../buisness/shortener';
 
 const copyBtn = document.getElementById('shortener-copyBtn');
 
