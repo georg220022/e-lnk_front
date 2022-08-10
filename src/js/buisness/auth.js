@@ -118,6 +118,7 @@ async function sendLoginRequest() {
 		if (json.access) {
 			user.email = json.email;
 			user.accessToken = json.access;
+			document.querySelector('.modal--open')?.classList.remove('modal--open');
 			router('#/');
 		} else if (json.error) {
 			alert(json.error);

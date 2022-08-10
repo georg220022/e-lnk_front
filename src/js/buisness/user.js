@@ -2,7 +2,7 @@ import router from '../router.js';
 
 const REFRESH_API = 'api/v1/refresh';
 let cookie = document.cookie;
-const refreshToken = cookie.match('refresh');
+let refreshToken = Boolean(cookie.match('refresh'));
 
 let user = {
 	email: null,

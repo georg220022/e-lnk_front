@@ -1,5 +1,0 @@
-User-Agent: * 
-Disallow: /api/ 
-Disallow: /off-limits.html 
-Disallow: /password-check 
-Disallow: /404.html
