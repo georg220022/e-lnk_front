@@ -77,21 +77,21 @@
   			width: rem(16);
   			height: rem(16);
   			margin-left: rem(20);
-  			border-radius: 4px;
+  			border-radius: rem(4);
   			border: 1px solid $accent;
-  			top: 0px;
+  			top: 0;
   			left: 0;	
 			}
 			
 			&::after {
 			  content: '';
 			  position: absolute;
-			  height: 8px;
-			  width: 4px;
+			  height: rem(8);
+			  width: rem(4);
 			  margin-left: rem(20);
 			  background-color: $secondary;
-			  top: 9px;
-			  left: 4px;
+			  top: rem(9);
+			  left: rem(4);
 			  transform-origin: left top;
 		    border-right: 2px solid $primary;
 		    border-top: 2px solid $primary;
@@ -108,7 +108,7 @@
 		padding: rem(15) rem(60) rem(15) rem(20);
 		width: 100%;
 		border: 1px solid $accent;
-		border-radius: 30px;
+		border-radius: rem(30);
 		transition: $hover;
 
 		&:focus {
@@ -117,7 +117,7 @@
 
 		&--long-link {
 			&:focus {
-				box-shadow: 3px 3px 20px $accent;
+				box-shadow: rem(3) rem(3) rem(20) $accent;
 			}
 		}
 
@@ -176,23 +176,23 @@
 
 .shortener-button {
 	position: absolute;
-	top: 7px;
-	right: 10px;
-	width: 40px;
-	height: 40px;
+	top: rem(6);
+	right: rem(10);
+	width: rem(40);
+	height: rem(40);
 	background-color: $accent;
 	border: 1px solid $accent;
-	border-radius: 30px;
+	border-radius: rem(30);
 	cursor: pointer;
 	transition: $hover;
 	transition: all 0.1s linear;
 
 	&--submit {
-		padding: 10px 10px;
+		padding: rem(10);
 	}
 
 	&--copy {
-		padding: 10px 10px;
+		padding: rem(10);
 	}
 
 	@media (hover: hover) { 
@@ -202,19 +202,19 @@
 	}
 
 	&:active {
-			background-color: darken($accent, 15%);
-	  }
+		background-color: darken($accent, 15%);
+	}
 
 	& svg {
-		width: 20px;
-		height: 20px;
+		width: rem(20);
+		height: rem(20);
 		fill: $secondary;
 		transition: opacity 0.1s linear;
 	}
 
 	&.loader {
-		background-color: $secondary;
-		border: 1px solid $secondary;
+		background-color: transparent;
+		border: none;
 	}
 
 	&.checkmark {

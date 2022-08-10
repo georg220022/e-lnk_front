@@ -11,7 +11,6 @@
   color: $gray;
   font-family: inherit;
   font-size: rem(18);
-  text-overflow: ellipsis;
 }
 
 %img {
@@ -46,12 +45,20 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
+input {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 body {
   font-family: $fontMain;
   color: $primary;
   font-size: rem(18);
   line-height: 1.1;
   font-weight: 400;
+}
+
+.body-wrapper {
   background-image: linear-gradient(180deg, rgba(0, 117, 255, 0.38) 3.74%, rgba(0, 194, 255, 0.38) 21.16%, rgba(255, 255, 255, 0.38) 44.17%);
   background-repeat: no-repeat;
   min-height: 100%;
@@ -63,7 +70,7 @@ body {
   }
   @media (max-width: $breakpoint390) {
     padding: rem(32) 0;
-  }
+  }  
 }
 
 .container {
@@ -76,9 +83,10 @@ body {
 .wrapper {
   margin: 0 auto;
   max-width: calc($container-width + $container-padding);
+  min-height: rem(200);
   background-color: $secondary;
-  box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.25);
-  border-radius: 50px;
+  box-shadow: 0 rem(4) rem(60) rgba(0, 0, 0, 0.25);
+  border-radius: rem(50);
   padding: rem(32) rem(48);
 
   @media (max-width: $breakpoint768) {
@@ -100,6 +108,52 @@ h2 {
   font-size: rem(24);
 }
 
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  visibility: visible;
+  opacity: 1;
+  z-index: 99;
+  overflow: hidden;
+  background-color: $secondary;
+  transition: all 0.1s ease-out;
+
+  &.preloader--hide {
+    visibility: hidden;
+    opacity: 0;
+    z-index: -99;
+  }
+}
+
+.preloader-loader {
+  display: block;
+  position: relative;
+  width: rem(100);
+  height: rem(100);
+  border-radius: rem(50);
+  background-color: transparent;
+  pointer-events: none;
+  user-select: none;
+  z-index: 101;
+  animation: rotate 1s linear infinite;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border: rem(5) solid $accent;
+    background-color: transparent;
+    border-radius: 50%;
+    animation: slowFilling 2s linear infinite;
+  }
+}
+
 .logo {
   font-family: 'Roboto';
   font-weight: 500;
@@ -112,9 +166,9 @@ h2 {
   font-size: rem(18);
   color: $accent;
   background-color: $secondary;
-  border-radius: 30px;
+  border-radius: rem(30);
   border: 1px solid $accent;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 rem(2) rem(4) rgba(0, 0, 0, 0.1);
   padding: rem(10) rem(20);
   cursor: pointer;
   user-select: none;
@@ -132,8 +186,8 @@ h2 {
   }
 
   &.loader {
-    width: 40px;
-    height: 40px;
+    width: rem(40);
+    height: rem(40);
     border: none;
     box-shadow: none;
   }
@@ -146,8 +200,8 @@ h2 {
   background-color: $accent;
   padding: rem(10) rem(20);
   border: 1px solid $accent;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 30px;
+  box-shadow: 0 rem(2) rem(4) rgba(0, 0, 0, 0.1);
+  border-radius: rem(30);
   cursor: pointer;
   user-select: none;
   transition: $hover;
@@ -163,8 +217,8 @@ h2 {
   }
 
   &.loader {
-    width: 40px;
-    height: 40px;
+    width: rem(40);
+    height: rem(40);
     border: none;
     box-shadow: none;
   }
@@ -178,11 +232,18 @@ h2 {
   height: rem(166);
   padding: rem(16);
   border: 1px solid $accent;
-  border-radius: 10px;
+  border-radius: rem(10);
 }
   
 .qr-img {
   @extend %img;
+}
+
+.lock {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  transition: all 0.3s ease;
 }
 
 .hidden {
@@ -211,7 +272,7 @@ input[disabled] {
   text-align: left;
   margin: rem(10) 0;
   margin-right: auto;
-  padding-left: 20px;
+  padding-left: rem(20);
   pointer-events: none;
 }
 
@@ -225,8 +286,9 @@ input[disabled] {
 
 .loader {
   pointer-events: none;
-  border: 1px solid $secondary;
-  background-color: $secondary;
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
   animation: rotate 1s linear infinite;
   transition: border background-color 0.1s linear;
   
@@ -240,7 +302,7 @@ input[disabled] {
     position: absolute;
     inset: 4px;
     border: 2px solid $gray;
-    background-color: $secondary;
+    background-color: transparent;
     border-radius: 50%;
     animation: slowFilling 2s linear infinite;
   }
@@ -274,14 +336,14 @@ input[disabled] {
   &::after {
     content: "";
     position: absolute;
-    height:14px;
-    width: 8px;
+    height: rem(14);
+    width: rem(8);
     opacity: 1;
     transform-origin: left top;
     border-right: 2px solid $secondary;
     border-top: 2px solid $secondary;
-    top: 20px;
-    right: 18px;
+    top: rem(20);
+    right: rem(18);
     animation: showCheckmark ease 0.5s;
     transform: scaleX(-1) rotate(135deg);
   }
@@ -294,18 +356,18 @@ input[disabled] {
     opacity: 1;
   }
   20% {
-    height: 6px;
-    width: 4px;
+    height: rem(6);
+    width: rem(4);
     opacity: 1;
   }
   40% {
-    height: 10px;
-    width: 6px;
+    height: rem(10);
+    width: rem(6);
     opacity: 1;
   }
   100% {
-    height: 14px;
-    width: 8px;
+    height: rem(14);
+    width: rem(8);
     opacity: 1;
   }
 }
@@ -322,4 +384,3 @@ input[disabled] {
     transform: translateY(0);
   }  
 }
-

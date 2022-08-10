@@ -10,7 +10,7 @@ $error: #c92c2c;
 $hover: all 0.2s ease;
 
 
-$container-width: 1400px;
+$container-width: rem(1400);
 $container-padding: 2rem;
 $container-side-padding: calc($container-padding / 2);
 
@@ -23,11 +23,11 @@ $breakpoint576: 575.98px;
 $breakpoint390: 389.98px;
 
 
-$burger-width: 25px;
-$burger-height: 20px;
-$burger-line-height: 2px;
+$burger-width: rem(25);
+$burger-height: rem(20);
+$burger-line-height: rem(2);
 $burger-color: $accent;
-$burger-breakpoint: $breakpoint768;
+$burger-breakpoint: $breakpoint992;
 
 $burger-menu-color: $secondary;
 $burger-menu-width: 100%;

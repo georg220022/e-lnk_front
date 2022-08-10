@@ -5,9 +5,10 @@
   &__list {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     gap: rem(16);
 
-    @media (max-width: $breakpoint768) {
+    @media (max-width: $burger-breakpoint) {
       gap: rem(0);
     }
   }
@@ -19,5 +20,23 @@
   &__button {
     position: relative;
     z-index: 2;
+  }
+
+  &__link {
+    color: $accent;
+    text-decoration: underline;
+    cursor: pointer;
+    user-select: none;
+    transition: $hover;
+
+    &:active {
+      color: darken($accent, 15%);
+    }
+
+    @media (hover: hover) { 
+      &:hover {
+
+      }
+    }
   }
 }

@@ -1,4 +1,6 @@
 {
+    "name": "E-lnk",
+    "short_name": "E-lnk",
     "icons": [
         {
             "src": "/img/favicons/android-chrome-192x192.png",
@@ -6,8 +8,8 @@
             "type": "image/png"
         },
         {
-            "src": "/img/favicons/android-chrome-384x384.png",
-            "sizes": "384x384",
+            "src": "/img/favicons/android-chrome-512x512.png",
+            "sizes": "512x512",
             "type": "image/png"
         }
     ],

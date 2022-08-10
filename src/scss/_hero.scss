@@ -1,7 +1,7 @@
 .hero {
-	position: relative;
 	overflow: hidden;
 	z-index: 2;
+	position: relative;
 
 	&__body {
 		padding: rem(180) 0 0;
@@ -91,7 +91,7 @@
 	&__illustration-wrapper {
 		position: absolute;
   	overflow: hidden;
-  	height: 600px;
+  	height: rem(600);
   	width: auto;
   	bottom: 0;
   	right: 0;

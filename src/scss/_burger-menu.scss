@@ -88,8 +88,8 @@
 	  bottom: 0;
 	  right: -100%; // slides from right: -100%; slides from left: 100%;
 	  height: calc(100% - rem(32));
-	  border-top-left-radius: 50px;
-		border-top-right-radius: 50px;
+	  border-top-left-radius: rem(50);
+		border-top-right-radius: rem(50);
 	  visibility: hidden;
 	  opacity: 0;
 	  overflow: hidden;
@@ -116,6 +116,8 @@
 		display: flex;
 		flex-direction: column;
 		text-align: center;
+		justify-content: center;
+		height: 100%;
 		width: 100%;
 		overflow-y: auto;
 	}
