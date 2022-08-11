@@ -38,7 +38,7 @@ function submitShortener(event) {
 	const shortenerSubmitBtn = document.getElementById('shortener-submitBtn');
 	const longLink = document.getElementById('long-link');
 	const shortLink = document.getElementById('short-link');
-	const heroBody = document.querySelector('.hero__body');
+	const heroBody = document.querySelector('.hero__content');
 	const shortLinkWrapper = document.querySelector('.form__input-wrapper--short-link');
 	const qrWrapper = document.querySelector('.hero__qr-body');
 

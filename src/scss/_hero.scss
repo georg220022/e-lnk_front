@@ -18,7 +18,9 @@
 		@media (max-width: $breakpoint576) {
 			padding: 0;
 		}
+	}
 
+	&__content {
 		&.open {
 			@media (min-width: $breakpoint1366) {
 				transform: translateY(-9%);
