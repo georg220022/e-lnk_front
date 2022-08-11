@@ -2,7 +2,6 @@ import router from '../router.js';
 
 const REFRESH_API = 'api/v1/refresh';
 let cookie = document.cookie;
-let refreshToken = Boolean(cookie.match('refresh'));
 
 let user = {
 	email: null,
@@ -19,7 +18,7 @@ let user = {
 		};
 
 		try {
-			if (!refreshToken) {
+			if (!Boolean(cookie.match('refresh'))){
 				this.logout();
 				throw (`Нет рефреш токена`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 			};
