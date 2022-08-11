@@ -20,6 +20,8 @@ async function LoadMainPage() {
 	if (user.accessToken) {
 		userHeaderSection.renderComponent(loggedUserHeaderComponent(user));
 		heroSection.renderComponent(extendedShortenerComponent());
+		modalsSection.renderComponent('');
+		additionalSection.renderComponent('');
 	} else {
 		userHeaderSection.renderComponent(guestUserHeaderComponent());
 		heroSection.renderComponent(shortenerComponent());
