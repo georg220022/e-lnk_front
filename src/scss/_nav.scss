@@ -1,8 +1,6 @@
 .nav {
   display: flex;
   align-items: center;
-  position: relative;
-  z-index: 2;
 	
   &__list {
     display: flex;
@@ -30,6 +28,8 @@
     cursor: pointer;
     user-select: none;
     transition: $hover;
+    position: relative;
+    z-index: 2;
 
     &:active {
       color: darken($accent, 15%);

@@ -67,7 +67,7 @@ function submitShortener(event) {
 				if (shortLink.value) {
 					shortLinkWrapper.classList.add('open');
 					qrWrapper.classList.add('open');
-					heroBody.classList.add('open');
+					heroBody?.classList.add('open');
 				};
 			});
 	};
