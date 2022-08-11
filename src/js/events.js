@@ -13,7 +13,7 @@ const burgerBtnSelector = '.nav__button';
 
 const modalBtnSelector = '.modal-button';
 
-const copyBtnSelector = 'copy-button';
+const copyBtnSelector = '.copy-button';
 
 document.addEventListener('click', (event) => {
 
@@ -71,9 +71,10 @@ document.addEventListener('click', (event) => {
 
 	// copy to clipboard
 	if (event.target.closest(copyBtnSelector)) {
-		event.target.classList.add('checkmark');
-		copyTextToClipboard(event.target.closest('form__input-wrapper--short-link').querySelector('short-link').value)
-			.then(() => setTimeout(() => event.target.classList.remove('checkmark'), 1000));
+		event.preventDefault();
+		document.querySelector(copyBtnSelector).classList.add('checkmark');
+		copyTextToClipboard(event.target.closest('.form').querySelector('.short-link').value)
+			.then(() => setTimeout(() => document.querySelector(copyBtnSelector).classList.remove('checkmark'), 1000));
 	};
 
 

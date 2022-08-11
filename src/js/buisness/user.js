@@ -1,7 +1,6 @@
 import router from '../router.js';
 
 const REFRESH_API = 'api/v1/refresh';
-// let cookie = document.cookie;
 
 let user = {
 	email: null,
@@ -18,11 +17,6 @@ let user = {
 		};
 
 		try {
-			// if (!Boolean(cookie.match('refresh'))){
-			// 	this.logout();
-			// 	throw (`Нет рефреш токена`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-			// };
-
 			let response = await fetch(REFRESH_API, refreshTokensRequestOptions);
 
 			if (!response.ok) {
@@ -48,7 +42,7 @@ let user = {
 		try {
 			this.accessToken = null;
 			this.email = null;
-			cookie = "refresh=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+			document.cookie = "refresh=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 			router('#/');
 		} catch (error) {
 			console.error('ошибка при логауте: ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
