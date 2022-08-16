@@ -1,6 +1,8 @@
 import router from '../router.js';
+import { sendRequest } from '../utils.js';
 
 const REFRESH_API = 'api/v1/refresh';
+const LOGOUT_API = 'api/v1/logout';
 
 let user = {
 	email: null,
@@ -38,11 +40,11 @@ let user = {
 		};
 	},
 	
-	logout() {
+	logout: async function() {
 		try {
+			await sendRequest(LOGOUT_API, '', false, true);
 			this.accessToken = null;
 			this.email = null;
-			document.cookie = "refresh=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 			router('#/');
 		} catch (error) {
 			console.error('ошибка при логауте: ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
