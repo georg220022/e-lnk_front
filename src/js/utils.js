@@ -118,6 +118,7 @@ export async function sendRequest(api, body, token = false, cookie = false) {
 			let json = await response.json();
 			console.log(`Полученный json (${api}):`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 			console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+			return json;
 		} catch (e) {};
 		
 	} catch (error) {
