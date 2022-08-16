@@ -84,7 +84,7 @@ export function createJSONObjectFromInputs(inputs, condition=true) {
 };
 
 
-export async function sendRequest(api, body, token=false, cookie=false) {
+export async function sendRequest(api, body, token = false, cookie = false) {
 	const requestOptions = {
 		method: 'POST',
 		headers: {
@@ -96,9 +96,9 @@ export async function sendRequest(api, body, token=false, cookie=false) {
 
 	if (token) {
 		requestOptions.headers['Authorization'] = `Bearer ${token}`;
-	}; 
+	};
 
-	if (cookie) { 
+	if (cookie) {
 		requestOptions.credentials = 'include';
 	};
 
@@ -114,13 +114,13 @@ export async function sendRequest(api, body, token=false, cookie=false) {
 			};
 		};
 
-		let json = await response.json();
-		console.log(`Полученный json (${api}):`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-		console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-
-		return json;
-
+		try {
+			let json = await response.json();
+			console.log(`Полученный json (${api}):`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+			console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+		} catch (e) {};
+		
 	} catch (error) {
-		console.error(`ошибка при запросе (${api}): + ${error}`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+		console.error(`ошибка при запросе (${api}): ${error}`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 	};
 };
