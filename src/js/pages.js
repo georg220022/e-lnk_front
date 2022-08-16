@@ -11,6 +11,10 @@ import extendedShortenerComponent from './components/extendedShortenerComponent.
 import loginModalComponent from './components/loginModalComponent.js';
 import registrationModalComponent from './components/registrationModalComponent.js';
 
+import enableShortener from './buisness/shortener.js';
+import enableLoginForm from './buisness/login.js';
+import enableRegistrationForm from './buisness/registration.js';
+
 const userHeaderSection = new PageSection('user-header-section');
 const heroSection = new PageSection('hero-section');
 const modalsSection = new PageSection('modals-section');
@@ -27,7 +31,11 @@ async function LoadMainPage() {
 		heroSection.renderComponent(shortenerComponent());
 		modalsSection.renderComponent(loginModalComponent() + registrationModalComponent());
 		additionalSection.renderComponent(benefitsComponent());
+		enableLoginForm();
+		enableRegistrationForm();
 	};
+
+	enableShortener();
 };
 
 async function LoadPanelPage() {

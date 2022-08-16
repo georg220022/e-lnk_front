@@ -1,3 +1,5 @@
+import user from './buisness/user.js';
+
 export class PageSection { 
 	constructor(id) {
   	this.id = document.getElementById(id);
@@ -66,4 +68,59 @@ export async function copyTextToClipboard(text) {
   } catch (error) {
     console.error(error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
   };
+};
+
+
+export function createJSONObjectFromInputs(inputs, condition=true) {
+	let object = {};
+
+	for (let input of inputs) {
+		if (eval(condition)) {
+		object[input.name] = input.value
+		};
+	};
+
+	return JSON.stringify(object);
+};
+
+
+export async function sendRequest(api, body, token=false, cookie=false) {
+	const requestOptions = {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json;charset=UTF-8',
+		},
+		body: body,
+	};
+
+	if (token) {
+		requestOptions.headers['Authorization'] = `Bearer ${token}`;
+	}; 
+
+	if (cookie) { 
+		requestOptions.credentials = 'include';
+	};
+
+	try {
+		let response = await fetch(api, requestOptions);
+
+		if (token) {
+			if (response.status === 401) {
+				let refreshIsValid = await user.refreshTokens();
+				if (refreshIsValid) {
+					return sendRequest(...arguments);
+				} else return;
+			};
+		};
+
+		let json = await response.json();
+		console.log(`Полученный json (${api}):`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+		console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+
+		return json;
+
+	} catch (error) {
+		console.error(`ошибка при запросе (${api}): + ${error}`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+	};
 };
