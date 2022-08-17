@@ -1,7 +1,7 @@
 import user from './buisness/user.js';
 
 import { LoadMainPage, LoadPanelPage, LoadSettingsPage } from './pages.js';
-import { hidePreloader } from './events.js';
+import { hidePreloader } from './handlers/preloader.js';
 
 function router(route) {
 	switch (route) {

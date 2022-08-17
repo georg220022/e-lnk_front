@@ -1,5 +1,5 @@
 'use strict'
 
 import './router.js';
-import './events.js';
-import './cookieConsent.js';
+import './handlers/events.js';
+import './handlers/cookieConsent.js';
