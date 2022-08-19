@@ -27,10 +27,10 @@ const shortenerComponent = () => {
 					</button>
 				</div>
 			</form>
-			<div class="hero__qr-body">
-				<h2 class="hero__qr-title visually-hidden">QR-код вашей ссылки:</h2>
-				<div class="hero__qr-img-wrapper qr-img-wrapper">
-					<img class="hero__qr-img qr-img" id="qr" src="./img/qr.png" alt="QR-код">
+			<div class="qr-body">
+				<h2 class="qr-body__qr-title visually-hidden">QR-код вашей ссылки:</h2>
+				<div class="qr-img-wrapper">
+					<img class="qr-body__qr-img qr-img" id="qr" src="./img/qr.png" alt="QR-код">
 				</div>
 			</div>
 		</div>

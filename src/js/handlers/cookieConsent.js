@@ -21,7 +21,7 @@ if (!document.cookie.match('cookie-consent=true')) {
 	}, 2000);
 
 	function hideCookieElem(e) {
-		document.cookie = 'cookie-consent=true';
+		document.cookie = 'cookie-consent=true; path=/; expires=Wen, 28 May 2098 00:28:00 GMT';
 		e.target.removeEventListener('click', hideCookieElem);
 		document.body.removeChild(cookieElem);
 	};

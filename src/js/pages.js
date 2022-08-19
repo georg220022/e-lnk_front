@@ -12,6 +12,7 @@ import loginModalComponent from './components/loginModalComponent.js';
 import registrationModalComponent from './components/registrationModalComponent.js';
 
 import enableShortener from './buisness/shortener.js';
+import enableDatepicker from './handlers/datepicker.js';
 import enableLoginForm from './buisness/login.js';
 import enableRegistrationForm from './buisness/registration.js';
 
@@ -26,6 +27,7 @@ async function LoadMainPage() {
 		heroSection.renderComponent(extendedShortenerComponent());
 		modalsSection.renderComponent('');
 		additionalSection.renderComponent('');
+		enableDatepicker();
 	} else {
 		userHeaderSection.renderComponent(guestUserHeaderComponent());
 		heroSection.renderComponent(shortenerComponent());

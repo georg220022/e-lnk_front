@@ -25,17 +25,17 @@ export function validateEmptyInput(input) {
 
 
 export function validateAuthFilledInput(input) {
-	const emailRegExp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-	const passwordRegExp = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
 	let inputCorrectCondition;
 	let inputErrorText;
 
 	switch (input.name) {
 		case ('email'):
+			const emailRegExp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 			inputCorrectCondition = emailRegExp.test(input.value);
 			inputErrorText = 'Введите корректный e-mail';
 			break;
 		case ('password'):
+			const passwordRegExp = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
 			inputCorrectCondition = passwordRegExp.test(input.value);
 			inputErrorText = 'Необходимо минимум 8 символов, 1 латинская буква и 1 цифра';
 			break;
@@ -71,18 +71,17 @@ export async function copyTextToClipboard(text) {
 };
 
 
-export function createJSONObjectFromInputs(inputs, condition=true) {
+export function createJSONObjectFromInputs(inputs, condition = true) {
 	let object = {};
 
 	for (let input of inputs) {
 		if (eval(condition)) {
-		object[input.name] = input.value
+			object[input.name] = input.value;
 		};
 	};
 
 	return JSON.stringify(object);
 };
-
 
 export async function sendRequest(api, body, token = false, cookie = false) {
 	const requestOptions = {
@@ -125,3 +124,18 @@ export async function sendRequest(api, body, token = false, cookie = false) {
 		console.error(`ошибка при запросе (${api}): ${error}`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 	};
 };
+
+export function ruDateToISODate(date) {
+	let stringDate = date.replace(/(\.|\:| )/g, '');
+	let year = stringDate.substring(4, 8);
+	let month = stringDate.substring(2, 4);
+	let day = stringDate.substring(0, 2);
+	let hours = stringDate.substring(8, 10);
+	let minutes = stringDate.substring(10, 12);
+	date = `${year}-${month}-${day}T${hours}:${minutes}`;
+	
+	return date;
+};
+
+
+

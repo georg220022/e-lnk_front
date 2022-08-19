@@ -1,5 +1,5 @@
 import user from './user.js';
-import { validateEmptyInput, createJSONObjectFromInputs, sendRequest } from '../utils.js';
+import { validateEmptyInput, createJSONObjectFromInputs, ruDateToISODate, sendRequest } from '../utils.js';
 
 const SHORTENER_API = 'api/v1/links';
 
@@ -16,7 +16,7 @@ function enableShortener() {
 	s.heroBody = document.querySelector('.hero__content');
 	s.shortLinkWrapper = document.querySelector('.form__input-wrapper--short-link');
 	s.qr = document.getElementById('qr');
-	s.qrWrapper = document.querySelector('.hero__qr-body');
+	s.qrWrapper = document.querySelector('.qr-body');
 
 	s.shortener.setAttribute('novalidate', true);
 
@@ -39,17 +39,22 @@ async function submitShortener(event) {
 	let isValid = false;
 
 	let validatedInputs = s.shortenerInputs.map(input => {
-		let inputIsValid = validateShortenerFilledInput(input) && validateEmptyInput(s.longLink);
+		let inputIsValid = validateShortenerFilledInput(input);
 		return inputIsValid;
 	});
 
-	isValid = validatedInputs.every(input => input === true);
+	isValid = validatedInputs.every(input => input === true) && validateEmptyInput(s.longLink);
 
 	if (isValid) {
-		let jsonForReq = createJSONObjectFromInputs(s.shortenerInputs, 'input.value');
+		let jsonObjectFromInputs = createJSONObjectFromInputs(s.shortenerInputs, 'input.value');
+		let objFromInputs = JSON.parse(jsonObjectFromInputs);
+		if (objFromInputs.linkLimit) { objFromInputs.linkLimit = +objFromInputs.linkLimit };
+		if (objFromInputs.linkStartDate) { objFromInputs.linkStartDate = ruDateToISODate(objFromInputs.linkStartDate) };
+		if (objFromInputs.linkEndDate) { objFromInputs.linkEndDate = ruDateToISODate(objFromInputs.linkEndDate) };
+		let jsonForReq = JSON.stringify(objFromInputs);
 
 		s.shortenerSubmitBtn.classList.add('loader');
-		s.allShortenerFields.forEach((input) => input.setAttribute('disabled', 'disabled'));
+		s.allShortenerFields.forEach(input => input.setAttribute('disabled', 'disabled'));
 
 		let json = await sendRequest(SHORTENER_API, jsonForReq, user.accessToken);
 
@@ -64,31 +69,57 @@ async function submitShortener(event) {
 		} else alert('Не получилось сократить ссылку :( \nПожалуйста, попробуйте позже');
 
 		s.shortenerSubmitBtn.classList.remove('loader');
-		s.allShortenerFields.forEach((input) => input.removeAttribute('disabled'));
-		s.longLink.value = "";
+		s.allShortenerFields.forEach(input => input.removeAttribute('disabled'));
+		s.shortenerInputs.forEach(input => input.value = '');
 	};
 };
 
 function validateShortenerFilledInput(input) {
-	const linkRegExp = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/;
-	let linkIsCorrect;
-	let linkContainsElnk;
-	let inputErrorText;
+	if (input.value === '') return true;
+
+	let inputCorrectCondition = null;
+	let inputErrorText = null;
 
 	switch (input.name) {
 		case ('longLink'):
-			linkIsCorrect = linkRegExp.test(input.value) && input.value.at(-1) !== '.';
-			linkContainsElnk = input.value.includes("e-lnk.ru");
-			inputErrorText = 'Введите корректный адрес ссылки';
+			const linkRegExp = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/;
+			let linkIsCorrect = linkRegExp.test(input.value) && input.value.at(-1) !== '.';
+			let linkContainsElnk = input.value.includes('e-lnk.ru');
+			inputCorrectCondition = linkIsCorrect && !linkContainsElnk;
+
+			if (!linkIsCorrect) {
+				inputErrorText = 'Введите корректный адрес ссылки';
+			};
+			if (linkContainsElnk) {
+				inputErrorText = 'Это наша ссылка :) Введите другую';
+			};
+			break;
+		case ('linkName'):
+			inputCorrectCondition = input.value.length < 25;
+			inputErrorText = 'Имя ссылки не может быть длинее 25 символов';
+			break;
+		case ('linkLimit'):
+			if (!Boolean(Number(input.value))) input.value = '';
+			if (input.value.at(-1) === ' ') input.value = '';
+			inputCorrectCondition = true;
+			inputErrorText = '';
+			break;
+		case ('linkPassword'):
+			inputCorrectCondition = input.value.length < 16;
+			inputErrorText = 'Пароль не может быть длинее 16 символов';
+			break;
+		case ('linkStartDate'):
+			inputCorrectCondition = true;
+			inputErrorText = '';
+			break;
+		case ('linkEndDate'):
+			inputCorrectCondition = true;
+			inputErrorText = '';
 			break;
 	};
 
-	if (!linkIsCorrect && input.value != '') {
+	if (!inputCorrectCondition) {
 		input.nextElementSibling.innerText = inputErrorText;
-		input.classList.add('error-input');
-		return false;
-	} else if (linkContainsElnk) {
-		input.nextElementSibling.innerText = 'Это наша ссылка :) Введите другую';
 		input.classList.add('error-input');
 		return false;
 	} else {
