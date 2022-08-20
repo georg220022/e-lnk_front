@@ -46,6 +46,7 @@ let user = {
 			await sendRequest(LOGOUT_API, '', false, true);
 			this.accessToken = null;
 			this.email = null;
+			delete user.isRetry;
 			router('#/');
 		} catch (error) {
 			console.error('ошибка при логауте: ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ

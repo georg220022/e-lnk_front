@@ -102,14 +102,19 @@ export async function sendRequest(api, body, token = false, cookie = false) {
 	};
 
 	try {
+
 		let response = await fetch(api, requestOptions);
 
 		if (token) {
-			if (response.status === 401) {
+			if (response.status === 401 && !user.isRetry) {
+				user.isRetry = true;
 				let refreshIsValid = await user.refreshTokens();
 				if (refreshIsValid) {
 					return sendRequest(...arguments);
-				} else return;
+				} else {
+					console.error(`ошибка при запросе (${api}): ответ сервера ${response.status}`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+					return;
+				};
 			};
 		};
 
