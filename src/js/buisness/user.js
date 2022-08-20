@@ -23,7 +23,8 @@ let user = {
 
 			if (!response.ok) {
 				this.logout();
-				throw (`Токен не валиден(ответ сервера: ${response.status})`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+				console.error(`Токен не валиден(ответ сервера: ${response.status})`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+				return false;
 			};
 
 			let json = await response.json();
