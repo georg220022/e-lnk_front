@@ -59,7 +59,7 @@ async function submitShortener(event) {
 		s.shortenerSubmitBtn.classList.add('loader');
 		s.allShortenerFields.forEach(input => input.setAttribute('disabled', 'disabled'));
 
-		let { response, json } = await user.sendRequest('POST', SHORTENER_API, jsonForReq);
+		let { json } = await user.sendRequest('POST', SHORTENER_API, jsonForReq);
 
 		if (json && json.shortLink && json.qr) {
 			s.shortLink.value = json.shortLink;

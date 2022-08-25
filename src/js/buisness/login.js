@@ -48,7 +48,7 @@ async function submitLoginForm() {
 		l.loginFormSubmitBtn.classList.add('loader');
 		l.loginFormInputs.forEach((input) => input.setAttribute('disabled', 'disabled'));
 
-		let json = await sendRequest('POST', LOGIN_API, jsonForReq, { cookie: true });
+		let { json } = await sendRequest('POST', LOGIN_API, jsonForReq, { cookie: true });
 
 		if (json && json.access) {
 			user.email = json.email;

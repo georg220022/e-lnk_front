@@ -17,7 +17,7 @@ let user = {
 				this.isRetry = true;
 				let refreshIsValid = await this.refreshTokens();
 				if (refreshIsValid) {
-					await this.sendRequest(...arguments, { token: this.accessToken });
+					let { response,	json } = await this.sendRequest(...arguments, { token: this.accessToken });
 				};
 			};
 		};
@@ -35,9 +35,6 @@ let user = {
 				console.error(`Токен не валиден(ответ сервера: ${response.status})`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 				return false;
 			};
-
-			console.log('Полученный json (refresh_request):'); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-			console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 
 			if (json.access) {
 				this.accessToken = json.access;

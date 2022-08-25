@@ -54,7 +54,7 @@ async function submitRegistrationForm() {
 		r.registrationFormSubmitBtn.classList.add('loader');
 		r.registrationFormInputs.forEach((input) => input.setAttribute('disabled', 'disabled'));
 
-		let json = await sendRequest('POST', REGISTRATION_API, jsonForReq, { cookie: true });
+		let { json } = await sendRequest('POST', REGISTRATION_API, jsonForReq, { cookie: true });
 
 		if (json && json.access) {
 			user.email = json.email;
