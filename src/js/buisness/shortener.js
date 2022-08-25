@@ -1,5 +1,5 @@
 import user from './user.js';
-import { validateEmptyInput, createJSONObjectFromInputs, ruDateToISODate, sendRequest } from '../utils.js';
+import { validateEmptyInput, createObjectFromInputs, ruDateToISODate, sendRequest } from '../utils.js';
 
 const SHORTENER_API = 'api/v1/links';
 
@@ -46,8 +46,7 @@ async function submitShortener(event) {
 	isValid = validatedInputs.every(input => input === true) && validateEmptyInput(s.longLink);
 
 	if (isValid) {
-		let jsonObjectFromInputs = createJSONObjectFromInputs(s.shortenerInputs, 'input.value');
-		let objFromInputs = JSON.parse(jsonObjectFromInputs);
+		let objFromInputs = createObjectFromInputs(s.shortenerInputs, 'input.value');
 		if (objFromInputs.linkLimit) { objFromInputs.linkLimit = +objFromInputs.linkLimit };
 		if (objFromInputs.linkStartDate) { objFromInputs.linkStartDate = ruDateToISODate(objFromInputs.linkStartDate) };
 		if (objFromInputs.linkEndDate) { objFromInputs.linkEndDate = ruDateToISODate(objFromInputs.linkEndDate) };
@@ -56,14 +55,26 @@ async function submitShortener(event) {
 		s.shortenerSubmitBtn.classList.add('loader');
 		s.allShortenerFields.forEach(input => input.setAttribute('disabled', 'disabled'));
 
-		let json = await sendRequest(SHORTENER_API, jsonForReq, user.accessToken);
+		let { response, json } = await sendRequest(SHORTENER_API, jsonForReq, user.accessToken);
+
+		if (response.status === 401 && !user.isRetry) {
+			user.isRetry = true;
+			let refreshIsValid = await user.refreshTokens();
+			if (refreshIsValid) {
+				return { response, json } = await sendRequest(SHORTENER_API, jsonForReq, user.accessToken);
+			};
+		};
 
 		if (json && json.shortLink && json.qr) {
+			if (user.isRetry) delete user.isRetry;
+
 			s.shortLink.value = json.shortLink;
 			s.qr.src = `data:image/jpg;base64,${json.qr}`;
+
 			s.shortLinkWrapper.classList.add('open');
 			s.qrWrapper.classList.add('open');
 			s.heroBody?.classList.add('open');
+			
 		} else if (json && json.error) {
 			alert(json.error);
 		} else alert('Не получилось сократить ссылку :( \nПожалуйста, попробуйте позже');

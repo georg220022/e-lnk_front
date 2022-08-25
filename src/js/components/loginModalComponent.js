@@ -6,7 +6,7 @@ const loginModalComponent = () => {
 				<button class="modal__close-button"></button>
 			</div>
 			<div class="modal__content" id="login-section">
-				<form class="hero__form form" id="login-form" action="#" method="post" autocomplete="off">
+				<form class="form" id="login-form" action="#" method="post" autocomplete="off">
 					<label class="form__label form__label--email" for="login-email">
 						<input class="form__input form__input--email" id="login-email" type="email" name="email" placeholder="Введите e-mail" required>
 						<span class="error-label"></span>
@@ -15,7 +15,7 @@ const loginModalComponent = () => {
 						<input class="form__input form__input--password" id="login-password" type="password" name="password" placeholder="Введите пароль" required/>
 						<span class="error-label"></span>
 					</label>
-					<button class="form__button form__button--submit button--main" id="login-submitBtn" type="submit" name="submit">Войти</button>
+					<button class="form__button form__button-login form__button--submit button--main" id="login-submitBtn" type="submit" name="submit">Войти</button>
 				</form>
 			</div>
 		</div>

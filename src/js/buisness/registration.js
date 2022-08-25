@@ -1,6 +1,6 @@
 import user from './user.js';
 import router from '../router.js';
-import { PageSection, validateAuthFilledInput, validateEmptyInput, createJSONObjectFromInputs, sendRequest} from '../utils.js';
+import { PageSection, validateAuthFilledInput, validateEmptyInput, createObjectFromInputs, sendRequest} from '../utils.js';
 import successRegistrationComponent from '../components/successRegistrationComponent.js';
 
 const REGISTRATION_API = 'api/v1/registration';
@@ -42,7 +42,8 @@ async function submitRegistrationForm() {
 	isValid = validatedInputs.every(input => input === true);
 
 	if (isValid) {
-		let jsonForReq = createJSONObjectFromInputs(r.registrationFormInputs, 'input.name === "email" || input.name == "password"');
+		let jsonForReq = JSON.stringify(
+			createObjectFromInputs(r.registrationFormInputs, 'input.name === "email" || input.name == "password"'));
 
 		r.registrationFormSubmitBtn.classList.add('loader');
 		r.registrationFormInputs.forEach((input) => input.setAttribute('disabled', 'disabled'));

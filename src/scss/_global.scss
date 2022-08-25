@@ -224,6 +224,54 @@ h2 {
   }
 }
 
+.round-button {
+  position: absolute;
+  top: rem(6);
+  right: rem(10);
+  width: rem(40);
+  height: rem(40);
+  background-color: $accent;
+  border: 1px solid $accent;
+  border-radius: rem(30);
+  cursor: pointer;
+  transition: all 0.1s linear;
+
+  &--submit {
+    padding: rem(10);
+  }
+
+  &--copy {
+    padding: rem(10);
+  }
+
+  @media (hover: hover) { 
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  &:active {
+    background-color: darken($accent, 15%);
+  }
+
+  & svg {
+    width: rem(20);
+    height: rem(20);
+    fill: $secondary;
+    transition: opacity 0.1s linear;
+  }
+
+  &.loader {
+    background-color: transparent;
+    border: none;
+  }
+
+  &.checkmark {
+    border: 1px solid $success;
+    background-color: $success;
+  }
+}
+
 .qr-body {
   visibility: hidden;
   opacity: 0;
@@ -291,7 +339,8 @@ input[disabled] {
   font-size: rem(14);
   color: $error;
   text-align: left;
-  margin: rem(10) 0;
+  margin-top: -6px;
+  margin-bottom: rem(10);
   margin-right: auto;
   padding-left: rem(20);
   pointer-events: none;
@@ -342,6 +391,9 @@ input[disabled] {
   100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0);}
 }
 
+.clear-button {
+  padding: rem(9);
+}
 
 .checkmark {
   pointer-events: none;

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import './router.js';
 import './handlers/events.js';

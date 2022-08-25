@@ -1,5 +1,3 @@
-import user from './buisness/user.js';
-
 export class PageSection { 
 	constructor(id) {
   	this.id = document.getElementById(id);
@@ -31,13 +29,27 @@ export function validateAuthFilledInput(input) {
 	switch (input.name) {
 		case ('email'):
 			const emailRegExp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-			inputCorrectCondition = emailRegExp.test(input.value);
-			inputErrorText = 'Введите корректный e-mail';
+			let isEmail = emailRegExp.test(input.value);
+			let emailMaxLength = input.value.length > 30;
+			inputCorrectCondition = isEmail && !emailMaxLength;
+			if (emailMaxLength) {
+				inputErrorText = 'E-mail не может быть длинее 30 символов';
+			};
+			if (!isEmail) {
+				inputErrorText = 'Введите корректный E-mail';
+			};
 			break;
 		case ('password'):
 			const passwordRegExp = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
-			inputCorrectCondition = passwordRegExp.test(input.value);
-			inputErrorText = 'Необходимо минимум 8 символов, 1 латинская буква и 1 цифра';
+			let isPassword = passwordRegExp.test(input.value);
+			let passwordMaxLength = input.value.length > 20;
+			inputCorrectCondition = isPassword && !passwordMaxLength;
+			if (passwordMaxLength) {
+				inputErrorText = 'Пароль не может быть длинее 20 символов';
+			};
+			if (!isPassword) {
+				inputErrorText = 'Необходимо минимум 8 символов, 1 латинская буква и 1 цифра';
+			};
 			break;
 		case ('repeat-password'):
 			inputCorrectCondition = (input.value === input.closest('.form').querySelector('input[name="password"]').value)
@@ -71,7 +83,7 @@ export async function copyTextToClipboard(text) {
 };
 
 
-export function createJSONObjectFromInputs(inputs, condition = true) {
+export function createObjectFromInputs(inputs, condition = true) {
 	let object = {};
 
 	for (let input of inputs) {
@@ -80,7 +92,7 @@ export function createJSONObjectFromInputs(inputs, condition = true) {
 		};
 	};
 
-	return JSON.stringify(object);
+	return object;
 };
 
 export async function sendRequest(api, body, token = false, cookie = false) {
@@ -102,32 +114,17 @@ export async function sendRequest(api, body, token = false, cookie = false) {
 	};
 
 	try {
-
-		let response = await fetch(api, requestOptions);
-
-		if (token) {
-			if (response.status === 401 && !user.isRetry) {
-				user.isRetry = true;
-				let refreshIsValid = await user.refreshTokens();
-				if (refreshIsValid) {
-					return sendRequest(...arguments);
-				} else {
-					console.error(`ошибка при запросе (${api}): ответ сервера ${response.status}`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-					return;
-				};
-			};
-		};
-
+		var response = await fetch(api, requestOptions);
 		try {
-			let json = await response.json();
+			var json = await response.json();
 			console.log(`Полученный json (${api}):`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 			console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-			return json;
 		} catch (e) {};
-		
 	} catch (error) {
 		console.error(`ошибка при запросе (${api}): ${error}`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 	};
+
+	return { response, json	};
 };
 
 export function ruDateToISODate(date) {

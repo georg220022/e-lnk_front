@@ -1,6 +1,6 @@
 import user from './user.js';
 import router from '../router.js';
-import { validateAuthFilledInput, validateEmptyInput, createJSONObjectFromInputs, sendRequest} from '../utils.js';
+import { validateAuthFilledInput, validateEmptyInput, createObjectFromInputs, sendRequest} from '../utils.js';
 
 const LOGIN_API = 'api/v1/login';
 
@@ -16,13 +16,11 @@ function enableLoginForm() {
 
 	l.loginFormInputs.forEach(input => {
 		input.removeEventListener('blur', () => validateAuthFilledInput(input));
-		input.removeEventListener('input', () => validateAuthFilledInput(input));
 	});
 	l.loginForm.removeEventListener('submit', submitLoginForm);
 
 	l.loginFormInputs.forEach(input => {
 		input.addEventListener('blur', () => validateAuthFilledInput(input));
-		input.addEventListener('input', () => validateAuthFilledInput(input));
 	});
 	l.loginForm.addEventListener('submit', submitLoginForm);
 };
@@ -40,12 +38,13 @@ async function submitLoginForm() {
 	isValid = validatedInputs.every(input => input === true);
 
 	if (isValid) {
-		let jsonForReq = createJSONObjectFromInputs(l.loginFormInputs);
+		let jsonForReq = JSON.stringify(createObjectFromInputs(l.loginFormInputs));
 
 		l.loginFormSubmitBtn.classList.add('loader');
 		l.loginFormInputs.forEach((input) => input.setAttribute('disabled', 'disabled'));
 
 		let json = await sendRequest(LOGIN_API, jsonForReq, false, true);
+
 
 		if (json && json.access) {
 			user.email = json.email;
@@ -55,8 +54,7 @@ async function submitLoginForm() {
 			document.querySelector('#body-section')?.classList.remove('lock');
 
 			router('#/');
-			
-		} else if (json.error) {
+		} else if (json && json.error) {
 			alert(json.error);
 		} else {
 			alert('Не получилось выполнить вход :( \nПожалуйста, попробуйте позже');

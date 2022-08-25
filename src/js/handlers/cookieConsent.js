@@ -17,12 +17,11 @@ if (!document.cookie.match('cookie-consent=true')) {
 		
 		let cookieBtn = document.querySelector('.cookie-consent__button');
 		
-		cookieBtn.addEventListener('click', hideCookieElem);
+		cookieBtn.addEventListener('click', hideCookieElem, { once: true });
 	}, 2000);
 
 	function hideCookieElem(e) {
 		document.cookie = 'cookie-consent=true; path=/; expires=Wen, 28 May 2098 00:28:00 GMT';
-		e.target.removeEventListener('click', hideCookieElem);
 		document.body.removeChild(cookieElem);
 	};
 };
