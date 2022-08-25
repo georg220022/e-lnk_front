@@ -1,10 +1,13 @@
 import user from './user.js';
-import { validateEmptyInput, createObjectFromInputs, ruDateToISODate, sendRequest } from '../utils.js';
+import validateEmptyInput from '../utils/validateEmptyInput.js';
+import createObjectFromInputs from '../utils/createObjectFromInputs.js';
+import ruDateToISODate from '../utils/ruDateToISODate.js';
 
 const SHORTENER_API = 'api/v1/links';
 
 let shortenerVars = {}; 
 let s = shortenerVars;
+
 
 function enableShortener() {
 	s.shortener = document.getElementById('shortener-form');
@@ -33,6 +36,7 @@ function enableShortener() {
 	s.shortener?.addEventListener('submit', submitShortener);
 };
 
+
 async function submitShortener(event) {
 	event.preventDefault();
 
@@ -55,19 +59,9 @@ async function submitShortener(event) {
 		s.shortenerSubmitBtn.classList.add('loader');
 		s.allShortenerFields.forEach(input => input.setAttribute('disabled', 'disabled'));
 
-		let { response, json } = await sendRequest(SHORTENER_API, jsonForReq, user.accessToken);
-
-		if (response.status === 401 && !user.isRetry) {
-			user.isRetry = true;
-			let refreshIsValid = await user.refreshTokens();
-			if (refreshIsValid) {
-				return { response, json } = await sendRequest(SHORTENER_API, jsonForReq, user.accessToken);
-			};
-		};
+		let { response, json } = await user.sendRequest('POST', SHORTENER_API, jsonForReq);
 
 		if (json && json.shortLink && json.qr) {
-			if (user.isRetry) delete user.isRetry;
-
 			s.shortLink.value = json.shortLink;
 			s.qr.src = `data:image/jpg;base64,${json.qr}`;
 
@@ -84,6 +78,7 @@ async function submitShortener(event) {
 		s.shortenerInputs.forEach(input => input.value = '');
 	};
 };
+
 
 function validateShortenerFilledInput(input) {
 	if (input.value === '') return true;
@@ -139,6 +134,5 @@ function validateShortenerFilledInput(input) {
 		return true;
 	};
 };
-
 
 export default enableShortener;

@@ -1,5 +1,5 @@
 import user from './buisness/user.js';
-import { PageSection } from './utils.js';
+import PageSection from './utils/PageSection.js';
 
 import guestUserHeaderComponent from './components/guestUserHeaderComponent.js';
 import shortenerComponent from './components/shortenerComponent.js';

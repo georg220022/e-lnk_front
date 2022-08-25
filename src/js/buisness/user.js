@@ -1,25 +1,34 @@
 import router from '../router.js';
-import { sendRequest } from '../utils.js';
+import sendRequest from '../utils/sendRequest.js';
 
 const REFRESH_API = 'api/v1/refresh';
 const LOGOUT_API = 'api/v1/logout';
+
 
 let user = {
 	email: null,
 	accessToken: null,
 
-	refreshTokens: async function() {
-		const refreshTokensRequestOptions = {
-			method: 'POST',
-			credentials: 'include',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json;charset=UTF-8',
-			},
+	sendRequest: async function(method, api, body) {
+		let { response,	json } = await sendRequest(method, api, body, { token: this.accessToken });
+
+		if (this.accessToken) {
+			if (response.status === 401 && !this.isRetry) {
+				this.isRetry = true;
+				let refreshIsValid = await this.refreshTokens();
+				if (refreshIsValid) {
+					await this.sendRequest(...arguments, { token: this.accessToken });
+				};
+			};
 		};
 
+		if (this.isRetry) delete this.isRetry;
+		return { response,	json };
+	},
+
+	refreshTokens: async function() {
 		try {
-			let response = await fetch(REFRESH_API, refreshTokensRequestOptions);
+			let { response,	json } = await sendRequest('POST', REFRESH_API, '', { cookie: true });
 
 			if (!response.ok) {
 				this.logout();
@@ -27,7 +36,6 @@ let user = {
 				return false;
 			};
 
-			let json = await response.json();
 			console.log('Полученный json (refresh_request):'); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 			console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 
@@ -43,10 +51,10 @@ let user = {
 	
 	logout: async function() {
 		try {
-			await sendRequest(LOGOUT_API, '', false, true);
+			await sendRequest('POST', LOGOUT_API, '', { cookie: true });
 			this.accessToken = null;
 			this.email = null;
-			delete user.isRetry;
+			if (this.isRetry) delete this.isRetry;
 			router('#/');
 		} catch (error) {
 			console.error('ошибка при логауте: ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ

@@ -1,6 +1,7 @@
 'use strict';
 
-import { validateEmptyInput, sendRequest} from '../utils.js';
+import validateEmptyInput from '../utils/validateEmptyInput.js';
+import sendRequest from '../utils/sendRequest.js';
 
 const PASSWORDCHECK_API = 'api/v1/unlock';
 
@@ -55,7 +56,7 @@ async function submitPasswordCheckForm() {
 		passwordCheckInput.setAttribute('disabled', 'disabled');
 		passwordCheckSubmitBtn.classList.add('loader');
 
-		let { response, json } = await sendRequest(PASSWORDCHECK_API, jsonForReq);
+		let { response, json } = await sendRequest('POST', PASSWORDCHECK_API, jsonForReq);
     
 		if (response.status === 302) return;
 

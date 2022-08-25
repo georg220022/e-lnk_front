@@ -30,9 +30,3 @@ const benefitsComponent = () => {
 export default benefitsComponent;
 
 
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-import { copyTextToClipboard } from '../utils.js'
+import copyTextToClipboard from '../utils/copyTextToClipboard.js';
 
 function copyToClipboardEvent(event) {
 	if (event.target.closest('.copy-button')) {

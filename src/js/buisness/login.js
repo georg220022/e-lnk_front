@@ -1,11 +1,15 @@
 import user from './user.js';
 import router from '../router.js';
-import { validateAuthFilledInput, validateEmptyInput, createObjectFromInputs, sendRequest} from '../utils.js';
+import validateAuthFilledInput from '../utils/validateAuthFilledInput.js';
+import validateEmptyInput from '../utils/validateEmptyInput.js';
+import createObjectFromInputs from '../utils/createObjectFromInputs.js';
+import sendRequest from '../utils/sendRequest.js';
 
 const LOGIN_API = 'api/v1/login';
 
 let loginFormVars = {}; 
 let l = loginFormVars;
+
 
 function enableLoginForm() {
 	l.loginForm = document.getElementById('login-form');
@@ -25,6 +29,7 @@ function enableLoginForm() {
 	l.loginForm.addEventListener('submit', submitLoginForm);
 };
 
+
 async function submitLoginForm() {
 	event.preventDefault();
 
@@ -43,8 +48,7 @@ async function submitLoginForm() {
 		l.loginFormSubmitBtn.classList.add('loader');
 		l.loginFormInputs.forEach((input) => input.setAttribute('disabled', 'disabled'));
 
-		let json = await sendRequest(LOGIN_API, jsonForReq, false, true);
-
+		let json = await sendRequest('POST', LOGIN_API, jsonForReq, { cookie: true });
 
 		if (json && json.access) {
 			user.email = json.email;
@@ -65,7 +69,6 @@ async function submitLoginForm() {
 		l.loginForm.reset();
 	};
 };
-
 
 export default enableLoginForm;
 

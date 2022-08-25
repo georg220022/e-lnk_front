@@ -1,12 +1,18 @@
 import user from './user.js';
 import router from '../router.js';
-import { PageSection, validateAuthFilledInput, validateEmptyInput, createObjectFromInputs, sendRequest} from '../utils.js';
+import PageSection from '../utils/PageSection.js';
+import validateAuthFilledInput from '../utils/validateAuthFilledInput.js';
+import validateEmptyInput from '../utils/validateEmptyInput.js';
+import createObjectFromInputs from '../utils/createObjectFromInputs.js';
+import sendRequest from '../utils/sendRequest.js';
+
 import successRegistrationComponent from '../components/successRegistrationComponent.js';
 
 const REGISTRATION_API = 'api/v1/registration';
 
 let registrationFormVars = {}; 
 let r = registrationFormVars;
+
 
 function enableRegistrationForm() {
 	r.registrationForm = document.getElementById('registration-form');
@@ -48,7 +54,7 @@ async function submitRegistrationForm() {
 		r.registrationFormSubmitBtn.classList.add('loader');
 		r.registrationFormInputs.forEach((input) => input.setAttribute('disabled', 'disabled'));
 
-		let json = await sendRequest(REGISTRATION_API, jsonForReq, false, true);
+		let json = await sendRequest('POST', REGISTRATION_API, jsonForReq, { cookie: true });
 
 		if (json && json.access) {
 			user.email = json.email;
