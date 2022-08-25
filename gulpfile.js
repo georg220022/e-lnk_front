@@ -127,11 +127,14 @@ function styles() {
 
 // JavaScript
 function scripts() {
-  return gulp.src(['src/js/main.js'])
-    .pipe(webpackStream({
+  return webpackStream({
       mode: isProd ? 'production' : 'development',
+      entry: {
+        main: './src/js/main.js',
+        'link-password-check': './src/js/buisness/link-password-check.js',
+      },
       output: {
-        filename: 'main.min.js',
+        filename: '[name].min.js',
       },
       module: {
         rules: [{
@@ -150,8 +153,7 @@ function scripts() {
         }]
       },
       devtool: !isProd ? 'source-map' : false
-    }))
-    .pipe(size({
+    }).pipe(size({
       showFiles: true
     }))
     .pipe(gulp.dest(paths.scripts.dest))
