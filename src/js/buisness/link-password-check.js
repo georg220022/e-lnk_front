@@ -56,7 +56,7 @@ async function submitPasswordCheckForm() {
 		passwordCheckInput.setAttribute('disabled', 'disabled');
 		passwordCheckSubmitBtn.classList.add('loader');
 
-		let { response, json } = await sendRequest('POST', PASSWORDCHECK_API, jsonForReq);
+		let { response, json } = await sendRequest('POST', PASSWORDCHECK_API, jsonForReq, { cookie: true });
     
 		if (response.status === 302) return;
 
