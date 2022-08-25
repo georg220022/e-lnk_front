@@ -56,11 +56,11 @@ async function submitPasswordCheckForm() {
 		passwordCheckInput.setAttribute('disabled', 'disabled');
 		passwordCheckSubmitBtn.classList.add('loader');
 
-		let { response, json } = await sendRequest('POST', PASSWORDCHECK_API, jsonForReq, { cookie: true });
-    
-		if (response.status === 302) return;
+		let { json } = await sendRequest('POST', PASSWORDCHECK_API, jsonForReq, { cookie: true });
 
-		if (json && json.error) {
+		if (json && json.longLink) {
+			window.location.href = json.longLink;
+		} else if (json && json.error) {
 			alert(json.error);
 		} else {
 			alert('Не получилось проверить пароль :( \nПожалуйста, попробуйте позже');
