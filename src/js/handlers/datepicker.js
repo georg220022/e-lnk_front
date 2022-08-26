@@ -9,6 +9,8 @@ function enableDatepicker() {
 		buttons: 'clear',
 		isMobile: true,
 		minDate: new Date,
+		onShow () { document.querySelector('#body-section').classList.add('lock') },
+		onHide () { document.querySelector('#body-section').classList.remove('lock') },
 	};
 
 	let StartDate = new AirDatepicker('#link-start', dateOptions);
