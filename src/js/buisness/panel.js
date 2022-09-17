@@ -243,9 +243,9 @@ let panel = {
 				let { response } = await user.sendRequest('PATCH', CHANGE_LINKS_API, jsonForReq);
 
 				if (response.ok) {
-					await this.getLinks();
-					this.createPages();
-					this.render();
+					await panel.getLinks();
+					panel.createPages();
+					panel.render();
 				} else alert('Не получилось изменить данные ссылки :( \nПожалуйста, попробуйте позже');
 
 			} else alert('Данные не изменились');
