@@ -49,7 +49,7 @@ let panel = {
 							JSON.stringify(oldStatistics) === JSON.stringify(newStatistics)));
 
 				this.updateStatistics(changedLinks);
-			}, this.links.ttl * 1000);
+			}, this.links[0].ttl * 1000);
 
 			window.addEventListener('hashchange', () => {
 				clearTimeout(this.updateLinksTimeout);
