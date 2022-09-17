@@ -16,7 +16,7 @@
     "babel-loader": "latest",
     "babel-preset-minify": "latest",
     "browser-sync": "latest",
-    "del": "latest",
+    "del": "6.0.0",
     "gulp": "latest",
     "gulp-autoprefixer": "latest",
     "gulp-clean-css": "latest",
@@ -34,6 +34,7 @@
     "webpack-stream": "latest"
   },
   "dependencies": {
-    "air-datepicker": "^3.2.0"
+    "air-datepicker": "^3.2.0",
+    "chart.js": "^3.9.1"
   }
 }
