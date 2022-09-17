@@ -201,7 +201,7 @@ let panel = {
 		let linksForDeleteObj = { shortLinks: linksForDeleteArr };
 		let jsonForReq = JSON.stringify(linksForDeleteObj);
 
-		let { response } = await user.sendRequest('POST', DELETE_LINKS_API, jsonForReq);
+		let { response } = await user.sendRequest('DELETE', DELETE_LINKS_API, jsonForReq);
 
 		if (response.ok) {
 			await this.getLinks();
