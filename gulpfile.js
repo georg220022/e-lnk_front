@@ -10,8 +10,8 @@ const image = require('gulp-imagemin');
 const webp = require('gulp-webp');
 const size = require('gulp-size')
 const gulpif = require('gulp-if');
-const browsersync = require('browser-sync').create()
-const del = require('del')
+const browserSync = require('browser-sync').create()
+const del = require('del');
 const webpackStream = require('webpack-stream');
 
 
@@ -22,6 +22,10 @@ const paths = {
   html: {
     src: ['src/*.html'],
     dest: 'dist/'
+  },
+  emails: {
+    src: ['src/emails/*.html'],
+    dest: 'dist/emails'
   },
   styles: {
     src: ['src/scss/**/*'],
@@ -50,8 +54,16 @@ function txtcopy() {
   return gulp.src('src/*.txt')
     .pipe(size({ showFiles: true })) 
     .pipe(gulp.dest('dist/')) 
-    .pipe(browsersync.stream()) 
-  }
+    .pipe(browserSync.stream())
+}
+
+// emails
+function emails() { 
+  return gulp.src(paths.emails.src)
+    .pipe(size({ showFiles: true })) 
+    .pipe(gulp.dest(paths.emails.dest)) 
+    .pipe(browserSync.stream())
+}
 
 // html
 function html() {
@@ -66,7 +78,7 @@ function html() {
       locale: ['ru', 'en-US']
     }))
     .pipe(gulp.dest(paths.html.dest))
-    .pipe(browsersync.stream())
+    .pipe(browserSync.stream())
 }
 
 // fonts
@@ -76,7 +88,7 @@ function fonts() {
       showFiles: true
     }))
     .pipe(gulp.dest(paths.fonts.dest))
-    .pipe(browsersync.stream())
+    .pipe(browserSync.stream())
 }
 
 // images
@@ -122,7 +134,7 @@ function styles() {
     .pipe(gulp.dest(paths.styles.dest, {
       sourcemaps: '.'
     }))
-    .pipe(browsersync.stream())
+    .pipe(browserSync.stream())
 }
 
 // JavaScript
@@ -157,19 +169,20 @@ function scripts() {
       showFiles: true
     }))
     .pipe(gulp.dest(paths.scripts.dest))
-    .pipe(browsersync.stream())
+    .pipe(browserSync.stream())
 }
 
 // live server and "watch"
 function watch() {
-  browsersync.init({
+  browserSync.init({
     server: {
       baseDir: "./dist",
       notify: false,
     }
   })
-  gulp.watch(paths.html.dest).on('change', browsersync.reload)
+  gulp.watch(paths.html.dest).on('change', browserSync.reload)
   gulp.watch(paths.html.src, html)
+  gulp.watch(paths.emails.src, emails)
   gulp.watch(paths.styles.src, styles)
   gulp.watch(paths.scripts.src, scripts)
   gulp.watch(paths.images.src, img)
@@ -183,5 +196,5 @@ const toProd = (done) => {
 };
 
 // gulp commands
-exports.default = gulp.series(clean, html, gulp.parallel(styles, scripts, img, webpImages, fonts), watch)
-exports.build = gulp.series(toProd, clean, html, txtcopy, gulp.parallel(styles, scripts, img, webpImages, fonts))
+exports.dev = gulp.series(clean, html, emails, gulp.parallel(styles, scripts, img, webpImages, fonts), watch)
+exports.build = gulp.series(toProd, clean, html, txtcopy, emails, gulp.parallel(styles, scripts, img, webpImages, fonts))
