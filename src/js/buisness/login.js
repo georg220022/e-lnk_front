@@ -12,32 +12,31 @@ let l = loginFormVars;
 
 
 function enableLoginForm() {
-	l.loginForm = document.getElementById('login-form');
-	l.loginFormInputs = l.loginForm.querySelectorAll('input');
 	l.loginFormSubmitBtn = document.getElementById('login-submitBtn');
 
-	l.loginForm.setAttribute('novalidate', true);
-
-	l.loginFormInputs.forEach(input => {
+	l.loginFormInputs?.forEach(input => {
 		input.removeEventListener('blur', () => validateAuthFilledInput(input));
 	});
-	l.loginForm.removeEventListener('submit', submitLoginForm);
+	l.loginForm?.removeEventListener('submit', submitLoginForm);
+
+	l.loginForm = document.getElementById('login-form');
+	l.loginFormInputs = l.loginForm.querySelectorAll('input');
+	l.loginForm.setAttribute('novalidate', true);
 
 	l.loginFormInputs.forEach(input => {
 		input.addEventListener('blur', () => validateAuthFilledInput(input));
 	});
 	l.loginForm.addEventListener('submit', submitLoginForm);
-};
+}
 
 
-async function submitLoginForm() {
+async function submitLoginForm(event) {
 	event.preventDefault();
 
 	let isValid = false;
 
 	let validatedInputs = Array.from(l.loginFormInputs).map(input => {
-		let inputIsValid = validateAuthFilledInput(input) && validateEmptyInput(input);
-		return inputIsValid;
+		return validateAuthFilledInput(input) && validateEmptyInput(input);
 	});
 
 	isValid = validatedInputs.every(input => input === true);
@@ -46,6 +45,7 @@ async function submitLoginForm() {
 		let jsonForReq = JSON.stringify(createObjectFromInputs(l.loginFormInputs));
 
 		l.loginFormSubmitBtn.classList.add('loader');
+		l.loginFormSubmitBtn.innerText = '';
 		l.loginFormInputs.forEach((input) => input.setAttribute('disabled', 'disabled'));
 
 		let { json } = await sendRequest('POST', LOGIN_API, jsonForReq, { cookie: true });
@@ -62,13 +62,14 @@ async function submitLoginForm() {
 			alert(json.error);
 		} else {
 			alert('Не получилось выполнить вход :( \nПожалуйста, попробуйте позже');
-		};
+		}
 
 		l.loginFormSubmitBtn.classList.remove('loader');
+		l.loginFormSubmitBtn.innerText = 'Войти';
 		l.loginFormInputs.forEach((input) => input.removeAttribute('disabled'));
 		l.loginForm.reset();
-	};
-};
+	}
+}
 
 export default enableLoginForm;
 

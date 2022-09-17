@@ -1,0 +1,141 @@
+.panel {
+	min-height: rem(348);
+	display: flex;
+	flex-direction: column;
+
+	&.flex {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	& > .loader {
+		margin-top: -50px;
+    width: rem(40);
+    height: rem(40);
+    border: none;
+    box-shadow: none;
+  }
+
+  &__no-links {
+		transform: translateY(-40%);
+  }
+
+	&__header {
+		padding: rem(8) 0;
+  	box-shadow: 0 rem(2) rem(6) rgba(0, 0, 0, 0.1);
+		margin-bottom: rem(20);
+		border-radius: 25px;
+	}
+
+	&__header-body {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 rem(12) 0 rem(22);
+
+		@media (max-width: 620px ) {
+			justify-content: flex-start;
+			align-items: self-start;
+			flex-direction: column;
+			gap: rem(8);
+		}
+	}
+
+	&__tags {
+	}
+
+	&__controls {
+		visibility: hidden;
+		opacity: 0;
+		overflow: hidden;
+		animation: smallSlideUp 0.2s forwards;
+
+		@media (max-width: 620px ) {
+			display: none;
+		}
+
+		&.open {
+			display: block;
+  		visibility: visible;
+  		opacity: 1;
+  		animation: slideDown 0.2s forwards;
+		}
+	}
+
+	&__sort {
+	}
+
+	&__body {
+	}
+
+	&__pagination {
+		margin-top: auto;
+	}
+}
+
+.sort {
+
+	&__button {
+		font-family: $fontMain;
+		font-size: rem(16);
+		color: $primary;
+		cursor: pointer;
+		background-color: transparent;
+		border: none;
+		transition: $hover;
+		position: relative;
+		white-space: nowrap;
+
+		@media (hover: hover) { 
+			&:hover {
+				color: $accent;
+		  }
+		}
+
+		&::after {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-left: 8px;
+      margin-bottom: -2px;
+      border-top: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+      transform: rotate(-45deg);
+      transition: all 0.1s ease;
+      transition: $hover;
+    }
+
+    &--down {
+    	&.sort__button::after {
+    		margin-bottom: 3px;
+      	transform: rotate(135deg);
+    	}
+    }
+	}
+}
+
+.controls {
+
+	&__button {
+		font-family: $fontMain;
+		padding: rem(5) rem(10);
+		font-size: rem(16);
+  	box-shadow: rem(1) rem(1) rem(1) rgba(0, 0, 0, 0.1);
+
+		&--cancel {
+			border: none;
+			margin-right: rem(8);
+		}
+
+		&--delete {
+			&.loader {
+				content: '';
+				width: rem(28);
+				height: rem(28);
+		    border: none;
+		    box-shadow: none;
+  		}
+		}
+	}
+}

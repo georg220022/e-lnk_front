@@ -1,6 +1,9 @@
 import AirDatepicker from 'air-datepicker';
 import localeRu from 'air-datepicker/locale/ru';
 
+let dateVars = {}; 
+let d = dateVars;
+
 function enableDatepicker() {
 	const dateOptions = {
 		locale: localeRu,
@@ -13,8 +16,11 @@ function enableDatepicker() {
 		onHide () { document.querySelector('#body-section').classList.remove('lock') },
 	};
 
-	let StartDate = new AirDatepicker('#link-start', dateOptions);
-	let EndDate = new AirDatepicker('#link-end', dateOptions);
+	d.startDate?.destroy();
+	d.endDate?.destroy();
+	
+	d.startDate = new AirDatepicker('#link-start', dateOptions);
+	d.endDate = new AirDatepicker('#link-end', dateOptions);
 };
 
 export default enableDatepicker;

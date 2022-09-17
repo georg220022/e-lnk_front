@@ -50,10 +50,17 @@ input {
   text-overflow: ellipsis;
 }
 
+a[disabled] {
+  pointer-events: none;
+}
+
+button[disabled] {
+  pointer-events: none;
+}
 body {
   font-family: $fontMain;
   color: $primary;
-  min-width: 280px;
+  min-width: 320px;
   font-size: rem(18);
   line-height: 1.1;
   font-weight: 400;
@@ -84,7 +91,6 @@ body {
 .wrapper {
   margin: 0 auto;
   max-width: calc($container-width + $container-padding);
-  min-height: rem(200);
   background-color: $secondary;
   box-shadow: 0 rem(4) rem(60) rgba(0, 0, 0, 0.25);
   border-radius: rem(50);
@@ -145,7 +151,7 @@ h2 {
   animation: rotate 1s linear infinite;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     inset: 2px;
     border: rem(5) solid $accent;
@@ -175,7 +181,7 @@ h2 {
   user-select: none;
   transition: $hover;
 
-  @media (hover: hover) { 
+  @media (hover: hover) {
     &:hover {
       color: $secondary;
       background-color: $accent;
@@ -285,6 +291,18 @@ h2 {
     animation: slideDown 0.3s;
   }
 
+  &.links__qr {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+
+    > .qr-img-wrapper {
+      padding: rem(10);
+      width: rem(100);
+      height: rem(100);
+    }
+  }
+
   @media (max-width: $breakpoint1366) {
     display: none;
   }
@@ -369,7 +387,7 @@ input[disabled] {
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     inset: 4px;
     border: 2px solid $gray;
@@ -408,7 +426,7 @@ input[disabled] {
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     height: rem(14);
     width: rem(8);
@@ -461,13 +479,39 @@ input[disabled] {
 
 @keyframes slideUp {
   0% { 
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(50%);
+    opacity: 1;
+    transform: translateY(0);
   }
 
   100% {
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-50%);
+  }  
+}
+
+@keyframes smallSlideUp {
+  0% { 
     opacity: 1;
     transform: translateY(0);
+  }
+
+  100% {
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10%);
   }  
+}
+
+@keyframes smallSlideDown {
+  0% {
+    opacity: 1;
+    transform: translateY(-10%);
+  }
+
+100% {
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(0);
+  }
 }

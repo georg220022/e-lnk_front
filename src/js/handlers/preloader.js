@@ -9,7 +9,10 @@ function showPreloader() {
 
 function hidePreloader() {
 	preloader?.classList.add('preloader--hide');
-	setTimeout(() => preloader.style.display = 'none', 1000);
+	let DeleteLoaderTimeout = setTimeout(() => {
+		preloader.style.display = 'none';
+		clearTimeout(DeleteLoaderTimeout);
+	}, 1000);
 };
 
 export { showPreloader, hidePreloader };

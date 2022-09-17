@@ -12,12 +12,14 @@ if (!document.cookie.match('cookie-consent=true')) {
 	let cookieElem = document.createElement('div');
 	cookieElem.innerHTML = template;
 
-	setTimeout(() => {
+	let cookieTimeout = setTimeout(() => {
 		document.body.append(cookieElem);
 		
 		let cookieBtn = document.querySelector('.cookie-consent__button');
 		
 		cookieBtn.addEventListener('click', hideCookieElem, { once: true });
+
+		clearTimeout(cookieTimeout);
 	}, 2000);
 
 	function hideCookieElem(e) {

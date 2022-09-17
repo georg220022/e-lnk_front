@@ -1,0 +1,96 @@
+.accordion {
+
+  &__item {
+    width: 100%;
+    display: block;
+    border: 1px solid $accent;
+    border-radius: rem(25);
+  }
+
+  &__button {
+    display: inline-flex;  
+    color: $primary; 
+    border: none;
+    text-align: left;
+    flex: 1 1 auto;
+    background: none;
+    outline: none;
+    align-items: center;
+
+    &--active-link {
+      color: $secondary; 
+      transition: $hover;
+
+      &.accordion__button--active  {
+        color: $secondary;
+      }
+
+      @media (hover: hover) { 
+        &:hover {
+          color: $secondary !important; 
+        }
+
+        &:hover::before {
+          border-top: 1px solid $secondary !important;
+          border-right: 1px solid $secondary !important;
+        }
+      }
+    }
+
+    &::before {
+      content: '';
+      display: inline-flex;
+      width: 8px;
+      margin-top: -2px;
+      height: 8px;
+      border-top: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+      transform: rotate(45deg);
+      transition: all 0.1s ease;
+      margin-right: 0.5rem;
+    }
+
+    @media (hover: hover) { 
+      &:hover {
+        cursor: pointer;
+        color: $accent;
+        transition: $hover;
+      }
+      &:hover::before {
+        border-top: 1px solid currentColor;
+        border-right: 1px solid currentColor;
+        transition: $hover;
+      }
+    }
+
+    &--active {
+      color: $accent;
+    
+      &.accordion__button::before {
+        transform: rotate(135deg);
+        margin-top: -6px;
+        border-top: 1px solid currentColor;
+        border-right: 1px solid currentColor;
+      }    
+    }
+  }
+
+  &__title {
+    display: inline;
+  }
+
+  &__content {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    transition: all 0.2s ease;
+
+
+    &.accordion__content--active {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

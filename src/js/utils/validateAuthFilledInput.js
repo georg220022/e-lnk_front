@@ -9,7 +9,7 @@ function validateAuthFilledInput(input) {
 			let emailMaxLength = input.value.length > 30;
 			inputCorrectCondition = isEmail && !emailMaxLength;
 			if (emailMaxLength) {
-				inputErrorText = 'E-mail не может быть длинее 30 символов';
+				inputErrorText = 'E-mail не может быть длиннее 30 символов';
 			};
 			if (!isEmail) {
 				inputErrorText = 'Введите корректный E-mail';
@@ -21,7 +21,7 @@ function validateAuthFilledInput(input) {
 			let passwordMaxLength = input.value.length > 20;
 			inputCorrectCondition = isPassword && !passwordMaxLength;
 			if (passwordMaxLength) {
-				inputErrorText = 'Пароль не может быть длинее 20 символов';
+				inputErrorText = 'Пароль не может быть длиннее 20 символов';
 			};
 			if (!isPassword) {
 				inputErrorText = 'Необходимо минимум 8 символов, 1 латинская буква и 1 цифра';

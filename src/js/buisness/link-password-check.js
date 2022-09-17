@@ -3,7 +3,7 @@
 import validateEmptyInput from '../utils/validateEmptyInput.js';
 import sendRequest from '../utils/sendRequest.js';
 
-const PASSWORDCHECK_API = 'api/v1/unlock';
+const PASSWORD_CHECK_API = 'api/v1/unlock';
 
 const passwordCheckForm = document.getElementById('password-check-form');
 const passwordCheckInput = passwordCheckForm.querySelector('input');
@@ -26,9 +26,9 @@ function validatePasswordCheckInput(input) {
 	switch (input.name) {
 		case ('linkPassword'):
 			inputCorrectCondition = input.value.length < 16;
-			inputErrorText = 'Пароль не может быть длинее 16 символов';
+			inputErrorText = 'Пароль не может быть длиннее 16 символов';
 			break;
-	};
+	}
 
 	if (!inputCorrectCondition) {
 		input.nextElementSibling.innerText = inputErrorText;
@@ -38,11 +38,11 @@ function validatePasswordCheckInput(input) {
 		input.nextElementSibling.innerText = '';
 		input.classList.remove('error-input');
 		return true;
-	};
-};
+	}
+}
 
 
-async function submitPasswordCheckForm() {
+async function submitPasswordCheckForm(event) {
 	event.preventDefault();
 
 	let isValid = validatePasswordCheckInput(passwordCheckInput) && validateEmptyInput(passwordCheckInput);
@@ -56,20 +56,20 @@ async function submitPasswordCheckForm() {
 		passwordCheckInput.setAttribute('disabled', 'disabled');
 		passwordCheckSubmitBtn.classList.add('loader');
 
-		let { json } = await sendRequest('POST', PASSWORDCHECK_API, jsonForReq, { cookie: true });
+		let { json } = await sendRequest('POST', PASSWORD_CHECK_API, jsonForReq, { cookie: true });
 
 		if (json && json.longLink) {
-			window.location.href = json.longLink;
+			window.location.replace(json.longLink);
 		} else if (json && json.error) {
 			alert(json.error);
 		} else {
 			alert('Не получилось проверить пароль :( \nПожалуйста, попробуйте позже');
-		};
+		}
 
 		passwordCheckInput.removeAttribute('disabled');
 		passwordCheckSubmitBtn.classList.remove('loader');
 		passwordCheckForm.reset();
-	};
-};
+	}
+}
 
 

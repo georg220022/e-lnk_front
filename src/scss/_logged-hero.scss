@@ -4,10 +4,12 @@
 	position: relative;
 
 	&__body {
-		padding-top: rem(110);
+		padding-top: rem(36);
+		min-height: rem(348);
 		margin: 0 auto;
 
 		@media (max-width: $breakpoint1366) {
+			min-height: unset;
 			padding-top: rem(32);
 		}
 
@@ -18,6 +20,9 @@
 		@media (max-width: $breakpoint576) {
 			padding: 0;
 		}
+	}
+
+	&__content {
 	}
 
 	&__form {

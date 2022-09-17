@@ -1,4 +1,4 @@
-async function sendRequest(method, api, body, options = { token: false, cookie: false }) {
+async function sendRequest(method, api, body = '', options = { token: false, cookie: false }) {
 	let { token, cookie } = options;
 
 	const requestOptions = {
@@ -8,7 +8,10 @@ async function sendRequest(method, api, body, options = { token: false, cookie: 
 			'Accept': 'application/json',
 			'Content-Type': 'application/json;charset=UTF-8',
 		},
-		body: body,
+	};
+
+	if (method !== 'GET') {
+		requestOptions.body = body;
 	};
 
 	if (token) {

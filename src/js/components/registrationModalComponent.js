@@ -1,5 +1,5 @@
 const registrationModalComponent = () => {
-	const template = `
+	return `
 		<div class="modal" id="registration-modal">
 			<div class="modal__body">
 				<div class="modal__head">
@@ -31,8 +31,6 @@ const registrationModalComponent = () => {
 			</div>
 		</div>
 	`;
-
-	return template;
 };
 
 export default registrationModalComponent;

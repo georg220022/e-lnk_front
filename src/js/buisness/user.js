@@ -4,7 +4,6 @@ import sendRequest from '../utils/sendRequest.js';
 const REFRESH_API = 'api/v1/refresh';
 const LOGOUT_API = 'api/v1/logout';
 
-
 let user = {
 	email: null,
 	accessToken: null,
@@ -17,12 +16,13 @@ let user = {
 				this.isRetry = true;
 				let refreshIsValid = await this.refreshTokens();
 				if (refreshIsValid) {
-					let { response,	json } = await this.sendRequest(...arguments, { token: this.accessToken });
-				};
-			};
-		};
+					await this.sendRequest(...arguments, { token: this.accessToken });
+				}
+			}
+		}
 
 		if (this.isRetry) delete this.isRetry;
+
 		return { response,	json };
 	},
 
@@ -34,16 +34,16 @@ let user = {
 				this.logout();
 				console.error(`Токен не валиден(ответ сервера: ${response.status})`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 				return false;
-			};
+			}
 
 			if (json.access) {
 				this.accessToken = json.access;
 				this.email = json.email;
 				return true;
-			};
+			}
 		} catch (error) {
 			console.error('ошибка при рефреше (refresh_request): ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-		};
+		}
 	},
 	
 	logout: async function() {
@@ -55,7 +55,7 @@ let user = {
 			router('#/');
 		} catch (error) {
 			console.error('ошибка при логауте: ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-		};
+		}
 	},
 };
 

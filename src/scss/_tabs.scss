@@ -1,0 +1,68 @@
+.portfolio__tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 2rem;
+	justify-content: center;
+	padding: 0;
+	margin: 0 auto 1rem;
+	font-family: var(--mainfont);
+	font-size: rem(20);
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.tabs {
+	color: $primary;
+
+	&__tab {
+		white-space: nowrap;
+	}
+
+	&__button {
+	text-transform: uppercase;
+	letter-spacing: -0.01em;
+	font-family: inherit;
+	border: none;
+	background-color: transparent;
+	color: inherit;
+	transition: all 0.1s ease;
+	font-size: rem(20);
+	cursor: pointer;
+
+		@media (hover: hover) { 
+			&:hover {
+				color: $accent;
+				text-decoration: none;
+	  	}
+		}
+
+		&--active {
+			color: $accent;
+		}
+	}
+
+	&__content {
+		color: $primary;
+	}
+
+	&__item {
+		display: none;
+		opacity: 0;
+		visibility: hidden;
+
+		&--active {
+			display: block;
+			opacity: 1;
+			visibility: visible;
+  		animation: fade 0.6s linear;
+		}
+	}
+}
+
+@keyframes fade {
+   from {
+      opacity: 0;
+   }
+   to {
+      opacity: 1;
+   }
+}

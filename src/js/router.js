@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	if (window.location.hash.length == 0) {
 		window.location.hash = "#/";
 	} else router(window.location.hash);
-});
+}, { once: true });
 
 window.addEventListener('hashchange', () => {
 	if (document.body.classList.contains('burger-menu-overlay')) {
@@ -40,6 +40,6 @@ document.addEventListener('readystatechange', () => {
 	if (document.readyState === "complete") {
 		hidePreloader();
 	};
-});
+}, { once: true });
 
 export default router;

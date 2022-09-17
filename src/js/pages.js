@@ -15,47 +15,48 @@ import enableShortener from './buisness/shortener.js';
 import enableDatepicker from './handlers/datepicker.js';
 import enableLoginForm from './buisness/login.js';
 import enableRegistrationForm from './buisness/registration.js';
+import enablePanel from './buisness/panel.js';
 
 const userHeaderSection = new PageSection('user-header-section');
-const heroSection = new PageSection('hero-section');
+const mainSection = new PageSection('main-section');
 const modalsSection = new PageSection('modals-section');
 const additionalSection = new PageSection('additional-section');
 
-async function LoadMainPage() {
+function LoadMainPage() {
 	if (user.accessToken) {
 		userHeaderSection.renderComponent(loggedUserHeaderComponent(user));
-		heroSection.renderComponent(extendedShortenerComponent());
+		mainSection.renderComponent(extendedShortenerComponent());
 		modalsSection.renderComponent('');
 		additionalSection.renderComponent('');
 		enableDatepicker();
 	} else {
 		userHeaderSection.renderComponent(guestUserHeaderComponent());
-		heroSection.renderComponent(shortenerComponent());
+		mainSection.renderComponent(shortenerComponent());
 		modalsSection.renderComponent(loginModalComponent() + registrationModalComponent());
 		additionalSection.renderComponent(benefitsComponent());
 		enableLoginForm();
 		enableRegistrationForm();
-	};
+	}
 
 	enableShortener();
-};
+}
 
-async function LoadPanelPage() {
+function LoadPanelPage() {
 	if (user.accessToken) {
 		userHeaderSection.renderComponent(loggedUserHeaderComponent(user, ''));
-		heroSection.renderComponent('<h2>Панель управления</h2>');
+		enablePanel();
 	} else {
 		LoadMainPage();
-	};
-};
+	}
+}
 
-async function LoadSettingsPage() {
+function LoadSettingsPage() {
 	if (user.accessToken) {
 		userHeaderSection.renderComponent(loggedUserHeaderComponent(user, '<li class="nav__item"><a class="button--main" href="#/panel">Панель управления</a></li>', ''));
-		heroSection.renderComponent('<h2>Настройки аккаунта</h2>');
+		mainSection.renderComponent('<h2>Настройки аккаунта</h2>');
 	} else {
 		LoadMainPage();
-	};
-};
+	}
+}
 
 export { LoadMainPage, LoadPanelPage, LoadSettingsPage };

@@ -5,9 +5,11 @@
 
 	&__body {
 		padding: rem(180) 0 0;
+		min-height: rem(560);
 
 		@media (max-width: $breakpoint1366) {
 			padding: rem(32) 0 0;
+			min-height: unset;
 			text-align: center;
 		}
 

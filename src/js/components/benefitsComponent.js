@@ -1,5 +1,5 @@
 const benefitsComponent = () => {
-	const template = `
+	return `
 		<section class="benefits">
 			<div class="container">
 				<div class="benefits__body">
@@ -23,8 +23,6 @@ const benefitsComponent = () => {
 			</div>
 		</section>
   `;
-
-	return template;
 };
 
 export default benefitsComponent;

@@ -5,7 +5,10 @@ function dropdownEvent(event) {
 	};
 
 	if (event.target.closest('#body-section') && !event.target.matches('.dropdown__button')) {
-		document.body.querySelector('.dropdown__button')?.nextElementSibling.classList.remove('dropdown__list--visible');
+		let dropdowns = document.body.querySelectorAll('.dropdown__button');
+		if (dropdowns) {
+			dropdowns.forEach(dropdown => dropdown.nextElementSibling.classList.remove('dropdown__list--visible'));
+		};
 	};
 
 	return;

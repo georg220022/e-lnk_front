@@ -8,10 +8,18 @@
 	min-width: rem(186);
 	text-align: center;
 
+	&--sort {
+		min-width: 0;
+	}
+
 	&__button {
 		font-size: rem(18);
 		transition: all 0.1s ease;
 		cursor: pointer;
+
+		&--sort {
+			font-size: rem(16);
+		}
 
 		@media (max-width: $burger-breakpoint) {
 			position: fixed;
@@ -54,6 +62,9 @@
 		transition: transform 0.1s linear;
 		z-index: -50;
 
+		&--sort {
+		}
+		
 		&--visible {
 			visibility: visible;
 			opacity: 1;
@@ -77,7 +88,10 @@
 		display: inline;
 		width: 100%;
 		transition: all 0.1s ease;
-		white-space: nowrap;
+		white-space: nowrap;		
+
+		&--sort {
+		}
 
 		@media (hover: hover) { 
 			&:hover {
