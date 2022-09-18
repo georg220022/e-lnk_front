@@ -37,23 +37,25 @@ let panel = {
 
 			if (this.updateLinksTimeout) clearTimeout(this.updateLinksTimeout);
 
-			this.updateLinksTimeout = setTimeout(async () => {
-				this.oldLinks = deepCopy(this.page[this.currentPage].linksData);
-				await this.getLinks();
-				this.createPages();
+			if (this.links.length !== 0) {
+				this.updateLinksTimeout = setTimeout(async () => {
+					this.oldLinks = deepCopy(this.page[this.currentPage].linksData);
+					await this.getLinks();
+					this.createPages();
 
-				// get only that links which stats changed
-				let changedLinks =
-					this.page[this.currentPage].linksData.filter(({ statistics: newStatistics }) =>
-						!this.oldLinks.some(({ statistics: oldStatistics }) =>
-							JSON.stringify(oldStatistics) === JSON.stringify(newStatistics)));
+					// get only that links which stats changed
+					let changedLinks =
+						this.page[this.currentPage].linksData.filter(({ statistics: newStatistics }) =>
+							!this.oldLinks.some(({ statistics: oldStatistics }) =>
+								JSON.stringify(oldStatistics) === JSON.stringify(newStatistics)));
 
-				this.updateStatistics(changedLinks);
-			}, this.links[0].ttl * 1000);
+					this.updateStatistics(changedLinks);
+				}, this.links[0].ttl * 1000);
 
-			window.addEventListener('hashchange', () => {
-				clearTimeout(this.updateLinksTimeout);
-			}, { once: true });
+				window.addEventListener('hashchange', () => {
+					clearTimeout(this.updateLinksTimeout);
+				}, { once: true });
+			}
 
 		} else alert('Не получилось получить ссылки :( \nПожалуйста, попробуйте позже');
   },
