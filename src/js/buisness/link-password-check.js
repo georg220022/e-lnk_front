@@ -2,20 +2,16 @@
 
 import validateEmptyInput from '../utils/validateEmptyInput.js';
 import sendRequest from '../utils/sendRequest.js';
-
-const PASSWORD_CHECK_API = 'api/v1/unlock';
+import { PASSWORD_CHECK_API } from './api.js';
 
 const passwordCheckForm = document.getElementById('password-check-form');
 const passwordCheckInput = passwordCheckForm.querySelector('input');
 const passwordCheckSubmitBtn = document.getElementById('password-check-button');
-
-passwordCheckForm.setAttribute('novalidate', true);
+passwordCheckForm.setAttribute('novalidate', 'true');
 
 passwordCheckInput.addEventListener('blur', () => validatePasswordCheckInput(passwordCheckInput));
 passwordCheckInput.addEventListener('input', () => validatePasswordCheckInput(passwordCheckInput));
-
 passwordCheckForm.addEventListener('submit', submitPasswordCheckForm);
-
 
 function validatePasswordCheckInput(input) {
 	if (input.value === '') return true;
@@ -41,7 +37,6 @@ function validatePasswordCheckInput(input) {
 	}
 }
 
-
 async function submitPasswordCheckForm(event) {
 	event.preventDefault();
 
@@ -62,14 +57,10 @@ async function submitPasswordCheckForm(event) {
 			window.location.replace(json.longLink);
 		} else if (json && json.error) {
 			alert(json.error);
-		} else {
-			alert('Не получилось проверить пароль :( \nПожалуйста, попробуйте позже');
-		}
+		} else alert('Не получилось проверить пароль :( \nПожалуйста, попробуйте позже');
 
 		passwordCheckInput.removeAttribute('disabled');
 		passwordCheckSubmitBtn.classList.remove('loader');
 		passwordCheckForm.reset();
 	}
 }
-
-

@@ -1,8 +1,6 @@
 import router from '../router.js';
+import { REFRESH_API, LOGOUT_API } from "./api.js";
 import sendRequest from '../utils/sendRequest.js';
-
-const REFRESH_API = 'api/v1/refresh';
-const LOGOUT_API = 'api/v1/logout';
 
 let user = {
 	email: null,

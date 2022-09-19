@@ -33,7 +33,6 @@ import renameKeyInObj from '../utils/renameKeyInObj.js';
 import getWindowWidth from '../utils/getWindowWidth.js';
 
 function enableStatistics(data, linkId, charts = 'all') {
-
 	if (charts === 'all') {
 		renameKeyInObj(data.device, '1', 'Телефон');	
 		renameKeyInObj(data.device, '2', 'ПК');	
@@ -91,7 +90,6 @@ function enableStatistics(data, linkId, charts = 'all') {
 		});
 
 		return [deviceChart, osChart, countryChart, hoursChart, daysChart];
-
 	} else {
 		switch (charts) {
 			case 0:
@@ -106,7 +104,6 @@ function enableStatistics(data, linkId, charts = 'all') {
 					data,
 					linkId,
 				});
-				break;
 			case 1:
 				renameKeyInObj(data.os, '1', 'Android');
 				renameKeyInObj(data.os, '2', 'Windows');
@@ -123,7 +120,6 @@ function enableStatistics(data, linkId, charts = 'all') {
 					data,
 					linkId,
 				});
-				break;
 			case 2:
 				return CreateChart({
 					name: 'country',
@@ -132,7 +128,6 @@ function enableStatistics(data, linkId, charts = 'all') {
 					data,
 					linkId,
 				});
-				break;
 			case 3:
 				return CreateChart({
 					name: 'hours',
@@ -143,7 +138,6 @@ function enableStatistics(data, linkId, charts = 'all') {
 					linkId,
 					radius: 5,
 				});
-				break;
 			case 4:
 				return CreateChart({
 					name: 'days',
@@ -153,7 +147,6 @@ function enableStatistics(data, linkId, charts = 'all') {
 					data,
 					linkId,
 				});
-				break;
 		}
 	}
 }

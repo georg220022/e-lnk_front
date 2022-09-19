@@ -14,13 +14,13 @@ function enableDatepicker() {
 		minDate: new Date,
 		onShow () { document.querySelector('#body-section').classList.add('lock') },
 		onHide () { document.querySelector('#body-section').classList.remove('lock') },
-	};
+	}
 
 	d.startDate?.destroy();
 	d.endDate?.destroy();
 	
 	d.startDate = new AirDatepicker('#link-start', dateOptions);
 	d.endDate = new AirDatepicker('#link-end', dateOptions);
-};
+}
 
 export default enableDatepicker;

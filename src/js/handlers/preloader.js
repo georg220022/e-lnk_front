@@ -5,7 +5,7 @@ function showPreloader() {
 		preloader.style.display = 'flex';
 		preloader?.classList.remove('preloader--hide');
 	}
-};
+}
 
 function hidePreloader() {
 	preloader?.classList.add('preloader--hide');
@@ -13,6 +13,6 @@ function hidePreloader() {
 		preloader.style.display = 'none';
 		clearTimeout(DeleteLoaderTimeout);
 	}, 1000);
-};
+}
 
 export { showPreloader, hidePreloader };

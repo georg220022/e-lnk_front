@@ -7,7 +7,7 @@ function copyToClipboardEvent(event) {
 
 		copyTextToClipboard(event.target.closest('.form__input-wrapper--short-link').querySelector('input').value)
 			.then(() => setTimeout(() => event.target.closest('.copy-button').classList.remove('checkmark'), 1000));
-	};
-};
+	}
+}
 
 export default copyToClipboardEvent;

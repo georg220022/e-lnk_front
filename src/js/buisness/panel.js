@@ -1,5 +1,6 @@
 import PageSection from '../utils/PageSection.js';
 import user from '../buisness/user.js';
+import { GET_LINKS_API , CHANGE_LINKS_API, DELETE_LINKS_API } from "./api.js";
 import enableStatistics from './statistics.js';
 import ISOStringToRuDateString from '../utils/ISOStringToRuDateString.js';
 import validateShortenerFilledInput from '../utils/validateShortenerFilledInput.js';
@@ -10,10 +11,6 @@ import panelComponent from '../components/panelComponent.js';
 import linkComponent from '../components/linkComponent.js';
 import { paginationComponent, paginationLinkComponent } from '../components/paginationComponent.js';
 import noLinksComponent from '../components/noLinksComponent.js';
-
-const GET_LINKS_API = 'api/v1/panel';
-const CHANGE_LINKS_API = 'api/v1/links';
-const DELETE_LINKS_API = 'api/v1/links';
 
 let panel = {
 	linksOnPageAmount: 10,
@@ -284,6 +281,18 @@ async function enablePanel() {
 		//
 		panel.createPages();
 		panel.render();
+		// setInterval(() => {
+		// 	panel.oldLinks = deepCopy(panel.page[1].linksData);
+		// 	panel.links[0].statistics.days['1'] += 1;
+		// 	panel.createPages();
+		//
+		// 	let changedLinks =
+		// 		panel.page[1].linksData.filter(({ statistics: newStatistics }) =>
+		// 			!panel.oldLinks.some(({ statistics: oldStatistics }) =>
+		// 				JSON.stringify(oldStatistics) === JSON.stringify(newStatistics)));
+		// 	panel.updateStatistics(changedLinks);
+		//
+		// }, 1000)
 	}
 }
 

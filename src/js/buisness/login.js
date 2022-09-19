@@ -1,15 +1,13 @@
 import user from './user.js';
+import { LOGIN_API } from "./api.js";
 import router from '../router.js';
 import validateAuthFilledInput from '../utils/validateAuthFilledInput.js';
 import validateEmptyInput from '../utils/validateEmptyInput.js';
 import createObjectFromInputs from '../utils/createObjectFromInputs.js';
 import sendRequest from '../utils/sendRequest.js';
 
-const LOGIN_API = 'api/v1/login';
-
 let loginFormVars = {}; 
 let l = loginFormVars;
-
 
 function enableLoginForm() {
 	l.loginFormSubmitBtn = document.getElementById('login-submitBtn');
@@ -21,7 +19,7 @@ function enableLoginForm() {
 
 	l.loginForm = document.getElementById('login-form');
 	l.loginFormInputs = l.loginForm.querySelectorAll('input');
-	l.loginForm.setAttribute('novalidate', true);
+	l.loginForm.setAttribute('novalidate', 'true');
 
 	l.loginFormInputs.forEach(input => {
 		input.addEventListener('blur', () => validateAuthFilledInput(input));
@@ -29,16 +27,13 @@ function enableLoginForm() {
 	l.loginForm.addEventListener('submit', submitLoginForm);
 }
 
-
 async function submitLoginForm(event) {
 	event.preventDefault();
 
 	let isValid = false;
-
 	let validatedInputs = Array.from(l.loginFormInputs).map(input => {
 		return validateAuthFilledInput(input) && validateEmptyInput(input);
 	});
-
 	isValid = validatedInputs.every(input => input === true);
 
 	if (isValid) {
@@ -60,9 +55,7 @@ async function submitLoginForm(event) {
 			router('#/');
 		} else if (json && json.error) {
 			alert(json.error);
-		} else {
-			alert('Не получилось выполнить вход :( \nПожалуйста, попробуйте позже');
-		}
+		} else alert('Не получилось выполнить вход :( \nПожалуйста, попробуйте позже');
 
 		l.loginFormSubmitBtn.classList.remove('loader');
 		l.loginFormSubmitBtn.innerText = 'Войти';

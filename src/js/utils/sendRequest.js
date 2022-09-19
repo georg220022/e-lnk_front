@@ -10,17 +10,9 @@ async function sendRequest(method, api, body = '', options = { token: false, coo
 		},
 	};
 
-	if (method !== 'GET') {
-		requestOptions.body = body;
-	};
-
-	if (token) {
-		requestOptions.headers['Authorization'] = `Bearer ${token}`;
-	};
-
-	if (cookie) {
-		requestOptions.credentials = 'include';
-	};
+	if (method !== 'GET') requestOptions.body = body;
+	if (token) requestOptions.headers['Authorization'] = `Bearer ${token}`;
+	if (cookie) requestOptions.credentials = 'include';
 
 	let response = null;
 	let json = null;
@@ -29,14 +21,14 @@ async function sendRequest(method, api, body = '', options = { token: false, coo
 		response = await fetch(api, requestOptions);
 		try {
 			json = await response.json();
-			console.log(`Полученный json (${api}):`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+			console.log(`Полученный json (${api}, ${method}):`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 			console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-		} catch (e) {};
+		} catch (e) {}
 	} catch (error) {
 		console.error(`ошибка при запросе (${api}): ${error}`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-	};
+	}
 
 	return { response, json	};
-};
+}
 
 export default sendRequest;

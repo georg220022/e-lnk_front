@@ -1,4 +1,3 @@
-import user from './buisness/user.js';
 import PageSection from './utils/PageSection.js';
 
 import guestUserHeaderComponent from './components/guestUserHeaderComponent.js';
@@ -22,41 +21,33 @@ const mainSection = new PageSection('main-section');
 const modalsSection = new PageSection('modals-section');
 const additionalSection = new PageSection('additional-section');
 
-function LoadMainPage() {
-	if (user.accessToken) {
-		userHeaderSection.renderComponent(loggedUserHeaderComponent(user));
-		mainSection.renderComponent(extendedShortenerComponent());
-		modalsSection.renderComponent('');
-		additionalSection.renderComponent('');
-		enableDatepicker();
-	} else {
-		userHeaderSection.renderComponent(guestUserHeaderComponent());
-		mainSection.renderComponent(shortenerComponent());
-		modalsSection.renderComponent(loginModalComponent() + registrationModalComponent());
-		additionalSection.renderComponent(benefitsComponent());
-		enableLoginForm();
-		enableRegistrationForm();
-	}
-
+function loadMainPage() {
+	userHeaderSection.renderComponent(guestUserHeaderComponent());
+	mainSection.renderComponent(shortenerComponent());
+	modalsSection.renderComponent(loginModalComponent() + registrationModalComponent());
+	additionalSection.renderComponent(benefitsComponent());
 	enableShortener();
+	enableLoginForm();
+	enableRegistrationForm();
 }
 
-function LoadPanelPage() {
-	if (user.accessToken) {
-		userHeaderSection.renderComponent(loggedUserHeaderComponent(user, ''));
-		enablePanel();
-	} else {
-		LoadMainPage();
-	}
+function loadLoggedMainPage(user) {
+	userHeaderSection.renderComponent(loggedUserHeaderComponent(user.email));
+	mainSection.renderComponent(extendedShortenerComponent());
+	modalsSection.renderComponent('');
+	additionalSection.renderComponent('');
+	enableShortener();
+	enableDatepicker();
 }
 
-function LoadSettingsPage() {
-	if (user.accessToken) {
-		userHeaderSection.renderComponent(loggedUserHeaderComponent(user, '<li class="nav__item"><a class="button--main" href="#/panel">Панель управления</a></li>', ''));
-		mainSection.renderComponent('<h2>Настройки аккаунта</h2>');
-	} else {
-		LoadMainPage();
-	}
+function loadPanelPage(user) {
+	userHeaderSection.renderComponent(loggedUserHeaderComponent(user.email, { panelLink: false }));
+	enablePanel();
 }
 
-export { LoadMainPage, LoadPanelPage, LoadSettingsPage };
+function loadSettingsPage(user) {
+	userHeaderSection.renderComponent(loggedUserHeaderComponent(user.email, { settingsLink: false }));
+	mainSection.renderComponent('<h2>Настройки аккаунта</h2>');
+}
+
+export { loadMainPage, loadLoggedMainPage, loadPanelPage, loadSettingsPage };

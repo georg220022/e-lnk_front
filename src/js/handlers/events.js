@@ -8,7 +8,6 @@ import clearInputEvent from './clearInputEvent.js';
 import selectLinkEvent from './selectLinkEvent.js';
 import logoutEvent from './logoutEvent.js';
 
-
 document.addEventListener('click', (event) => {
 
 	burgerMenuEvent(event);

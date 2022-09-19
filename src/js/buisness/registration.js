@@ -1,17 +1,14 @@
 import user from './user.js';
+import { REGISTRATION_API } from './api.js';
 import PageSection from '../utils/PageSection.js';
 import validateAuthFilledInput from '../utils/validateAuthFilledInput.js';
 import validateEmptyInput from '../utils/validateEmptyInput.js';
 import createObjectFromInputs from '../utils/createObjectFromInputs.js';
 import sendRequest from '../utils/sendRequest.js';
-
 import successRegistrationComponent from '../components/successRegistrationComponent.js';
-
-const REGISTRATION_API = 'api/v1/registration';
 
 let registrationFormVars = {}; 
 let r = registrationFormVars;
-
 
 function enableRegistrationForm() {
 	r.registrationFormSubmitBtn = document.getElementById('registration-submitBtn');
@@ -24,7 +21,7 @@ function enableRegistrationForm() {
 
 	r.registrationForm = document.getElementById('registration-form');
 	r.registrationFormInputs = r.registrationForm.querySelectorAll('input');
-	r.registrationForm.setAttribute('novalidate', true);
+	r.registrationForm.setAttribute('novalidate', 'true');
 
 	r.registrationFormInputs.forEach(input => {
 		input.addEventListener('blur', () => validateAuthFilledInput(input));
@@ -33,16 +30,13 @@ function enableRegistrationForm() {
 	r.registrationForm.addEventListener('submit', submitRegistrationForm);
 }
 
-
 async function submitRegistrationForm(event) {
 	event.preventDefault();
 
 	let isValid = false;
-
 	let validatedInputs = Array.from(r.registrationFormInputs).map(input => {
 		return validateAuthFilledInput(input) && validateEmptyInput(input);
 	});
-
 	isValid = validatedInputs.every(input => input === true);
 
 	if (isValid) {
@@ -64,9 +58,7 @@ async function submitRegistrationForm(event) {
 			registrationSection.renderComponent(successRegistrationComponent(user.email));
 		} else if (json && json.error) {
 			alert(json.error);
-		} else {
-			alert('Не получилось выполнить регистрацию :( \nПожалуйста, попробуйте позже');
-		}
+		} else alert('Не получилось выполнить регистрацию :( \nПожалуйста, попробуйте позже');
 
 		r.registrationFormSubmitBtn.classList.remove('loader');
 		r.registrationFormSubmitBtn.innerText = 'Зарегистрироваться';

@@ -1,10 +1,9 @@
 import user from './user.js';
+import { SHORTENER_API } from "./api.js";
 import validateEmptyInput from '../utils/validateEmptyInput.js';
 import validateShortenerFilledInput from '../utils/validateShortenerFilledInput.js';
 import createObjectFromInputs from '../utils/createObjectFromInputs.js';
 import ruDateStringToISOString from '../utils/ruDateStringToISOString.js';
-
-const SHORTENER_API = 'api/v1/links';
 
 let shortenerVars = {}; 
 let s = shortenerVars;
@@ -27,7 +26,7 @@ function enableShortener() {
 	s.shortener = document.getElementById('shortener-form');
 	s.allShortenerFields = s.shortener.querySelectorAll('input');
 	s.shortenerInputs = Array.from(s.allShortenerFields).slice(0, -1);
-	s.shortener.setAttribute('novalidate', true);
+	s.shortener.setAttribute('novalidate', 'true');
 
 	s.shortenerInputs?.forEach(input => {
 		input.addEventListener('blur', () => validateShortenerFilledInput(input));
@@ -41,11 +40,9 @@ async function submitShortener(event) {
 	event.preventDefault();
 
 	let isValid = false;
-
 	let validatedInputs = s.shortenerInputs.map(input => {
 		return validateShortenerFilledInput(input);
 	});
-
 	isValid = validatedInputs.every(input => input === true) && validateEmptyInput(s.longLink);
 
 	if (isValid) {

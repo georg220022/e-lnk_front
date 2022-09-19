@@ -1,0 +1,9 @@
+export const REFRESH_API = 'api/v1/refresh';
+export const LOGOUT_API = 'api/v1/logout';
+export const SHORTENER_API = 'api/v1/links';
+export const LOGIN_API = 'api/v1/login';
+export const REGISTRATION_API = 'api/v1/registration';
+export const GET_LINKS_API = 'api/v1/panel';
+export const CHANGE_LINKS_API = 'api/v1/links';
+export const DELETE_LINKS_API = 'api/v1/links';
+export const PASSWORD_CHECK_API = 'api/v1/unlock';
