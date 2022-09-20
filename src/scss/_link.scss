@@ -34,10 +34,8 @@
 			flex-direction: column;
 			justify-content: start;
 			padding: rem(8) 0 rem(8) rem(16);
-		}
-		@media (max-width: $breakpoint576 ) {
-			padding-bottom: 0;
-		}
+			gap: rem(8);
+	}
 	}
 
 	&__name {
@@ -94,6 +92,9 @@
 	}
 
 	&__long-link {
+		@media (max-width: $breakpoint576 ) {
+			display: none;
+		}
 	}
 
 	&__switching-buttons {
