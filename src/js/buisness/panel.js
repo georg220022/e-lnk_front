@@ -272,27 +272,8 @@ async function enablePanel() {
 	panel.mainSection.renderComponent('<div class="panel flex"><div class="loader"></div></div>');
 	await panel.getLinks();
 	if (panel.links) {
-		// todo remove that
-		// for (const link of panel.links) {
-		// 	link.linkCreatedDate = ISOStringToRuDateString(link.linkCreatedDate);
-		// 	link.linkStartDate = ISOStringToRuDateString(link.linkStartDate);
-		// 	if (link.linkEndDate !== '-1') link.linkEndDate = ISOStringToRuDateString(link.linkEndDate);
-		// }
-		//
 		panel.createPages();
 		panel.render();
-		// setInterval(() => {
-		// 	panel.oldLinks = deepCopy(panel.page[1].linksData);
-		// 	panel.links[0].statistics.days['1'] += 1;
-		// 	panel.createPages();
-		//
-		// 	let changedLinks =
-		// 		panel.page[1].linksData.filter(({ statistics: newStatistics }) =>
-		// 			!panel.oldLinks.some(({ statistics: oldStatistics }) =>
-		// 				JSON.stringify(oldStatistics) === JSON.stringify(newStatistics)));
-		// 	panel.updateStatistics(changedLinks);
-		//
-		// }, 1000)
 	}
 }
 

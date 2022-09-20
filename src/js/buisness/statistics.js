@@ -34,39 +34,29 @@ import getWindowWidth from '../utils/getWindowWidth.js';
 
 function enableStatistics(data, linkId, charts = 'all') {
 	if (charts === 'all') {
-		renameKeyInObj(data.device, '1', 'Телефон');	
-		renameKeyInObj(data.device, '2', 'ПК');	
-		renameKeyInObj(data.device, '3', 'Другое');	
-		for (let key in data.device) { if (data.device[key] === 0) delete data.device[key] }
 		let deviceChart = CreateChart({
 			name: 'device',
 			type: 'doughnut',
-			labels: Object.keys(data.device),
-			data,
+			nonZeroLabels: ['Телефон', 'ПК', 'Другое'],
+			zeroLabel: 'Устройства',
+			data : {...data.device},
 			linkId,
 		});
-		
-		renameKeyInObj(data.os, '1', 'Android');
-		renameKeyInObj(data.os, '2', 'Windows');
-		renameKeyInObj(data.os, '3', 'Iphone');
-		renameKeyInObj(data.os, '4', 'Ipad');
-		renameKeyInObj(data.os, '5', 'Linux');
-		renameKeyInObj(data.os, '6', 'Macbook');
-		renameKeyInObj(data.os, '7', 'Другое');
-		for (let key in data.os) { if (data.os[key] === 0) delete data.os[key] }
+
 		let osChart = CreateChart({
 			name: 'os',
 			type: 'doughnut',
-			labels: Object.keys(data.os),
-			data,
+			nonZeroLabels: ['Android', 'Windows', 'Iphone', 'Ipad', 'Linux', 'Macbook', 'Другое'],
+			zeroLabel: 'Операционные системы',
+			data : {...data.os},
 			linkId,
 		});
 
 		let countryChart = CreateChart({
 			name: 'country',
 			type: 'pie',
-			labels: Object.keys(data.country),
-			data,
+			zeroLabel: 'Страны',
+			data : {...data.country},
 			linkId,
 		});
 
@@ -75,7 +65,7 @@ function enableStatistics(data, linkId, charts = 'all') {
 			type: 'line',
 			labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'],
 			legend: false,
-			data,
+			data : {...data.hours},
 			linkId,
 			radius: 5,
 		});
@@ -85,7 +75,7 @@ function enableStatistics(data, linkId, charts = 'all') {
 			type: 'bar',
 			labels: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
 			legend: false,
-			data,
+			data : {...data.days},
 			linkId,
 		});
 
@@ -93,39 +83,29 @@ function enableStatistics(data, linkId, charts = 'all') {
 	} else {
 		switch (charts) {
 			case 0:
-				renameKeyInObj(data.device, '1', 'Телефон');
-				renameKeyInObj(data.device, '2', 'ПК');
-				renameKeyInObj(data.device, '3', 'Другое');
-				for (let key in data.device) { if (data.device[key] === 0) delete data.device[key] }
 				return CreateChart({
 					name: 'device',
 					type: 'doughnut',
-					labels: Object.keys(data.device),
-					data,
+					nonZeroLabels: ['Телефон', 'ПК', 'Другое'],
+					zeroLabel: 'Устройства',
+					data : {...data.device},
 					linkId,
 				});
 			case 1:
-				renameKeyInObj(data.os, '1', 'Android');
-				renameKeyInObj(data.os, '2', 'Windows');
-				renameKeyInObj(data.os, '3', 'Iphone');
-				renameKeyInObj(data.os, '4', 'Ipad');
-				renameKeyInObj(data.os, '5', 'Linux');
-				renameKeyInObj(data.os, '6', 'Macbook');
-				renameKeyInObj(data.os, '7', 'Другое');
-				for (let key in data.os) { if (data.os[key] === 0) delete data.os[key] }
 				return CreateChart({
 					name: 'os',
 					type: 'doughnut',
-					labels: Object.keys(data.os),
-					data,
+					nonZeroLabels: ['Android', 'Windows', 'Iphone', 'Ipad', 'Linux', 'Macbook', 'Другое'],
+					zeroLabel: 'Операционные системы',
+					data : {...data.os},
 					linkId,
 				});
 			case 2:
 				return CreateChart({
 					name: 'country',
 					type: 'pie',
-					labels: Object.keys(data.country),
-					data,
+					zeroLabel: 'Страны',
+					data : {...data.country},
 					linkId,
 				});
 			case 3:
@@ -134,7 +114,7 @@ function enableStatistics(data, linkId, charts = 'all') {
 					type: 'line',
 					labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'],
 					legend: false,
-					data,
+					data : {...data.hours},
 					linkId,
 					radius: 5,
 				});
@@ -144,7 +124,7 @@ function enableStatistics(data, linkId, charts = 'all') {
 					type: 'bar',
 					labels: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
 					legend: false,
-					data,
+					data : {...data.days},
 					linkId,
 				});
 		}
@@ -152,12 +132,34 @@ function enableStatistics(data, linkId, charts = 'all') {
 }
 
 function CreateChart(options) {
+	// show zero values when all values are zero or show only filled values
+	if (options.type === 'doughnut' || options.type === 'pie') {
+		const allValuesAreZero = Object.values(options.data).every(value => value === 0);
+		if (allValuesAreZero) {
+			options.data = { [options.zeroLabel]: 0.0001 };
+		} else {
+			if (options.name === 'device' || options.name === 'os') {
+				for (let key in options.data) {
+					if (options.data[key] === 0) delete options.data[key];
+				}
+
+				for (let i = 0; i < options.nonZeroLabels.length; i++) {
+					const oldKey = i + 1;
+					const newKey = options.nonZeroLabels[i];
+					if (Object.keys(options.data).includes(oldKey.toString())) {
+						renameKeyInObj(options.data, oldKey, newKey);
+					}
+				}
+			}
+		}
+	}
+
 	const config = {
 		type: options.type,
 		data: {
-			labels: options.labels,
+			labels: options.labels ? options.labels : Object.keys(options.data),
 			datasets: [{
-				data: Object.values(options.data[options.name]),
+				data: Object.values(options.data),
 				backgroundColor: options.type === 'line' || options.type === 'bar' ? 'rgba(61, 150, 229, 0.6)' : [
 					'rgba(61, 150, 229, 0.6)',
 					'rgba(12, 188, 139, 0.6)',
@@ -184,6 +186,7 @@ function CreateChart(options) {
 				],
 				borderWidth: 1,
 				tension: 0.4,
+				minBarLength: 5,
 			}]
 		},
 		options: {
@@ -194,7 +197,16 @@ function CreateChart(options) {
 			hoverRadius: 8,
 			hoverBorderColor: 'rgb(61, 150, 229)',
 			animation: {
-				duration: 0,
+				duration: 800,
+			},
+			scales: {
+				y: {
+					display: options.type === 'line' || options.type === 'bar',
+					min: 0,
+					ticks: {
+						stepSize: 1,
+					},
+				},
 			},
 			plugins: {
 				tooltip: {

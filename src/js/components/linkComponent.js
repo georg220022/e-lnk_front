@@ -28,7 +28,7 @@ const linkComponent = (obj, id) => {
                 <div class="tabs-wrapper">
                   <ul class="tabs">
                     <div class="link__top-body">
-                      ${obj.linkName ? `<span class="link__long-link">${obj.longLink}</span>` : ''}
+                      <span class="link__long-link">${obj.longLink}</span>
                       <div class="link__switching-buttons">
                         <li class="tabs__tab">
                           <button class="tabs__button tabs__button--active" data-tab="#tab_1">
@@ -120,12 +120,12 @@ const linkComponent = (obj, id) => {
                             </ul>
                             <ul class="tabs__content">
                               <li class="tabs__item tabs__item--active" id="hours-chart">
-                                <div class="link__hours-chart line-chart-item">
+                                <div class="link__hours-chart link__line-chart-item">
                                   <canvas id="hours-chart-${id}"></canvas>
                                 </div>
                               </li>
                               <li class="tabs__item" id="days-chart">
-                                <div class="link__days-chart line-chart-item">
+                                <div class="link__days-chart link__line-chart-item">
                                   <canvas id="days-chart-${id}"></canvas>
                                 </div>
                               </li>
