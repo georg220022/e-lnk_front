@@ -1,6 +1,6 @@
 import burgerMenuEvent from './burgerMenuEvent.js';
 import dropdownEvent from './dropdownEvent.js';
-import modalsEvent from './modalsEvent.js';
+import { openModalsEvent, closeModalsEvent }  from './modalsEvent.js';
 import accordionEvent from './accordionEvent.js';
 import tabsEvent from './tabsEvent.js';
 import copyToClipboardEvent from './copyToClipboardEvent.js';
@@ -14,7 +14,7 @@ document.addEventListener('click', (event) => {
 
 	dropdownEvent(event);
 
-	modalsEvent(event);
+	openModalsEvent(event);
 
 	accordionEvent(event);
 
@@ -28,4 +28,8 @@ document.addEventListener('click', (event) => {
 
 	logoutEvent(event);
 
+});
+
+document.addEventListener('mousedown', (event) => {
+	closeModalsEvent(event);
 });

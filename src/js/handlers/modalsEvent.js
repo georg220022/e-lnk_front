@@ -1,9 +1,4 @@
-function modalsEvent(event) {
-	if (event.target.closest('#body-section') && document.querySelector('.modal--open') && !event.target.closest('.modal__body')) {
-		document.querySelector('.modal--open').classList.remove('modal--open');
-		document.body.classList.remove('lock');
-	}
-
+function openModalsEvent(event) {
 	if (event.target.closest('.modal-button')) {
 		let currentModalID = event.target.getAttribute('data-target');
 		let currentModal = document.getElementById(currentModalID);
@@ -18,4 +13,11 @@ function modalsEvent(event) {
 	}
 }
 
-export default modalsEvent;
+function closeModalsEvent(event) {
+	if (event.target.closest('#body-section') && document.querySelector('.modal--open') && !event.target.closest('.modal__body')) {
+		document.querySelector('.modal--open').classList.remove('modal--open');
+		document.body.classList.remove('lock');
+	}
+}
+
+export { openModalsEvent, closeModalsEvent };
