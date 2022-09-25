@@ -5,7 +5,6 @@ const rename = require('gulp-rename')
 const cleanCSS = require('gulp-clean-css')
 const autoprefixer = require('gulp-autoprefixer')
 const htmlmin = require('gulp-htmlmin')
-const typograf = require('gulp-typograf');
 const image = require('gulp-imagemin');
 const webp = require('gulp-webp');
 const size = require('gulp-size')
@@ -74,9 +73,6 @@ function html() {
     .pipe(size({
       showFiles: true
     }))
-    .pipe(typograf({
-      locale: ['ru', 'en-US']
-    }))
     .pipe(gulp.dest(paths.html.dest))
     .pipe(browserSync.stream())
 }
@@ -104,13 +100,13 @@ function img() {
       }),
     ])))
     .pipe(gulp.dest(paths.images.dest))
-};
+}
 
 function webpImages() {
   return gulp.src('src/img/**/*.{jpg,jpeg,png}')
     .pipe(webp())
     .pipe(gulp.dest(paths.images.dest))
-};
+}
 
 // styles
 function styles() {
