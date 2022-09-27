@@ -3,6 +3,7 @@
 }
 
 .tooltip .tooltip__text {
+  position: absolute;
   visibility: hidden;
   opacity: 0;
   font-family: $fontMain;
@@ -14,7 +15,6 @@
   border: 1px solid $accent;
   border-radius: 6px;
   transition: $hover;
-  position: absolute;
 }
 
 .tooltip:hover .tooltip__text {

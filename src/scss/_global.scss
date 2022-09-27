@@ -162,7 +162,7 @@ h2 {
 }
 
 .logo {
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: rem(36);
   color: $accent;
@@ -379,7 +379,7 @@ input[disabled] {
   box-shadow: none;
   background-color: transparent;
   animation: rotate 1s linear infinite;
-  transition: border background-color 0.1s linear;
+  transition: border 0.1s linear, background-color 0.1s linear;
   
   & svg {
     opacity: 0;
@@ -438,6 +438,22 @@ input[disabled] {
     right: rem(18);
     animation: showCheckmark ease 0.5s;
     transform: scaleX(-1) rotate(135deg);
+  }
+}
+
+.premium-sign-tooltip {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  position: relative;
+
+  & svg {
+    margin-bottom: -2px;
+  }
+
+  & .tooltip__text {
+    bottom: 18px;
+    right: 8px;
   }
 }
 

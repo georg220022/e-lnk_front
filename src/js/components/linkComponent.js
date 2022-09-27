@@ -157,7 +157,7 @@ const linkComponent = (obj, id) => {
                                      placeholder="Имя ссылки">
                               <span class="error-label"></span>
                             </label>
-                            <button class="form__button round-button round-button--clear clear-button">
+                            <button class="form__button round-button round-button--clear clear-button" type="button">
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                    class="feather feather-x">
@@ -173,7 +173,7 @@ const linkComponent = (obj, id) => {
                                      placeholder="Пароль">
                               <span class="error-label"></span>
                             </label>
-                            <button class="form__button round-button round-button--clear clear-button">
+                            <button class="form__button round-button round-button--clear clear-button" type="button">
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                    class="feather feather-x">

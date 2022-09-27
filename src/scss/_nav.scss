@@ -17,6 +17,14 @@
     white-space: nowrap;
   }
 
+  &__email {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: rem(6);
+  }
+
   &__button {
     position: relative;
     z-index: 2;

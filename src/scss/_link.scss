@@ -125,12 +125,16 @@
 
 	&__tooltip {
 		position: relative;
+
 		& .tooltip__text {
 			right: 24px;
 			bottom: 0;
 		}
-		&:hover .tooltip__text {
-			transition-delay: 0.5s;
+
+		@media (hover: hover) {
+			&:hover .tooltip__text {
+				transition-delay: 0.5s;
+			}
 		}
 	}
 
