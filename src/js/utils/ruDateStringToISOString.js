@@ -1,32 +1,13 @@
 function ruDateStringToISOString(ruDateString) {
-	let stringDate = ruDateString.replace(/(\.|\:| )/g, '');
-	let year = stringDate.substring(4, 8);
-	let month = stringDate.substring(2, 4);
-	let day = stringDate.substring(0, 2);
-	let hours = stringDate.substring(8, 10);
-	let minutes = stringDate.substring(10, 12);
+	const stringDate = ruDateString.replace(/\.|:|/g, '');
+	const year = stringDate.substring(4, 8);
+	const month = stringDate.substring(2, 4);
+	const day = stringDate.substring(0, 2);
+	const hour = stringDate.substring(8, 10);
+	const minutes = stringDate.substring(10, 12);
+	const timezone = (new Date()).toString().slice(28, 31)
 
-	let date = new Date(year, month, day, hours, minutes);
-	let ISOString = toISOString(date);
-
-	return ISOString;
-};
-
-function toISOString(date) {
-	let tzo = -date.getTimezoneOffset(),
-		dif = tzo >= 0 ? '+' : '-',
-		pad = function(num) {
-			return (num < 10 ? '0' : '') + num;
-		};
-
-	return date.getFullYear() +
-		'-' + pad(date.getMonth() + 1) +
-		'-' + pad(date.getDate()) +
-		'T' + pad(date.getHours()) +
-		':' + pad(date.getMinutes()) +
-		':' + pad(date.getSeconds()) +
-		dif + pad(Math.floor(Math.abs(tzo) / 60)) +
-		':' + pad(Math.abs(tzo) % 60);
-};
+	return `${year}-${month}-${day}T${hour}:${minutes}:00${timezone}`
+}
 
 export default ruDateStringToISOString;

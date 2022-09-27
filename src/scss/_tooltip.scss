@@ -1,0 +1,23 @@
+.tooltip {
+
+}
+
+.tooltip .tooltip__text {
+  visibility: hidden;
+  opacity: 0;
+  font-family: $fontMain;
+  font-size: rem(14);
+  background-color: $secondary;
+  color: $primary;
+  text-align: center;
+  padding: 6px;
+  border: 1px solid $accent;
+  border-radius: 6px;
+  transition: $hover;
+  position: absolute;
+}
+
+.tooltip:hover .tooltip__text {
+  visibility: visible;
+  opacity: 1;
+}

@@ -41,7 +41,7 @@ function loadLoggedMainPage(user) {
 }
 
 function loadPanelPage(user) {
-	userHeaderSection.renderComponent(loggedUserHeaderComponent(user.email, { panelLink: false }));
+	userHeaderSection.renderComponent(loggedUserHeaderComponent(user.email, { panelLink: false, shortenerLink: true }));
 	enablePanel();
 }
 

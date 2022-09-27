@@ -4,6 +4,7 @@ const panelComponent = () => {
 			<div class="panel__header">
 				<div class="panel__header-body">
 					<div class="panel__sort sort">
+						Сортировать:
 						<button class="sort__button">По дате добавления</button>
 					</div>
 					<div class="panel__controls controls">

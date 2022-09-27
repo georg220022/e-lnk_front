@@ -28,30 +28,37 @@ const linkComponent = (obj, id) => {
                 <div class="tabs-wrapper">
                   <ul class="tabs">
                     <div class="link__top-body">
-                      <span class="link__long-link">${obj.longLink}</span>
+                      <input class="link__long-link" value="${obj.longLink}" readonly>
                       <div class="link__switching-buttons">
                         <li class="tabs__tab">
                           <button class="tabs__button tabs__button--active" data-tab="#tab_1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                 class="feather feather-bar-chart-2">
-                              <line x1="18" y1="20" x2="18" y2="10"></line>
-                              <line x1="12" y1="20" x2="12" y2="4"></line>
-                              <line x1="6" y1="20" x2="6" y2="14"></line>
-                            </svg>
+                            <div class="tooltip link__tooltip">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                   fill="none"
+                                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                   class="feather feather-bar-chart-2">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                              </svg>
+                              <p class="tooltip__text">Статистика</p>
+                            </div>
+
                           </button>
                         </li>
                         <li class="tabs__tab">
                           <button class="tabs__button" data-tab="#tab_2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                 class="feather feather-settings">
-                              <circle cx="12" cy="12" r="3"></circle>
-                              <path
-                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                            </svg>
+                            <div class="tooltip link__tooltip">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                   fill="none"
+                                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                   class="feather feather-settings">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path
+                                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                              </svg>
+                              <p class="tooltip__text">Настройки</p>
+														</div>
                           </button>
                         </li>
                       </div>
@@ -99,22 +106,28 @@ const linkComponent = (obj, id) => {
                             <ul class="link__line-charts-buttons tabs">
                               <li class="tabs__tab">
                                 <button class="tabs__button tabs__button--active" data-tab="#hours-chart">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" fill="currentColor"
-                                       viewBox="0 0 24 24">
-                                    <path
-                                      d="M11.92 24.047a11.918 11.918 0 0 0 11.924-11.591 12.066 12.066 0 0 0-.1-1.944l-1.982.27a9.937 9.937 0 1 1-3.98-6.657L14.9 7h7V0l-2.7 2.7a11.922 11.922 0 1 0-7.28 21.347z"/>
-                                    <path
-                                      d="m7.25 14.433 2.3-1.1.1-.058a2.388 2.388 0 0 0 1.313-2.009l.007-.759A2.509 2.509 0 0 0 8.465 8H7.257A2.239 2.239 0 0 0 4.9 10.327V11h2v-.673c0-.237.031-.327.354-.327h1.211a.5.5 0 0 1 .506.5v.736s-.05.127-.347.325l-2.024.977-.351.16A2.5 2.5 0 0 0 4.9 14.743V17h5.77v-2H6.9v-.229a.985.985 0 0 1 .35-.338zM17.903 17V9h-2v3h-2V8h-2v6h4v3h2z"/>
-                                  </svg>
+                                  <div class="tooltip link__tooltip">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" fill="currentColor"
+                                         viewBox="0 0 24 24">
+                                      <path
+                                        d="M11.92 24.047a11.918 11.918 0 0 0 11.924-11.591 12.066 12.066 0 0 0-.1-1.944l-1.982.27a9.937 9.937 0 1 1-3.98-6.657L14.9 7h7V0l-2.7 2.7a11.922 11.922 0 1 0-7.28 21.347z"/>
+                                      <path
+                                        d="m7.25 14.433 2.3-1.1.1-.058a2.388 2.388 0 0 0 1.313-2.009l.007-.759A2.509 2.509 0 0 0 8.465 8H7.257A2.239 2.239 0 0 0 4.9 10.327V11h2v-.673c0-.237.031-.327.354-.327h1.211a.5.5 0 0 1 .506.5v.736s-.05.127-.347.325l-2.024.977-.351.16A2.5 2.5 0 0 0 4.9 14.743V17h5.77v-2H6.9v-.229a.985.985 0 0 1 .35-.338zM17.903 17V9h-2v3h-2V8h-2v6h4v3h2z"/>
+                                    </svg>
+                                    <p class="tooltip__text">Статистика за сутки</p>
+                                  </div>
                                 </button>
                               </li>
                               <li class="tabs__tab">
                                 <button class="tabs__button" data-tab="#days-chart">
-                                  <svg width="22px" height="22px" viewBox="0 0 24 24" fill="currentColor"
-                                       xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                      d="M9 2a1 1 0 0 1 1 1v1h4V3a1 1 0 1 1 2 0v1h3a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V3a1 1 0 0 1 1-1zM8 6H5v3h14V6h-3v1a1 1 0 1 1-2 0V6h-4v1a1 1 0 0 1-2 0V6zm11 5H5v8h14v-8z"/>
-                                  </svg>
+                                  <div class="tooltip link__tooltip">
+                                    <svg width="22px" height="22px" viewBox="0 0 24 24" fill="currentColor"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                      <path
+                                        d="M9 2a1 1 0 0 1 1 1v1h4V3a1 1 0 1 1 2 0v1h3a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V3a1 1 0 0 1 1-1zM8 6H5v3h14V6h-3v1a1 1 0 1 1-2 0V6h-4v1a1 1 0 0 1-2 0V6zm11 5H5v8h14v-8z"/>
+                                    </svg>
+                                    <p class="tooltip__text">Статистика за неделю</p>
+                                  </div>
                                 </button>
                               </li>
                             </ul>

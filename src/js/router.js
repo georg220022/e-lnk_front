@@ -4,23 +4,25 @@ import { loadMainPage, loadLoggedMainPage, loadPanelPage, loadSettingsPage } fro
 import { hidePreloader } from './handlers/preloader.js';
 
 function router(route) {
-	switch (route) {
-		case '#/':
-			document.title = 'E-lnk';
-			user.accessToken ? loadLoggedMainPage(user) : loadMainPage();
+	if (!user.accessToken) {
+		document.title = 'E-lnk';
+		window.location.hash = "#/";
+		loadMainPage();
+	} else {
+		switch (route) {
+			case '#/':
+				document.title = 'E-lnk';
+				loadLoggedMainPage(user);
 			break;
-		case '#/panel':
-			if (user.accessToken) {
+			case '#/panel':
 				document.title = 'Панель управления | E-lnk';
 				loadPanelPage(user);
-			} else loadMainPage();
 			break;
-		case '#/settings':
-			if (user.accessToken) {
+			case '#/settings':
 				document.title = 'Настройки аккаунта | E-lnk';
 				loadSettingsPage(user);
-			} else loadMainPage();
 			break;
+		}
 	}
 }
 

@@ -1,4 +1,12 @@
 function selectLinkEvent(event) {
+	if (event.target.closest('.trash-button--active')) {
+		event.target.closest('.trash-button').classList.remove('trash-button--active');
+		event.target.closest('.link-wrapper').classList.remove('link--active');
+		event.target.closest('.link-wrapper').querySelector('.accordion__button').classList.remove('accordion__button--active-link');
+		if (!document.querySelector('.link--active')) document.querySelector('.panel__controls').classList.remove('open');
+		return;
+	}
+
 	if (event.target.closest('.trash-button')) {
 		event.target.closest('.trash-button').classList.add('trash-button--active');
 		event.target.closest('.link-wrapper').classList.add('link--active');
