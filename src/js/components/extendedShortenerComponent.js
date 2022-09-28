@@ -14,7 +14,7 @@ const extendedShortenerComponent = () => {
 						</svg>
 						</button>
 					</div>
-						<p class="form__optional-inputs-text">Дополнительные опции</p>
+					<p class="form__optional-inputs-text">Дополнительные опции</p>
 					<div class="form__optional-inputs">
 						<div class="form__input-wrapper form__input-wrapper--link-name">
 							<label class="form__label form__label--link-name" for="link-name">
@@ -46,6 +46,7 @@ const extendedShortenerComponent = () => {
 						<div class="form__input-wrapper form__input-wrapper--link-start">
 							<label class="form__label form__label--link-start" for="link-start">
 								<input class="form__input form__input--link-start" id="link-start" type="text" name="linkStartDate" placeholder="Начало действия">
+								<span class="error-label"></span>
 							</label>
 							<div class="tooltip form__date-input-tooltip">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3d96e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-help-circle"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
@@ -55,6 +56,7 @@ const extendedShortenerComponent = () => {
 						<div class="form__input-wrapper form__input-wrapper--link-end">
 							<label class="form__label form__label--link-end" for="link-end">
 								<input class="form__input form__input--link-end" id="link-end" type="text" name="linkEndDate" placeholder="Конец действия">
+								<span class="error-label"></span>
 							</label>
 							<div class="tooltip form__date-input-tooltip">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3d96e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-help-circle"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>

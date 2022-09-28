@@ -34,11 +34,9 @@ function validateShortenerFilledInput(input) {
 			break;
 		case ('linkStartDate'):
 			inputCorrectCondition = true;
-			inputErrorText = '';
 			break;
 		case ('linkEndDate'):
 			inputCorrectCondition = true;
-			inputErrorText = '';
 			break;
 	}
 

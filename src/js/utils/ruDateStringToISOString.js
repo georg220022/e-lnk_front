@@ -1,13 +1,12 @@
 function ruDateStringToISOString(ruDateString) {
-	const stringDate = ruDateString.replace(/\.|:|/g, '');
-	const year = stringDate.substring(4, 8);
-	const month = stringDate.substring(2, 4);
-	const day = stringDate.substring(0, 2);
-	const hour = stringDate.substring(8, 10);
-	const minutes = stringDate.substring(10, 12);
-	const timezone = (new Date()).toString().slice(28, 31)
+	const year = ruDateString.substring(6, 10);
+	const month = ruDateString.substring(3, 5);
+	const day = ruDateString.substring(0, 2);
+	const hour = ruDateString.substring(11, 13);
+	const minutes = ruDateString.substring(14, 16);
+	const timezone = (new Date()).toString().slice(28, 31);
 
-	return `${year}-${month}-${day}T${hour}:${minutes}:00${timezone}`
+	return `${year}-${month}-${day}T${hour}:${minutes}:00${timezone}`;
 }
 
 export default ruDateStringToISOString;
