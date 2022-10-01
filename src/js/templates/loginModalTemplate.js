@@ -1,4 +1,4 @@
-const loginModalComponent = () => {
+const loginModalTemplate = () => {
 	return `
 		<div class="modal" id="login-modal">
 			<div class="modal__body">
@@ -23,7 +23,7 @@ const loginModalComponent = () => {
 	`;
 };
 
-export default loginModalComponent;
+export default loginModalTemplate;
 
 
 

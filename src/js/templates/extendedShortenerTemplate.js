@@ -1,4 +1,4 @@
-const extendedShortenerComponent = () => {
+const extendedShortenerTemplate = () => {
 	return `
 		<div class="logged-hero__body">
 			<div class="logged-hero__content">
@@ -87,4 +87,4 @@ const extendedShortenerComponent = () => {
   `;
 };
 
-export default extendedShortenerComponent;
+export default extendedShortenerTemplate;

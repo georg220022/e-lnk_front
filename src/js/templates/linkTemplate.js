@@ -1,4 +1,4 @@
-const linkComponent = (obj, id) => {
+const linkTemplate = (obj, id) => {
 	// language=HTML
 	return `
     <div class="link-wrapper" data-link-id="${id}">
@@ -208,4 +208,4 @@ const linkComponent = (obj, id) => {
 	`;
 };
 
-export default linkComponent;
+export default linkTemplate;

@@ -4,13 +4,12 @@ import { GET_LINKS_API , CHANGE_LINKS_API, DELETE_LINKS_API } from "./api.js";
 import enableStatistics from './statistics.js';
 import ISOStringToRuDateString from '../utils/ISOStringToRuDateString.js';
 import validateShortenerFilledInput from '../utils/validateShortenerFilledInput.js';
-import createObjectFromInputs from '../utils/createObjectFromInputs.js';
 import deepCopy from '../utils/deepCopy.js';
 
-import panelComponent from '../components/panelComponent.js';
-import linkComponent from '../components/linkComponent.js';
-import { paginationComponent, paginationLinkComponent } from '../components/paginationComponent.js';
-import noLinksComponent from '../components/noLinksComponent.js';
+import panelTemplate from '../templates/panelTemplate.js';
+import linkTemplate from '../templates/linkTemplate.js';
+import { paginationTemplate, paginationLinkTemplate } from '../templates/paginationTemplate.js';
+import noLinksTemplate from '../templates/noLinksTemplate.js';
 
 let panel = {
 	linksOnPageAmount: 10,
@@ -71,18 +70,18 @@ let panel = {
 			};
 
 			for (const link of this.page[pageNum].linksData) {
-				this.page[pageNum].template += linkComponent(link, link.linkId);
+				this.page[pageNum].template += linkTemplate(link, link.linkId);
 			}
 		}
 	},
 
 	render: function() {
 		if (this.links.length === 0) {
-			this.mainSection.renderComponent(noLinksComponent());
+			this.mainSection.render(noLinksTemplate());
 			return;
 		}
 
-		this.mainSection.renderComponent(panelComponent());
+		this.mainSection.render(panelTemplate());
 		this.linksSection = new PageSection('links-section');
 
 		this.renderLinks();
@@ -99,11 +98,11 @@ let panel = {
 			let paginationLinksTemplate = '';
 			for (let i = 0; i < this.pagesAmount; i++) {
 				let pageNum = i + 1;
-				paginationLinksTemplate += paginationLinkComponent(pageNum);
+				paginationLinksTemplate += paginationLinkTemplate(pageNum);
 			}
 
 			this.paginationSection = new PageSection('pagination-section');
-			this.paginationSection.renderComponent(paginationComponent(paginationLinksTemplate));
+			this.paginationSection.render(paginationTemplate(paginationLinksTemplate));
 			this.paginationLinks?.forEach(paginationLink => paginationLink.removeEventListener('click', e => this.paginationLinkEvent(e)));
 			this.paginationLinks = document.querySelectorAll('.pagination__link');
 			this.paginationLinks?.forEach(paginationLink => paginationLink.addEventListener('click', e => this.paginationLinkEvent(e)));
@@ -117,7 +116,7 @@ let panel = {
 			clearTimeout(enableStatsTimeout);
 		});
 
-		this.linksSection.renderComponent(this.page[this.currentPage].template);
+		this.linksSection.render(this.page[this.currentPage].template);
 
 		this.inputs?.forEach(input => {
 			input.removeEventListener('blur', () => validateShortenerFilledInput(input));
@@ -232,9 +231,10 @@ let panel = {
 			thisSubmitBtn.innerText = '';
 			thisFormInputs.forEach(input => input.setAttribute('disabled', 'disabled'));
 
-			let objFromInputs = createObjectFromInputs(thisFormInputs);
-			if (objFromInputs.linkName === thisLinkData.linkName) delete objFromInputs.linkName;
-			if (objFromInputs.linkPassword === thisLinkData.linkPassword) delete objFromInputs.linkPassword;
+			let objFromInputs = {};
+			if (thisFormInputs[0].value !== thisLinkData.linkName) objFromInputs.linkName = thisFormInputs[0].value;
+			if (thisFormInputs[1].value !== thisLinkData.linkPassword) objFromInputs.linkPassword = thisFormInputs[1].value;
+
 			if (Object.keys(objFromInputs).length !== 0) {
 				objFromInputs.shortLink = thisShortLink;
 				let jsonForReq = JSON.stringify(objFromInputs);
@@ -269,7 +269,7 @@ let panel = {
 };
  
 async function enablePanel() {
-	panel.mainSection.renderComponent('<div class="panel flex"><div class="loader"></div></div>');
+	panel.mainSection.render('<div class="panel flex"><div class="loader"></div></div>');
 	await panel.getLinks();
 	if (panel.links) {
 		panel.createPages();

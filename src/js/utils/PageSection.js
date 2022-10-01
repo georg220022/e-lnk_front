@@ -3,9 +3,9 @@ class PageSection {
   	this.id = document.getElementById(id);
   }
 
-  renderComponent(component) {
+  render(component) {
     this.id.innerHTML = component;
   }
-};
+}
 
 export default PageSection;

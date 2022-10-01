@@ -1,4 +1,4 @@
-const noLinksComponent = () => {
+const noLinksTemplate = () => {
 	return `
 		<div class="panel flex">
 			<div class="panel__no-links no-links">
@@ -9,4 +9,4 @@ const noLinksComponent = () => {
   `;
 };
 
-export default noLinksComponent;
+export default noLinksTemplate;

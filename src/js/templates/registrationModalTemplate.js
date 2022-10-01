@@ -1,4 +1,4 @@
-const registrationModalComponent = () => {
+const registrationModalTemplate = () => {
 	return `
 		<div class="modal" id="registration-modal">
 			<div class="modal__body">
@@ -33,7 +33,7 @@ const registrationModalComponent = () => {
 	`;
 };
 
-export default registrationModalComponent;
+export default registrationModalTemplate;
 
 
 

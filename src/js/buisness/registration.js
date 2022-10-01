@@ -5,7 +5,7 @@ import validateAuthFilledInput from '../utils/validateAuthFilledInput.js';
 import validateEmptyInput from '../utils/validateEmptyInput.js';
 import createObjectFromInputs from '../utils/createObjectFromInputs.js';
 import sendRequest from '../utils/sendRequest.js';
-import successRegistrationComponent from '../components/successRegistrationComponent.js';
+import successRegistrationTemplate from '../templates/successRegistrationTemplate.js';
 
 let registrationFormVars = {}; 
 let r = registrationFormVars;
@@ -40,10 +40,12 @@ async function submitRegistrationForm(event) {
 	isValid = validatedInputs.every(input => input === true);
 
 	if (isValid) {
-		let objFromInputs = createObjectFromInputs(r.registrationFormInputs, 'input.name === "email" || input.name == "password"')
+		let objFromInputs = createObjectFromInputs(r.registrationFormInputs);
+		delete objFromInputs['repeat-password'];
+		delete objFromInputs['consent-checkbox'];
 		objFromInputs.timezone = (new Date()).toString().slice(28, 31);
 		let jsonForReq = JSON.stringify(objFromInputs);
-		
+
 		r.registrationFormSubmitBtn.classList.add('loader');
 		r.registrationFormSubmitBtn.innerText = '';
 		r.registrationFormInputs.forEach((input) => input.setAttribute('disabled', 'disabled'));
@@ -55,7 +57,7 @@ async function submitRegistrationForm(event) {
 			user.accessToken = json.access;
 
 			const registrationSection = new PageSection('registration-section');
-			registrationSection.renderComponent(successRegistrationComponent(user.email));
+			registrationSection.render(successRegistrationTemplate(user.email));
 		} else if (json && json.error) {
 			alert(json.error);
 		} else alert('Не получилось выполнить регистрацию :( \nПожалуйста, попробуйте позже');

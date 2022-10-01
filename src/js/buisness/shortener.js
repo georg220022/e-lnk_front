@@ -46,7 +46,7 @@ async function submitShortener(event) {
 	isValid = validatedInputs.every(input => input === true) && validateEmptyInput(s.longLink);
 
 	if (isValid) {
-		let objFromInputs = createObjectFromInputs(s.shortenerInputs, 'input.value');
+		let objFromInputs = createObjectFromInputs(s.shortenerInputs);
 		if (objFromInputs.linkLimit) objFromInputs.linkLimit = +objFromInputs.linkLimit;
 		if (objFromInputs.linkStartDate) objFromInputs.linkStartDate = ruDateStringToISOString(objFromInputs.linkStartDate);
 		if (objFromInputs.linkEndDate) objFromInputs.linkEndDate = ruDateStringToISOString(objFromInputs.linkEndDate);

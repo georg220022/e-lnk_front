@@ -1,4 +1,4 @@
-const loggedUserHeaderComponent = (email, {panelLink = true, shortenerLink = false, settingsLink = true} = {}) => {
+const loggedUserHeaderTemplate = (email, {panelLink = true, shortenerLink = false, settingsLink = true} = {}) => {
 	return `
     <nav class="nav header__nav">
       <ul class="nav__list">
@@ -27,5 +27,5 @@ const loggedUserHeaderComponent = (email, {panelLink = true, shortenerLink = fal
   `;
 };
 
-export default loggedUserHeaderComponent;
+export default loggedUserHeaderTemplate;
 

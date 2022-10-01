@@ -1,4 +1,4 @@
-const benefitsComponent = () => {
+const benefitsTemplate = () => {
 	return `
 		<section class="benefits">
 			<div class="container">
@@ -25,6 +25,6 @@ const benefitsComponent = () => {
   `;
 };
 
-export default benefitsComponent;
+export default benefitsTemplate;
 
 

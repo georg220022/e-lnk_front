@@ -43,9 +43,10 @@ async function submitPasswordCheckForm(event) {
 	let isValid = validatePasswordCheckInput(passwordCheckInput) && validateEmptyInput(passwordCheckInput);
 
 	if (isValid) {
-		let objFromInputs = {};
-		objFromInputs.password = passwordCheckInput.value;
-		objFromInputs.shortCode = window.location.search.replace('?', '');
+		let objFromInputs = {
+			password: passwordCheckInput.value,
+			shortCode: window.location.search.replace('?', ''),
+		};
 		let jsonForReq = JSON.stringify(objFromInputs);
 
 		passwordCheckInput.setAttribute('disabled', 'disabled');

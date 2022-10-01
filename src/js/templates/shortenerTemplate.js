@@ -1,4 +1,4 @@
-const shortenerComponent = () => {
+const shortenerTemplate = () => {
 	return `
 		<div class="hero__body">
 			<div class="hero__content">
@@ -44,4 +44,4 @@ const shortenerComponent = () => {
   `;
 };
 
-export default shortenerComponent;
+export default shortenerTemplate;

@@ -1,4 +1,4 @@
-const successRegistrationComponent = (email) => {
+const successRegistrationTemplate = (email) => {
 	return `
 		<div class="success-registration">
 			<h2 class="success-registration__title">Вы успешно зарегистрированы!</h2>
@@ -11,4 +11,4 @@ const successRegistrationComponent = (email) => {
   `;
 };
 
-export default successRegistrationComponent;
+export default successRegistrationTemplate;

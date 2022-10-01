@@ -1,4 +1,4 @@
-const panelComponent = () => {
+const panelTemplate = () => {
 	return `
 		<div class="panel">
 			<div class="panel__header">
@@ -19,4 +19,4 @@ const panelComponent = () => {
   `;
 };
 
-export default panelComponent;
+export default panelTemplate;

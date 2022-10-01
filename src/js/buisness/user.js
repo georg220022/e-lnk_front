@@ -29,7 +29,7 @@ let user = {
 			let { response,	json } = await sendRequest('POST', REFRESH_API, '', { cookie: true });
 
 			if (!response.ok) {
-				this.logout();
+				await this.logout();
 				console.error(`Токен не валиден(ответ сервера: ${response.status})`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 				return false;
 			}
@@ -43,7 +43,7 @@ let user = {
 			console.error('ошибка при рефреше (refresh_request): ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 		}
 	},
-	
+
 	logout: async function() {
 		try {
 			await sendRequest('POST', LOGOUT_API, '', { cookie: true });

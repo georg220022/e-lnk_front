@@ -1,4 +1,4 @@
-const paginationComponent = (paginationLinkComponent) => {
+const paginationTemplate = (paginationLinkComponent) => {
   return `
     <nav class="pagination">
       <ul class="pagination__list">
@@ -10,10 +10,10 @@ const paginationComponent = (paginationLinkComponent) => {
   `;
 };
 
-const paginationLinkComponent = (pageNum) => {
+const paginationLinkTemplate = (pageNum) => {
   return `
     <li class="pagination__item"><a class="pagination__link" href="#" data-page-link="${pageNum}">${pageNum}</a></li>
   `;
 };
 
-export { paginationComponent, paginationLinkComponent };
+export { paginationTemplate, paginationLinkTemplate };

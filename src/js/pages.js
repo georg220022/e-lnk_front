@@ -1,14 +1,14 @@
 import PageSection from './utils/PageSection.js';
 
-import guestUserHeaderComponent from './components/guestUserHeaderComponent.js';
-import shortenerComponent from './components/shortenerComponent.js';
-import benefitsComponent from './components/benefitsComponent.js';
+import guestUserHeaderTemplate from './templates/guestUserHeaderTemplate.js';
+import shortenerTemplate from './templates/shortenerTemplate.js';
+import benefitsTemplate from './templates/benefitsTemplate.js';
 
-import loggedUserHeaderComponent from './components/loggedUserHeaderComponent.js';
-import extendedShortenerComponent from './components/extendedShortenerComponent.js';
+import loggedUserHeaderTemplate from './templates/loggedUserHeaderTemplate.js';
+import extendedShortenerTemplate from './templates/extendedShortenerTemplate.js';
 
-import loginModalComponent from './components/loginModalComponent.js';
-import registrationModalComponent from './components/registrationModalComponent.js';
+import loginModalTemplate from './templates/loginModalTemplate.js';
+import registrationModalTemplate from './templates/registrationModalTemplate.js';
 
 import enableShortener from './buisness/shortener.js';
 import enableDatepicker from './handlers/datepicker.js';
@@ -22,32 +22,32 @@ const modalsSection = new PageSection('modals-section');
 const additionalSection = new PageSection('additional-section');
 
 function loadMainPage() {
-	userHeaderSection.renderComponent(guestUserHeaderComponent());
-	mainSection.renderComponent(shortenerComponent());
-	modalsSection.renderComponent(loginModalComponent() + registrationModalComponent());
-	additionalSection.renderComponent(benefitsComponent());
+	userHeaderSection.render(guestUserHeaderTemplate());
+	mainSection.render(shortenerTemplate());
+	modalsSection.render(loginModalTemplate() + registrationModalTemplate());
+	additionalSection.render(benefitsTemplate());
 	enableShortener();
 	enableLoginForm();
 	enableRegistrationForm();
 }
 
 function loadLoggedMainPage(user) {
-	userHeaderSection.renderComponent(loggedUserHeaderComponent(user.email));
-	mainSection.renderComponent(extendedShortenerComponent());
-	modalsSection.renderComponent('');
-	additionalSection.renderComponent('');
+	userHeaderSection.render(loggedUserHeaderTemplate(user.email));
+	mainSection.render(extendedShortenerTemplate());
+	modalsSection.render('');
+	additionalSection.render('');
 	enableShortener();
 	enableDatepicker();
 }
 
 function loadPanelPage(user) {
-	userHeaderSection.renderComponent(loggedUserHeaderComponent(user.email, { panelLink: false, shortenerLink: true }));
+	userHeaderSection.render(loggedUserHeaderTemplate(user.email, { panelLink: false, shortenerLink: true }));
 	enablePanel();
 }
 
 function loadSettingsPage(user) {
-	userHeaderSection.renderComponent(loggedUserHeaderComponent(user.email, { settingsLink: false }));
-	mainSection.renderComponent('<h2>Настройки аккаунта</h2>');
+	userHeaderSection.render(loggedUserHeaderTemplate(user.email, { settingsLink: false }));
+	mainSection.render('<h2>Настройки аккаунта</h2>');
 }
 
 export { loadMainPage, loadLoggedMainPage, loadPanelPage, loadSettingsPage };

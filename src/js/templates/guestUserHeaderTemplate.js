@@ -1,4 +1,4 @@
-const guestUserHeaderComponent = () => {
+const guestUserHeaderTemplate = () => {
 	return `
     <nav class="nav header__nav">
 			<ul class="nav__list">
@@ -12,4 +12,4 @@ const guestUserHeaderComponent = () => {
   `;
 };
 
-export default guestUserHeaderComponent;
+export default guestUserHeaderTemplate;
