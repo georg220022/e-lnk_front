@@ -231,6 +231,22 @@ h2 {
   }
 }
 
+.link-button {
+  display: block;
+  font-weight: $fontMain;
+  color: $accent;
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
 .round-button {
   position: absolute;
   top: rem(6);

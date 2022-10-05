@@ -313,3 +313,17 @@
 	width: 100%;
 	transition: $hover;
 }
+
+.forget-password-button {
+	margin-left: auto;
+	font-size: rem(12);
+	margin-top: -8px;
+	margin-bottom: 12px;
+}
+.back-button {
+	margin-bottom: rem(8);
+}
+.reset-form-text {
+	max-width: rem(260);
+	margin-bottom: rem(16);
+}

@@ -1,5 +1,5 @@
 import user from './user.js';
-import { LOGIN_API } from "./api.js";
+import { LOGIN_API, RESET_PASSWORD_API } from "./api.js";
 import router from '../router.js';
 import validateAuthFilledInput from '../utils/validateAuthFilledInput.js';
 import validateEmptyInput from '../utils/validateEmptyInput.js';
@@ -25,6 +25,19 @@ function enableLoginForm() {
 		input.addEventListener('blur', () => validateAuthFilledInput(input));
 	});
 	l.loginForm.addEventListener('submit', submitLoginForm);
+
+
+	l.resetPasswordFormInput?.removeEventListener('blur', () => validateAuthFilledInput(l.resetPasswordFormInput));
+	l.resetPasswordForm?.removeEventListener('submit', submitResetPasswordForm);
+
+	l.resetPasswordForm = document.getElementById('reset-password-form');
+	l.resetPasswordFormInput = l.resetPasswordForm.querySelector('#reset-password-email');
+	l.resetPasswordFormSubmitBtn = l.resetPasswordForm.querySelector('#reset-password-form-submitBtn');
+	l.resetPasswordForm.setAttribute('novalidate', 'true');
+
+	l.resetPasswordFormInput.addEventListener('blur', () => validateAuthFilledInput(l.resetPasswordFormInput));
+	l.resetPasswordForm.addEventListener('submit', submitResetPasswordForm);
+
 }
 
 async function submitLoginForm(event) {
@@ -61,6 +74,35 @@ async function submitLoginForm(event) {
 		l.loginFormSubmitBtn.innerText = 'Войти';
 		l.loginFormInputs.forEach((input) => input.removeAttribute('disabled'));
 		l.loginForm.reset();
+	}
+}
+
+async function submitResetPasswordForm(event) {
+	event.preventDefault();
+
+	let isValid = validateAuthFilledInput(l.resetPasswordFormInput) && validateEmptyInput(l.resetPasswordFormInput);
+
+	if (isValid) {
+		let jsonForReq = JSON.stringify({ email: l.resetPasswordFormInput.value });
+
+		l.resetPasswordFormSubmitBtn.classList.add('loader');
+		l.resetPasswordFormSubmitBtn.innerText = '';
+		l.resetPasswordFormInput.setAttribute('disabled', 'disabled');
+
+		let { response, json } = await sendRequest('POST', RESET_PASSWORD_API, jsonForReq, {cookie: true});
+
+		if (response && response.ok) {
+			l.resetPasswordForm.innerHTML = `
+				<p style="max-width: 260px">На почту  <span style="color: #3d96e5">${l.resetPasswordFormInput.value} </span> была отправлена ссылка для сброса пароля.</p> 
+			`;
+		} else if (json && json.error) {
+			alert(json.error);
+		} else alert('Не получилось отправить письмо для сброса пароля :( \nПожалуйста, попробуйте позже');
+
+		l.resetPasswordFormSubmitBtn.classList.remove('loader');
+		l.resetPasswordFormSubmitBtn.innerText = 'Отправить';
+		l.resetPasswordFormInput.removeAttribute('disabled');
+		l.resetPasswordForm.reset();
 	}
 }
 
