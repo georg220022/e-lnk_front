@@ -4,19 +4,19 @@
 	align-items: flex-start;
 	gap: 0 rem(2);
 	padding: rem(6) 0;
-	animation: slideDown 0.3s;	
+	animation: slideDown 0.3s;
 
 	&.link--active > .link {
 		background-color: $accent;
 		transition: $hover;
 	}
 
-	@media (hover: hover) { 
+	@media (hover: hover) {
 		&:hover {
 			& > .trash-button {
 				opacity: 1;
 			}
-	  }
+		}
 	}
 }
 
@@ -35,14 +35,14 @@
 			justify-content: start;
 			padding: rem(8) 0 rem(8) rem(16);
 			gap: rem(8);
-	}
+		}
 	}
 
 	&__name {
 		font-family: $fontMain;
 		font-size: 18px;
-  	line-height: 1.1;
-  	font-weight: 400;
+		line-height: 1.1;
+		font-weight: 400;
 		text-align: left;
 		max-width: 30ch;
 		overflow: hidden;
@@ -53,7 +53,7 @@
 			max-width: 18ch;
 		}
 	}
-	
+
 	&__locked {
 		width: 20px;
 		margin-top: 4px;
@@ -63,8 +63,8 @@
 	&__short {
 		flex: 0 0 auto;
 		display: block;
-  	visibility: visible;
-  	opacity: 1;
+		visibility: visible;
+		opacity: 1;
 		width: 100%;
 		max-width: 26ch;
 
@@ -72,7 +72,7 @@
 			padding-left: rem(14);
 			border: none;
 			width: 100%;
-  	}
+		}
 	}
 
 	&__body {
@@ -131,8 +131,12 @@
 			bottom: 0;
 		}
 
+		&:hover .tooltip__text {
+			display: none;
+		}
 		@media (hover: hover) {
 			&:hover .tooltip__text {
+				display: block;
 				transition-delay: 0.5s;
 			}
 		}
@@ -256,12 +260,12 @@
 	background-color: transparent;
 	border: none;
 	fill: none;
-	stroke: $gray; 
+	stroke: $gray;
 	cursor: pointer;
 	transition: $hover;
 
 	&.trash-button--active {
-		stroke: $primary; 
+		stroke: $primary;
 		opacity: 1;
 		transition: $hover;
 	}
@@ -269,11 +273,11 @@
 	@media (hover: none ) {
 		opacity: 1;
 	}
-	@media (hover: hover) { 
+	@media (hover: hover) {
 		&:hover {
-			stroke: $primary; 
+			stroke: $primary;
 			transition: $hover;
-	  }
+		}
 	}
 	@media (max-width: $breakpoint768) {
 		margin-right: -24px;
