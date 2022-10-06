@@ -93,7 +93,12 @@ async function submitResetPasswordForm(event) {
 
 		if (response && response.ok) {
 			l.resetPasswordForm.innerHTML = `
-				<p style="max-width: 260px">На почту  <span style="color: #3d96e5">${l.resetPasswordFormInput.value} </span> была отправлена ссылка для сброса пароля.</p> 
+				<div style="max-width: 260px; text-align: center">
+					<p>На почту  <span style="color: #3d96e5">${l.resetPasswordFormInput.value} </span> была отправлена ссылка для сброса пароля.</p>
+					<br>
+					<p>В&nbsp;редких случаях письмо может идти до&nbsp;15&nbsp;минут.</p>
+					<p>Если письмо не&nbsp;пришло обратитесь в&nbsp;поддержку: help@e-lnk.ru</p>
+				</div>
 			`;
 		} else if (json && json.error) {
 			alert(json.error);

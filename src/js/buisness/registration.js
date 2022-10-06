@@ -43,7 +43,9 @@ async function submitRegistrationForm(event) {
 		let objFromInputs = createObjectFromInputs(r.registrationFormInputs);
 		delete objFromInputs['repeat-password'];
 		delete objFromInputs['consent-checkbox'];
-		objFromInputs.timezone = (new Date()).toString().slice(28, 31);
+		let timezone = (new Date()).toString().slice(28, 31);
+		if (timezone.includes('0')) timezone = timezone.replace('0', '');
+		objFromInputs.timezone = timezone;
 		let jsonForReq = JSON.stringify(objFromInputs);
 
 		r.registrationFormSubmitBtn.classList.add('loader');
