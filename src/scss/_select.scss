@@ -1,0 +1,73 @@
+.select {
+	margin: 0 auto;
+	position: relative;
+	width: 100%;
+	user-select: none;
+
+	&__header {
+		border: 1px solid $accent;
+		border-radius: rem(25);
+		cursor: pointer;
+		display: flex;
+	}
+
+	&__item {
+		cursor: pointer;
+		padding: 12px 20px;
+		background: $secondary;
+		border-radius: rem(25);
+		transition: $hover;
+
+		@media (hover: hover) { 
+			&:hover {
+				background-color: $accent;
+				color: $secondary;
+		  }
+		}
+
+		&--current {
+			display: inline-flex;
+			padding: 12px 20px;
+			cursor: pointer;
+			width: 100%;
+			border-radius: rem(25);
+			transition: $hover;
+
+			@media (hover: hover) { 
+				&:hover {
+					background-color: $accent;
+					color: $secondary;
+		 	 	}
+			}
+		}
+	}
+
+	&__body {
+		position: absolute;
+		transform: translateY(-52%);
+		display: none;
+		left: 0;
+		right: 0;
+		background: $secondary;
+		border: 1px solid $accent;
+		border-radius: rem(25);
+		z-index: 50;
+		overflow-y: auto;
+		max-height: 400px;
+	}
+
+	&--active .select__body {
+		display: block;
+	}
+
+	&--active .select__item--current {
+	  &::after {
+      transform: rotate(-135deg);
+      transition: all 0.1s ease;
+    }		
+	}
+}
+
+select {
+	display: none;
+}

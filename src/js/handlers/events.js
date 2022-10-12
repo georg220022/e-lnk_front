@@ -8,6 +8,7 @@ import clearInputEvent from './clearInputEvent.js';
 import selectLinkEvent from './selectLinkEvent.js';
 import resetPasswordFormEvent from './resetPasswordFormEvent.js';
 import logoutEvent from './logoutEvent.js';
+import selectEvent from './selectEvent';
 
 document.addEventListener('click', (event) => {
 
@@ -20,6 +21,8 @@ document.addEventListener('click', (event) => {
 	accordionEvent(event);
 
 	tabsEvent(event);
+
+	selectEvent(event);
 
 	copyToClipboardEvent(event);
 	

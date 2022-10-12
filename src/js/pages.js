@@ -15,6 +15,7 @@ import enableDatepicker from './handlers/datepicker.js';
 import enableLoginForm from './buisness/login.js';
 import enableRegistrationForm from './buisness/registration.js';
 import enablePanel from './buisness/panel.js';
+import enableSettings from './buisness/settings';
 
 const userHeaderSection = new PageSection('user-header-section');
 const mainSection = new PageSection('main-section');
@@ -47,7 +48,7 @@ function loadPanelPage(user) {
 
 function loadSettingsPage(user) {
 	userHeaderSection.render(loggedUserHeaderTemplate(user.email, { settingsLink: false }));
-	mainSection.render('<h2>Настройки аккаунта</h2>');
+	enableSettings();
 }
 
 export { loadMainPage, loadLoggedMainPage, loadPanelPage, loadSettingsPage };

@@ -1,5 +1,5 @@
 import router from '../router.js';
-import { REFRESH_API, LOGOUT_API } from "./api.js";
+import {REFRESH_API, LOGOUT_API, SETTINGS_API } from "./api.js";
 import sendRequest from '../utils/sendRequest.js';
 
 let user = {
@@ -53,6 +53,22 @@ let user = {
 			router('#/');
 		} catch (error) {
 			console.error('ошибка при логауте: ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
+		}
+	},
+
+	delete: async function() {
+		try {
+			let { response,	json } = await sendRequest('DELETE', SETTINGS_API, '', { cookie: true });
+			if (response.ok) {
+				this.accessToken = null;
+				this.email = null;
+				if (this.isRetry) delete this.isRetry;
+				router('#/');
+			} else if(json && json.error) {
+				alert(json.error);
+			} else alert('Не получилось удалить аккаунт :( \nПожалуйста, попробуйте позже');
+		} catch (error) {
+			console.error('ошибка при удалении аккаунта: ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 		}
 	},
 };

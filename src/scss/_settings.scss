@@ -1,0 +1,91 @@
+.settings {
+  padding: 2rem 0 1rem;
+
+  &__item {
+    min-width: rem(286);
+    max-width: rem(600);
+    margin: 0 auto 1rem;
+
+    & .accordion {
+
+      &__item {
+
+        &.delete-acc-item {
+          border: 1px solid $error;
+
+          & .accordion__title {
+            color: $error;
+          }
+        }
+
+      }
+
+      &__header {
+        width: 100%;
+        height: 100%;
+        padding: rem(16);
+        border-radius: rem(20);
+        transition: $hover;
+        text-align: center;
+
+        @media (hover: hover) {
+          &:hover {
+            background-color: $accent;
+            transition: $hover;
+
+            & .accordion__title {
+              color: $secondary;
+              transition: $hover;
+            }
+          }
+        }
+
+        &.delete-acc-item {
+          @media (hover: hover) {
+            &:hover {
+              background-color: $error;
+            }
+          }
+        }
+      }
+
+      &__button {
+        width: 100%;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      &__title {
+        font-size: rem(18);
+        font-weight: 400;
+        color: $accent;
+      }
+
+      &__content {
+        padding: 1rem;
+        overflow: unset;
+      }
+    }
+  }
+
+  &__label {
+    position: relative;
+    margin-bottom: 1rem;
+
+    & > .tooltip {
+      position: relative;
+      display: contents;
+      width: 100%;
+
+      & .tooltip__text {
+        bottom: rem(24);
+      }
+    }
+  }
+}
+
+.select {
+  padding: 1rem 0;
+}

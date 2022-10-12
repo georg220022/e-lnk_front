@@ -22,7 +22,7 @@ const registrationModalTemplate = () => {
 						<div class="form__checkbox-wrapper">
 						<input class="form__input form__input--checkbox" type="checkbox" name="consent-checkbox" id="registration-consent-checkbox" value="consent-checkbox" required>
 						<span class="error-label"></span>
-						<label class="form__label form__label--checkbox" for="registration-consent-checkbox">Принимаю <a class="form__terms-link" href="terms.html" target="_blank">условия обработки персональных данных</a>
+						<label class="form__label form__label--checkbox" for="registration-consent-checkbox">Принимаю <a class="form__terms-link" href="terms.html" target="_blank">условия пользовательского соглашения</a>
 						</label>
 						</div>
 						<button class="form__button form__button--submit button--main" id="registration-submitBtn" type="submit" name="submit">Зарегистрироваться</button>

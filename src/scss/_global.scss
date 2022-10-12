@@ -47,6 +47,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 input {
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
@@ -226,8 +227,28 @@ h2 {
   &.loader {
     width: rem(40);
     height: rem(40);
+    background-color: $secondary;
     border: none;
     box-shadow: none;
+  }
+
+  &.error-button {
+    background-color: $error;
+    border: 1px solid $error;
+
+    &.loader {
+      width: rem(40);
+      height: rem(40);
+      background-color: $secondary;
+      border: none;
+      box-shadow: none;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: darken($error, 10%);
+      }
+    }
   }
 }
 
@@ -292,6 +313,14 @@ h2 {
   &.checkmark {
     border: 1px solid $success;
     background-color: $success;
+  }
+}
+
+.shortener-button {
+  width: rem(80);
+  &.loader {
+    width: rem(40);
+    height: rem(40);
   }
 }
 
@@ -389,6 +418,10 @@ input[disabled] {
   border: 1px solid $error !important;
 }
 
+.error-text {
+  color: $error;
+}
+
 .loader {
   pointer-events: none;
   border: none;
@@ -464,7 +497,7 @@ input[disabled] {
   position: relative;
 
   & svg {
-    margin-bottom: -2px;
+    margin-bottom: -1px;
   }
 
   & .tooltip__text {

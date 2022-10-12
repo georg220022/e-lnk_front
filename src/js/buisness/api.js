@@ -8,3 +8,4 @@ export const GET_LINKS_API = 'api/v1/panel';
 export const CHANGE_LINKS_API = 'api/v1/links';
 export const DELETE_LINKS_API = 'api/v1/links';
 export const PASSWORD_CHECK_API = 'api/v1/unlock';
+export const SETTINGS_API = 'api/v1/settings';
