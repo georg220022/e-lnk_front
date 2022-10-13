@@ -76,7 +76,8 @@ async function submitSettingsForm(event) {
 		formInputs.forEach((input) => input.setAttribute('disabled', 'disabled'));
 
 		if (isDeleteAccForm) {
-			await user.delete();
+			const jsonForReq = JSON.stringify({ password: formInputs[0].value })
+			await user.delete(jsonForReq);
 			formSubmitBtn.innerText = 'Удалить';
 		} else {
 			let jsonForReq = {};

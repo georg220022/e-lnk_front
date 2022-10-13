@@ -56,14 +56,11 @@ let user = {
 		}
 	},
 
-	delete: async function() {
+	delete: async function(reqBody) {
 		try {
-			let { response,	json } = await sendRequest('DELETE', SETTINGS_API, '', { cookie: true });
+			let { response,	json } = await this.sendRequest('DELETE', SETTINGS_API, reqBody, { cookie: true });
 			if (response.ok) {
-				this.accessToken = null;
-				this.email = null;
-				if (this.isRetry) delete this.isRetry;
-				router('#/');
+				await this.logout();
 			} else if(json && json.error) {
 				alert(json.error);
 			} else alert('Не получилось удалить аккаунт :( \nПожалуйста, попробуйте позже');
