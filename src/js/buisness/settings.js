@@ -68,8 +68,8 @@ async function submitSettingsForm(event) {
 		if (isNewPasswordForm && formInputs[0].value === formInputs[2].value) return alert('Новый и старый пароли не должны совпадать');
 		if (isTimezoneForm && formSelect.value === s.userData.timezone) return alert('Выбранное значение равно текущему');
 		if (isStatisticsForm &&
-			(formSelect.value === 'Да' && s.userData.sendStat === true) ||
-			(formSelect.value === 'Нет' && s.userData.sendStat === false)) return alert('Выбранное значение равно текущему');
+			(formSelect?.value === 'Да' && s.userData.sendStat === true) ||
+			(formSelect?.value === 'Нет' && s.userData.sendStat === false)) return alert('Выбранное значение равно текущему');
 
 		formSubmitBtn.classList.add('loader');
 		formSubmitBtn.innerText = '';
