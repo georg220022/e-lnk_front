@@ -21,7 +21,7 @@ function validatePasswordCheckInput(input) {
 
 	switch (input.name) {
 		case ('linkPassword'):
-			inputCorrectCondition = input.value.length < 16;
+			inputCorrectCondition = input.value.length <= 16;
 			inputErrorText = 'Пароль не может быть длиннее 16 символов';
 			break;
 	}

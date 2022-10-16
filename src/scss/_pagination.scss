@@ -6,6 +6,9 @@
 	
 	&__list {
 		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		row-gap: rem(8);
 	}
 
 	&__item {

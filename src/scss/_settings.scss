@@ -89,3 +89,14 @@
 .select {
   padding: 1rem 0;
 }
+
+.divider::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background-color: lighten($accent, 10%);
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}

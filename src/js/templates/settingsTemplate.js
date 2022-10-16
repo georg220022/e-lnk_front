@@ -47,7 +47,7 @@ const settingsTemplate = (userData) => {
 												 placeholder="Введите новый пароль" required/>
 									<span class="error-label"></span>
 								</label>
-								<label class="form__label form__label--repeat-password">
+								<label class="form__label form__label--repeat-password divider">
 									<input class="form__input form__input--repeat-password" type="password" name="repeat-password"
 												 placeholder="Повторите новый пароль" required/>
 									<span class="error-label"></span>
