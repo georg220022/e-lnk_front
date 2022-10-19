@@ -20,7 +20,7 @@ const loginModalTemplate = () => {
 					</form>
 					<form class="form" id="reset-password-form" action="#" method="post" autocomplete="off" style="display: none">
 						<button class="link-button back-button" type="button">Назад</button>
-						<p class="reset-form-text">Введите почту на которую зарегестрирован ваш аккаунт. На нее придет ссылка для сброса пароля.</p>
+						<p class="reset-form-text">Введите почту, на которую зарегистрирован ваш аккаунт. На нее придет ссылка для сброса пароля.</p>
 						<label class="form__label form__label-reset-password--email" for="reset-password-email">
 							<input class="form__input form__input--reset-password-email" id="reset-password-email" type="email" name="email" placeholder="Введите e-mail" required>
 							<span class="error-label"></span>

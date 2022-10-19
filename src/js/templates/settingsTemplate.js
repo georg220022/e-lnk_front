@@ -112,7 +112,7 @@ const settingsTemplate = (userData) => {
 										<li class="select__item">-3</li>
 										<li class="select__item">-2</li>
 										<li class="select__item">-1</li>
-										<li class="select__item">0</li>
+										<li class="select__item">+0</li>
 										<li class="select__item">+1</li>
 										<li class="select__item">+2</li>
 										<li class="select__item">+3</li>
