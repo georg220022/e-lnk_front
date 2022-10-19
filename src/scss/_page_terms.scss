@@ -1,0 +1,33 @@
+.terms-page {
+
+  &__title {
+    margin-bottom: 1rem;
+  }
+  
+  &__release-date {
+    margin-bottom: 1rem;
+    text-align: right;
+  }
+  
+  &__text {
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: 1rem;
+  }
+
+  &__list {
+    margin-bottom: 1rem;
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+
+  &__list-item {
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
