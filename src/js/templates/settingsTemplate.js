@@ -1,6 +1,31 @@
 const settingsTemplate = (userData) => {
 	return `
 		<div class="settings">
+			${!userData.isActivated ? `
+				<div class="settings__item">
+					<ul class="accordion">
+						<li class="accordion__item error-acc-item">
+							<button class="accordion__button accordion__button--active" disabled>
+								<div class="accordion__header error-acc-item">
+									<h3 class="accordion__title">Активация аккаунта</h3>
+								</div>
+							</button>
+							<div class="accordion__content accordion__content--active">
+								<form class="form settings-send-email-again-form" action="#" method="post" autocomplete="off" novalidate>
+									<p class="settings__label">Ваш адрес электронной почты не подтвержден. Перейдите по ссылке в письме активации, которое было направлено на вашу почту
+										<span class="accent-text">${userData.email}</span>.
+									</p>
+									<p class="settings__label">Если Вы не получали письмо с просьбой подтвердить аккаунт, можно отправить повторный запрос, нажав кнопку ниже.
+									</p>
+									<button class="form__button form__button--submit button--main"
+													type="submit" name="submit">Выслать письмо активации повторно
+									</button>
+								</form>
+							</div>
+						</li>
+					</ul>
+				</div>
+			` : ''}
 			<div class="settings__item">
 				<ul class="accordion">
 					<li class="accordion__item">
@@ -180,9 +205,9 @@ const settingsTemplate = (userData) => {
 		
 			<div class="settings__item">
 				<ul class="accordion">
-					<li class="accordion__item delete-acc-item">
+					<li class="accordion__item error-acc-item">
 						<button class="accordion__button">
-							<div class="accordion__header delete-acc-item"><h3 class="accordion__title">Удалить аккаунт</h3></div>
+							<div class="accordion__header error-acc-item"><h3 class="accordion__title">Удалить аккаунт</h3></div>
 						</button>
 						<div class="accordion__content">
 							<form class="form settings-delete-acc-form" action="#" method="post" autocomplete="off" novalidate>

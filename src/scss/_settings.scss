@@ -10,7 +10,7 @@
 
       &__item {
 
-        &.delete-acc-item {
+        &.error-acc-item {
           border: 1px solid $error;
 
           & .accordion__title {
@@ -40,7 +40,7 @@
           }
         }
 
-        &.delete-acc-item {
+        &.error-acc-item {
           @media (hover: hover) {
             &:hover {
               background-color: $error;
@@ -99,4 +99,8 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1rem;
+}
+
+.settings-send-email-again-form {
+  text-align: center;
 }
