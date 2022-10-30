@@ -79,7 +79,7 @@ const settingsTemplate = (userData) => {
 								</label>
 								<label class="form__label form__label--password">
 									<input class="form__input form__input--password" type="password" name="password"
-												 placeholder="Подтвердите ваш пароль" required/>
+												 placeholder="Подтвердите ваш текущий пароль" required/>
 									<span class="error-label"></span>
 								</label>
 								<button class="form__button form__button--submit button--main"

@@ -112,8 +112,8 @@ async function submitNewEmailForm(event) {
 		let {response, json} = await user.sendRequest('PATCH', SETTINGS_API, jsonForReq, {cookie: true});
 
 		if (response.ok) {
-			alert('Пароль успешно изменен!');
-			await user.logout();
+			alert(`E-mail успешно изменен! \nЧтобы подтвердить акканут, перейдите по ссылке из письма в вашем почтовом ящике ${formInputs[0].value}`);
+			await enableSettings();
 		} else if (json && json.error) {
 			alert(json.error);
 		} else alert('Не получилось изменить данные :( \nПожалуйста, попробуйте позже');
@@ -149,8 +149,8 @@ async function submitNewPasswordForm(event) {
 		let {response, json} = await user.sendRequest('PATCH', SETTINGS_API, jsonForReq, {cookie: true});
 
 		if (response.ok) {
-			alert(`E-mail успешно изменен! \nЧтобы подтвердить акканут, перейдите по ссылке из письма в вашем почтовом ящике ${formInputs[0].value}`);
-			await enableSettings();
+			alert('Пароль успешно изменен!');
+			await user.logout();
 		} else if (json && json.error) {
 			alert(json.error);
 		} else alert('Не получилось изменить данные :( \nПожалуйста, попробуйте позже');
