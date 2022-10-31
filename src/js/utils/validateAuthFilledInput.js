@@ -6,10 +6,10 @@ function validateAuthFilledInput(input) {
 		case ('email'):
 			const emailRegExp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 			let isEmail = emailRegExp.test(input.value);
-			let emailMaxLength = input.value.length > 30;
+			let emailMaxLength = input.value.length > 60;
 			inputCorrectCondition = isEmail && !emailMaxLength;
 			if (emailMaxLength) {
-				inputErrorText = 'E-mail не может быть длиннее 30 символов';
+				inputErrorText = 'E-mail не может быть длиннее 60 символов';
 			}
 			if (!isEmail) {
 				inputErrorText = 'Введите корректный E-mail';

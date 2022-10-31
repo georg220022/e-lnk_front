@@ -112,7 +112,7 @@ async function submitNewEmailForm(event) {
 		let {response, json} = await user.sendRequest('PATCH', SETTINGS_API, jsonForReq, {cookie: true});
 
 		if (response.ok) {
-			alert(`E-mail успешно изменен! \nЧтобы подтвердить акканут, перейдите по ссылке из письма в вашем почтовом ящике ${formInputs[0].value}`);
+			alert(`E-mail успешно изменен! \nЧтобы подтвердить аккаунт, перейдите по ссылке из письма в Вашем почтовом ящике ${formInputs[0].value}`);
 			await enableSettings();
 		} else if (json && json.error) {
 			alert(json.error);

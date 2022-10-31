@@ -12,7 +12,7 @@ const settingsTemplate = (userData) => {
 							</button>
 							<div class="accordion__content accordion__content--active">
 								<form class="form settings-send-email-again-form" action="#" method="post" autocomplete="off" novalidate>
-									<p class="settings__label">Ваш адрес электронной почты не подтвержден. Перейдите по ссылке в письме активации, которое было направлено на вашу почту
+									<p class="settings__label">Ваш адрес электронной почты не подтвержден. Перейдите по ссылке в письме активации, которое было направлено на Вашу почту
 										<span class="accent-text">${userData.email}</span>.
 									</p>
 									<p class="settings__label">Если Вы не получали письмо с просьбой подтвердить аккаунт, можно отправить повторный запрос, нажав кнопку ниже.
@@ -99,7 +99,7 @@ const settingsTemplate = (userData) => {
 						</button>
 						<div class="accordion__content">
 							<form class="form settings-timezone-form" action="#" method="post" autocomplete="off" novalidate>
-								<label class="settings__label">Выберите ваш часовой пояс:
+								<label class="settings__label">Выберите Ваш часовой пояс:
 									<div class="tooltip">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
 												 stroke="#3d96e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
