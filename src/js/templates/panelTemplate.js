@@ -5,11 +5,11 @@ const panelTemplate = () => {
 				<div class="panel__header-body">
 					<div class="panel__sort sort">
 						Сортировать:
-						<button class="sort__button">По дате добавления</button>
+						<button type="button" class="sort__button" aria-label="Сортировать по дате обновления">По дате добавления</button>
 					</div>
 					<div class="panel__controls controls">
-						<button class="controls__button controls__button--cancel button">Отмена</button>
-						<button class="controls__button controls__button--delete button">Удалить отмеченные</button>
+						<button type="button" class="controls__button controls__button--cancel button" aria-label="Отмена">Отмена</button>
+						<button type="button" class="controls__button controls__button--delete button" aria-label="Удалить отмеченные">Удалить отмеченные</button>
 					</div>
 					</div>
 			</div>

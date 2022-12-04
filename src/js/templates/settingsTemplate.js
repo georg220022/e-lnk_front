@@ -29,7 +29,7 @@ const settingsTemplate = (userData) => {
 			<div class="settings__item">
 				<ul class="accordion">
 					<li class="accordion__item">
-						<button class="accordion__button">
+						<button type="button" class="accordion__button">
 							<div class="accordion__header">
 								<h3 class="accordion__title">Изменить почту</h3>
 							</div>
@@ -39,12 +39,12 @@ const settingsTemplate = (userData) => {
 								<div class="settings__label">При смене электронной почты, вам будет отправлена ссылка активации аккаунта.
 								</div>
 								<label class="form__label form__label--email" for="login-email">
-									<input class="form__input form__input--email" id="login-email" type="email" name="email"
+									<input class="form__input form__input--email" id="login-email" type="email" name="email" aria-label="E-mail"
 												 placeholder="Введите новый e-mail" required>
 									<span class="error-label"></span>
 								</label>
 								<label class="form__label form__label--password">
-									<input class="form__input form__input--password" type="password" name="password"
+									<input class="form__input form__input--password" type="password" name="password" aria-label="Подтвердите ваш пароль"
 												 placeholder="Подтвердите ваш пароль" required/>
 									<span class="error-label"></span>
 								</label>
@@ -60,7 +60,7 @@ const settingsTemplate = (userData) => {
 			<div class="settings__item">
 				<ul class="accordion">
 					<li class="accordion__item">
-						<button class="accordion__button">
+						<button type="button" class="accordion__button">
 							<div class="accordion__header">
 								<h3 class="accordion__title">Изменить пароль</h3>
 							</div>
@@ -68,17 +68,17 @@ const settingsTemplate = (userData) => {
 						<div class="accordion__content">
 							<form class="form settings-new-password-form" action="#" method="post" autocomplete="off" novalidate>
 								<label class="form__label form__label--password">
-									<input class="form__input form__input--password" type="password" name="password"
+									<input class="form__input form__input--password" type="password" name="password" aria-label="Новый пароль"
 												 placeholder="Введите новый пароль" required/>
 									<span class="error-label"></span>
 								</label>
 								<label class="form__label form__label--repeat-password divider">
-									<input class="form__input form__input--repeat-password" type="password" name="repeat-password"
+									<input class="form__input form__input--repeat-password" type="password" name="repeat-password" aria-label="Повторите пароль"
 												 placeholder="Повторите новый пароль" required/>
 									<span class="error-label"></span>
 								</label>
 								<label class="form__label form__label--password">
-									<input class="form__input form__input--password" type="password" name="password"
+									<input class="form__input form__input--password" type="password" name="password" aria-label="Подтвердите ваш текущий пароль"
 												 placeholder="Подтвердите ваш текущий пароль" required/>
 									<span class="error-label"></span>
 								</label>
@@ -94,7 +94,7 @@ const settingsTemplate = (userData) => {
 			<div class="settings__item">
 				<ul class="accordion">
 					<li class="accordion__item">
-						<button class="accordion__button">
+						<button type="button" class="accordion__button">
 							<div class="accordion__header"><h3 class="accordion__title">Изменить часовой пояс</h3></div>
 						</button>
 						<div class="accordion__content">
@@ -153,7 +153,7 @@ const settingsTemplate = (userData) => {
 									</ul>
 								</div>
 								<label class="form__label form__label--password">
-									<input class="form__input form__input--password" type="password" name="password"
+									<input class="form__input form__input--password" type="password" name="password" aria-label="Подтвердите ваш пароль"
 												 placeholder="Подтвердите ваш пароль" required/>
 									<span class="error-label"></span>
 								</label>
@@ -169,7 +169,7 @@ const settingsTemplate = (userData) => {
 			<div class="settings__item">
 				<ul class="accordion">
 					<li class="accordion__item">
-						<button class="accordion__button">
+						<button type="button" class="accordion__button">
 							<div class="accordion__header"><h3 class="accordion__title">Изменить отправку статистики</h3></div>
 						</button>
 						<div class="accordion__content">
@@ -190,7 +190,7 @@ const settingsTemplate = (userData) => {
 									</ul>
 								</div>
 								<label class="form__label form__label--password">
-									<input class="form__input form__input--password" type="password" name="password"
+									<input class="form__input form__input--password" type="password" name="password" aria-label="Подтвердите ваш пароль"
 												 placeholder="Подтвердите ваш пароль" required/>
 									<span class="error-label"></span>
 								</label>
@@ -206,13 +206,13 @@ const settingsTemplate = (userData) => {
 			<div class="settings__item">
 				<ul class="accordion">
 					<li class="accordion__item error-acc-item">
-						<button class="accordion__button">
+						<button type="button" class="accordion__button">
 							<div class="accordion__header error-acc-item"><h3 class="accordion__title">Удалить аккаунт</h3></div>
 						</button>
 						<div class="accordion__content">
 							<form class="form settings-delete-acc-form" action="#" method="post" autocomplete="off" novalidate>
 								<label class="form__label form__label--password">
-									<input class="form__input form__input--password error-input" type="password" name="password"
+									<input class="form__input form__input--password error-input" type="password" name="password" aria-label="Подтвердите ваш пароль"
 												 placeholder="Подтвердите ваш пароль" required/>
 									<span class="error-label"></span>
 								</label>

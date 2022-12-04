@@ -17,7 +17,7 @@ const benefitsTemplate = () => {
 							<li class="benefits__list-item">Отправим вам статистику на&nbsp;почту или&nbsp;telegram</li>
 							<li class="benefits__list-item">Полный контроль ваших клиентов</li>
 						</ul>
-						<button class="benefits__button button--main modal-button" data-target="registration-modal">Начать бесплатно</button>
+						<button class="benefits__button button--main modal-button" aria-label="start for free" data-target="registration-modal">Начать бесплатно</button>
 					</div>
 				</div>
 			</div>
