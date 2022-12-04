@@ -1,5 +1,11 @@
 User-Agent: * 
-Disallow: /api/ 
-Disallow: /off-limits.html 
-Disallow: /password-check 
+Disallow: /api/
+Disallow: /off-limits.html
+Disallow: /start-date.html
+Disallow: /end-date.html
+Disallow: /ee.html
+Disallow: /password-check
+Disallow: /password-check.html
+Disallow: /password-reset.html
+Disallow: /terms.html
 Disallow: /404.html
