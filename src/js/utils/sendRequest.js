@@ -21,12 +21,8 @@ async function sendRequest(method, api, body = '', options = { token: false, coo
 		response = await fetch(api, requestOptions);
 		try {
 			json = await response.json();
-			console.log(`Полученный json (${api}, ${method}):`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-			console.log(json); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 		} catch (e) {}
-	} catch (error) {
-		console.error(`ошибка при запросе (${api}): ${error}`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-	}
+	} catch (e) {}
 
 	return { response, json	};
 }

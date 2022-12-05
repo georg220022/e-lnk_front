@@ -1,5 +1,5 @@
 import router from '../router.js';
-import {REFRESH_API, LOGOUT_API, SETTINGS_API } from "./api.js";
+import { REFRESH_API, LOGOUT_API, SETTINGS_API } from "./api.js";
 import sendRequest from '../utils/sendRequest.js';
 
 let user = {
@@ -30,7 +30,6 @@ let user = {
 
 			if (!response.ok) {
 				await this.logout();
-				console.error(`Токен не валиден(ответ сервера: ${response.status})`); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
 				return false;
 			}
 
@@ -39,9 +38,7 @@ let user = {
 				this.email = json.email;
 				return true;
 			}
-		} catch (error) {
-			console.error('ошибка при рефреше (refresh_request): ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-		}
+		} catch (e) {}
 	},
 
 	logout: async function() {
@@ -51,9 +48,7 @@ let user = {
 			this.email = null;
 			if (this.isRetry) delete this.isRetry;
 			router('#/');
-		} catch (error) {
-			console.error('ошибка при логауте: ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-		}
+		} catch (e) {}
 	},
 
 	delete: async function(reqBody) {
@@ -64,9 +59,7 @@ let user = {
 			} else if(json && json.error) {
 				alert(json.error);
 			} else alert('Не получилось удалить аккаунт :( \nПожалуйста, попробуйте позже');
-		} catch (error) {
-			console.error('ошибка при удалении аккаунта: ' + error); //ВРЕМЕННАЯ СТРОЧКА ДЛЯ ОТЛАДКИ
-		}
+		} catch (e) {}
 	},
 };
 
